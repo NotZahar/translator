@@ -1,0 +1,58 @@
+name: 'translator release'
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions: write-all
+    steps:
+      - run: sudo apt update && sudo apt install software-properties-common -y
+      - run: sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+      - run: sudo apt update
+      - run: sudo apt install gcc-13 g++-13 cmake libgtest-dev -y
+      - run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 13 --slave /usr/bin/g++ g++ /usr/bin/g++-13
+
+      - name: Install Boost
+        uses: MarkusJx/install-boost@v2.4.4
+        id: install_boost
+        with:
+            boost_version: 1.82.0
+            platform_version: 22.04
+            boost_install_dir: /home/runner/boost
+            toolset: gcc
+
+      - uses: actions/checkout@v3
+      - run: cmake . -DCMAKE_BUILD_TYPE=Release -DPATCH_VERSION=${{ github.run_number }}
+            -DBoost_INCLUDE_DIR=${{ steps.install_boost.outputs.BOOST_ROOT }}/include
+            -DBoost_LIBRARY_DIRS=${{ steps.install_boost.outputs.BOOST_ROOT }}/lib
+        env:
+            BOOST_ROOT: ${{ steps.install_boost.outputs.BOOST_ROOT }}
+      - run: cmake --build . --target install -j 2
+      - run: cmake --build . --target package -j 2
+      
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: v${{ github.run_number }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./translator-0.0.${{ github.run_number }}-Linux.deb
+          asset_name: translator-0.0.${{ github.run_number }}-Linux.deb
+          asset_content_type: application/vnd.debian.binary-package
