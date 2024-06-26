@@ -1,0 +1,12 @@
+var searchData=
+[
+  ['parent_476',['parent',['../classpugi_1_1xml__node.html#aa5e551fb7095338188a7ed33ca6026b4',1,'pugi::xml_node::parent()'],['../classpugi_1_1xpath__node.html#a0c26a162ebd53968a288fb64dddd49cf',1,'pugi::xpath_node::parent()']]],
+  ['path_477',['path',['../classpugi_1_1xml__node.html#ad695e3498bf08d58d0d5c03142a06ba1',1,'pugi::xml_node']]],
+  ['prepend_5fattribute_478',['prepend_attribute',['../classpugi_1_1xml__node.html#a79e6ff9f9c51d1fa7aa88a5b36add3a4',1,'pugi::xml_node']]],
+  ['prepend_5fchild_479',['prepend_child',['../classpugi_1_1xml__node.html#a44d9683f11e29baed1bcb00686b4f2aa',1,'pugi::xml_node::prepend_child(xml_node_type type=node_element)'],['../classpugi_1_1xml__node.html#ac0e4d20eb8e5ac53ec32107240dcd315',1,'pugi::xml_node::prepend_child(const char_t *name)']]],
+  ['prepend_5fcopy_480',['prepend_copy',['../classpugi_1_1xml__node.html#a82e79ec07dc0e894a0567dcadcc7a9b9',1,'pugi::xml_node::prepend_copy(const xml_attribute &amp;proto)'],['../classpugi_1_1xml__node.html#a26d22e6a651616a3cf114f4efeccd602',1,'pugi::xml_node::prepend_copy(const xml_node &amp;proto)']]],
+  ['prepend_5fmove_481',['prepend_move',['../classpugi_1_1xml__node.html#a3a82e734770972017b8d23d8ec07e70a',1,'pugi::xml_node']]],
+  ['previous_5fattribute_482',['previous_attribute',['../classpugi_1_1xml__attribute.html#ab91e12d507b500e92bc6b371be31dc4b',1,'pugi::xml_attribute']]],
+  ['previous_5fsibling_483',['previous_sibling',['../classpugi_1_1xml__node.html#a7fe1a00db01eaedb4f3ee592aa5d735c',1,'pugi::xml_node::previous_sibling() const'],['../classpugi_1_1xml__node.html#a6c0b2cdbafda832011aa90ad6c24de49',1,'pugi::xml_node::previous_sibling(const char_t *name) const']]],
+  ['print_484',['print',['../classpugi_1_1xml__node.html#aafa778f6b591168f7dcc91836044413f',1,'pugi::xml_node::print(xml_writer &amp;writer, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const'],['../classpugi_1_1xml__node.html#a8f7ddf9c80e6809d179ff08b53e91c78',1,'pugi::xml_node::print(std::basic_ostream&lt; char &gt; &amp;os, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const'],['../classpugi_1_1xml__node.html#a8ccf2a253758126cd493bea62b1ddcb4',1,'pugi::xml_node::print(std::basic_ostream&lt; wchar_t &gt; &amp;os, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, unsigned int depth=0) const']]]
+];
