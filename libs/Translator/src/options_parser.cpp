@@ -1,5 +1,7 @@
 #include "options_parser.hpp"
 
+#include <boost/program_options.hpp>
+
 #include "utility/messages.hpp"
 
 namespace ts {
@@ -23,19 +25,9 @@ namespace ts {
                 messages::options::HELP_DESCR.c_str()
             )
             (
-                messages::options::ADDRESS.c_str(),
-                po::value<decltype(Options::address)>(),
-                messages::options::ADDRESS_DESCR.c_str()
-            )
-            (
-                messages::options::PORT.c_str(),
-                po::value<decltype(Options::port)>(),
-                messages::options::PORT_DESCR.c_str()
-            )
-            (
-                messages::options::THREADS.c_str(),
-                po::value<decltype(Options::threads)>(),
-                messages::options::THREADS_DESCR.c_str()
+                messages::options::SOURCE.c_str(),
+                po::value<decltype(Options::sourcePath)>(),
+                messages::options::SOURCE_DESCR.c_str()
             )
         ;
     }
@@ -53,17 +45,9 @@ namespace ts {
             return options;
         }
 
-        if (variablesMap.count(messages::options::ADDRESS_F))
-            options.address = 
-                variablesMap[messages::options::ADDRESS_F].as<decltype(Options::address)>();
-        
-        if (variablesMap.count(messages::options::PORT_F))
-            options.port = 
-                variablesMap[messages::options::PORT_F].as<decltype(Options::port)>();
-
-        if (variablesMap.count(messages::options::THREADS_F))
-            options.threads = 
-                variablesMap[messages::options::THREADS_F].as<decltype(Options::threads)>();
+        if (variablesMap.count(messages::options::SOURCE_F))
+            options.sourcePath = 
+                variablesMap[messages::options::SOURCE_F].as<decltype(Options::sourcePath)>();
 
         return options;
     }

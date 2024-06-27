@@ -1,16 +1,13 @@
 #pragma once
 
+#include <string_view>
+
 #include "../src/utility/types.hpp"
 
 namespace ts {
-    /*!
-        \brief Логгер
-
-        Синглтон
-    */
-    class Logger final {
+    class Logger {
     public:
-        SM_NCM(Logger)
+        TS_NCM(Logger)
 
         static Logger& instance();
 

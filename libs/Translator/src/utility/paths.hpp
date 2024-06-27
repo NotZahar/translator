@@ -2,11 +2,9 @@
 
 #include <filesystem>
 
-#include "types.hpp"
-
 namespace ts {
     struct paths {
-        inline static const fs::path resourcesPath = fs::current_path() / "resources";
-        inline static const fs::path dbPath = resourcesPath / "db/sm.db3";
+        inline static const std::filesystem::path resourcesPath = std::filesystem::current_path() / "resources";
+        inline static const std::filesystem::path sourcePath = resourcesPath / "scheme.xml";
     };
 }

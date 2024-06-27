@@ -13,5 +13,21 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 ```
 
+##### Usage:
+Help:
+```
+./translator -h
+```
+
+Default source:
+```
+./translator
+```
+
+Choose source:
+```
+./translator -s source.xml
+```
+
 ##### Docs:
 - https://notzahar.github.io/translator/

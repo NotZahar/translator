@@ -1,21 +1,15 @@
 #pragma once
 
+#include <boost/program_options.hpp>
+
 #include "../src/utility/config.hpp"
 
 namespace ts {
-    /*!
-        \brief Опции приложения
-
-        Задаются на этапе запуска сервера
-    */
     class OptionsParser {
     public:
         struct Options {
             bool help = false;
-            std::string address = config::defaultAddress;
-            unsigned short port = config::defaultPort;
-            int threads = config::defaultThreads;
-            std::string authSecret = config::defaultAuthSecret;
+            std::string sourcePath = config::sourcePath;
         };
 
         OptionsParser() = delete;
@@ -29,7 +23,7 @@ namespace ts {
         void initOptions();
         Options parseOptions(int argc, char** argv) const;
 
-        options_description _description;
+        boost::program_options::options_description _description;
         Options _options;
     };
 }
