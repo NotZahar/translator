@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['readme_2emd_225',['README.md',['../README_8md.html',1,'']]],
-  ['reference_226',['reference',['../classpugi_1_1xml__node__iterator.html#ae2efdeb44673427f99b7cc1e726bfa13',1,'pugi::xml_node_iterator::reference()'],['../classpugi_1_1xml__attribute__iterator.html#ade97045a1217d0a7897e5f5873297117',1,'pugi::xml_attribute_iterator::reference()'],['../classpugi_1_1xml__named__node__iterator.html#a1c338c7a2aefe04b83f746a963df808b',1,'pugi::xml_named_node_iterator::reference()']]],
-  ['remove_5fattribute_227',['remove_attribute',['../classpugi_1_1xml__node.html#ad2a65ed9e5a0c8ff40918e98c2c2319d',1,'pugi::xml_node::remove_attribute(const xml_attribute &amp;a)'],['../classpugi_1_1xml__node.html#a9b93a949a0c8d23c6457eb18bedf6fe8',1,'pugi::xml_node::remove_attribute(const char_t *name)']]],
-  ['remove_5fattributes_228',['remove_attributes',['../classpugi_1_1xml__node.html#a7c907437d2e917ba6a9888077958de1f',1,'pugi::xml_node']]],
-  ['remove_5fchild_229',['remove_child',['../classpugi_1_1xml__node.html#a0adf80ff295b5ebfc38d9164b99c1ee3',1,'pugi::xml_node::remove_child(const xml_node &amp;n)'],['../classpugi_1_1xml__node.html#a8816dfd666bd9507bfb646f7e0a278bd',1,'pugi::xml_node::remove_child(const char_t *name)']]],
-  ['remove_5fchildren_230',['remove_children',['../classpugi_1_1xml__node.html#aa15c448b268c9f5ef1740c307949422f',1,'pugi::xml_node']]],
-  ['reset_231',['reset',['../classpugi_1_1xml__document.html#a7d325c6309910157080fe69f73922186',1,'pugi::xml_document::reset()'],['../classpugi_1_1xml__document.html#ac35e9409706a0cd8caa7cbf5b80abcca',1,'pugi::xml_document::reset(const xml_document &amp;proto)']]],
-  ['resourcespath_232',['resourcesPath',['../structts_1_1paths.html#af46dc17bb1c97ca7f1d8aac62bfafa29',1,'ts::paths']]],
-  ['result_233',['result',['../classpugi_1_1xpath__query.html#a65b1649e77f75bcc0ed96f0e6a8a04cc',1,'pugi::xpath_query::result()'],['../classpugi_1_1xpath__exception.html#abd08d7d5f7e5dc93a043503529f3b53c',1,'pugi::xpath_exception::result()']]],
-  ['return_5ftype_234',['return_type',['../classpugi_1_1xpath__query.html#acf2b188f7a4b4c5105cc52238f490c2a',1,'pugi::xpath_query']]],
-  ['root_235',['root',['../classpugi_1_1xml__node.html#a775f091ea1847d0c5d841b81718ed9e7',1,'pugi::xml_node']]],
-  ['run_236',['run',['../classts_1_1StockMarket.html#a3abac3f67a49f72e43533fd2e887209e',1,'ts::StockMarket']]]
+  ['readme_2emd_207',['README.md',['../README_8md.html',1,'']]],
+  ['reference_208',['reference',['../classpugi_1_1xml__node__iterator.html#ae2efdeb44673427f99b7cc1e726bfa13',1,'pugi::xml_node_iterator::reference()'],['../classpugi_1_1xml__attribute__iterator.html#ade97045a1217d0a7897e5f5873297117',1,'pugi::xml_attribute_iterator::reference()'],['../classpugi_1_1xml__named__node__iterator.html#a1c338c7a2aefe04b83f746a963df808b',1,'pugi::xml_named_node_iterator::reference()']]],
+  ['remove_5fattribute_209',['remove_attribute',['../classpugi_1_1xml__node.html#ad2a65ed9e5a0c8ff40918e98c2c2319d',1,'pugi::xml_node::remove_attribute(const xml_attribute &amp;a)'],['../classpugi_1_1xml__node.html#a9b93a949a0c8d23c6457eb18bedf6fe8',1,'pugi::xml_node::remove_attribute(const char_t *name)']]],
+  ['remove_5fattributes_210',['remove_attributes',['../classpugi_1_1xml__node.html#a7c907437d2e917ba6a9888077958de1f',1,'pugi::xml_node']]],
+  ['remove_5fchild_211',['remove_child',['../classpugi_1_1xml__node.html#a0adf80ff295b5ebfc38d9164b99c1ee3',1,'pugi::xml_node::remove_child(const xml_node &amp;n)'],['../classpugi_1_1xml__node.html#a8816dfd666bd9507bfb646f7e0a278bd',1,'pugi::xml_node::remove_child(const char_t *name)']]],
+  ['remove_5fchildren_212',['remove_children',['../classpugi_1_1xml__node.html#aa15c448b268c9f5ef1740c307949422f',1,'pugi::xml_node']]],
+  ['reset_213',['reset',['../classpugi_1_1xml__document.html#a7d325c6309910157080fe69f73922186',1,'pugi::xml_document::reset()'],['../classpugi_1_1xml__document.html#ac35e9409706a0cd8caa7cbf5b80abcca',1,'pugi::xml_document::reset(const xml_document &amp;proto)']]],
+  ['resourcespath_214',['resourcesPath',['../structts_1_1paths.html#ab9a6f1ffcdf7011c6b4e8410a6f12ee4',1,'ts::paths']]],
+  ['result_215',['result',['../classpugi_1_1xpath__query.html#a65b1649e77f75bcc0ed96f0e6a8a04cc',1,'pugi::xpath_query::result()'],['../classpugi_1_1xpath__exception.html#abd08d7d5f7e5dc93a043503529f3b53c',1,'pugi::xpath_exception::result()']]],
+  ['return_5ftype_216',['return_type',['../classpugi_1_1xpath__query.html#acf2b188f7a4b4c5105cc52238f490c2a',1,'pugi::xpath_query']]],
+  ['root_217',['root',['../classpugi_1_1xml__node.html#a775f091ea1847d0c5d841b81718ed9e7',1,'pugi::xml_node']]],
+  ['run_218',['run',['../classts_1_1Translator.html#a9d5f17d0f52db3dd9e9baad118dd3c36',1,'ts::Translator']]]
 ];

@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['xml_5fattribute_344',['xml_attribute',['../classpugi_1_1xml__attribute.html',1,'pugi']]],
-  ['xml_5fattribute_5fiterator_345',['xml_attribute_iterator',['../classpugi_1_1xml__attribute__iterator.html',1,'pugi']]],
-  ['xml_5fdocument_346',['xml_document',['../classpugi_1_1xml__document.html',1,'pugi']]],
-  ['xml_5fnamed_5fnode_5fiterator_347',['xml_named_node_iterator',['../classpugi_1_1xml__named__node__iterator.html',1,'pugi']]],
-  ['xml_5fnode_348',['xml_node',['../classpugi_1_1xml__node.html',1,'pugi']]],
-  ['xml_5fnode_5fiterator_349',['xml_node_iterator',['../classpugi_1_1xml__node__iterator.html',1,'pugi']]],
-  ['xml_5fobject_5frange_350',['xml_object_range',['../classpugi_1_1xml__object__range.html',1,'pugi']]],
-  ['xml_5fparse_5fresult_351',['xml_parse_result',['../structpugi_1_1xml__parse__result.html',1,'pugi']]],
-  ['xml_5ftext_352',['xml_text',['../classpugi_1_1xml__text.html',1,'pugi']]],
-  ['xml_5ftree_5fwalker_353',['xml_tree_walker',['../classpugi_1_1xml__tree__walker.html',1,'pugi']]],
-  ['xml_5fwriter_354',['xml_writer',['../classpugi_1_1xml__writer.html',1,'pugi']]],
-  ['xml_5fwriter_5ffile_355',['xml_writer_file',['../classpugi_1_1xml__writer__file.html',1,'pugi']]],
-  ['xml_5fwriter_5fstream_356',['xml_writer_stream',['../classpugi_1_1xml__writer__stream.html',1,'pugi']]],
-  ['xpath_5fexception_357',['xpath_exception',['../classpugi_1_1xpath__exception.html',1,'pugi']]],
-  ['xpath_5fnode_358',['xpath_node',['../classpugi_1_1xpath__node.html',1,'pugi']]],
-  ['xpath_5fnode_5fset_359',['xpath_node_set',['../classpugi_1_1xpath__node__set.html',1,'pugi']]],
-  ['xpath_5fparse_5fresult_360',['xpath_parse_result',['../structpugi_1_1xpath__parse__result.html',1,'pugi']]],
-  ['xpath_5fquery_361',['xpath_query',['../classpugi_1_1xpath__query.html',1,'pugi']]],
-  ['xpath_5fvariable_362',['xpath_variable',['../classpugi_1_1xpath__variable.html',1,'pugi']]],
-  ['xpath_5fvariable_5fset_363',['xpath_variable_set',['../classpugi_1_1xpath__variable__set.html',1,'pugi']]]
+  ['translator_321',['Translator',['../classts_1_1Translator.html',1,'ts']]]
 ];

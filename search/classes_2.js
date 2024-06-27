@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logger_336',['Logger',['../classts_1_1Logger.html',1,'ts']]]
+  ['general_314',['general',['../structts_1_1messages_1_1general.html',1,'ts::messages']]]
 ];

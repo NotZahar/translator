@@ -79,14 +79,14 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Статические открытые данные</h2></td></tr>
-<tr class="memitem:af46dc17bb1c97ca7f1d8aac62bfafa29"><td class="memItemLeft" align="right" valign="top">static const fs::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1paths.html#af46dc17bb1c97ca7f1d8aac62bfafa29">resourcesPath</a> = fs::current_path() / &quot;resources&quot;</td></tr>
-<tr class="separator:af46dc17bb1c97ca7f1d8aac62bfafa29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9899bcab6737d356e58337297c9b3667"><td class="memItemLeft" align="right" valign="top">static const fs::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1paths.html#a9899bcab6737d356e58337297c9b3667">dbPath</a> = <a class="el" href="structts_1_1paths.html#af46dc17bb1c97ca7f1d8aac62bfafa29">resourcesPath</a> / &quot;db/sm.db3&quot;</td></tr>
-<tr class="separator:a9899bcab6737d356e58337297c9b3667"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a6f1ffcdf7011c6b4e8410a6f12ee4"><td class="memItemLeft" align="right" valign="top">static const std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1paths.html#ab9a6f1ffcdf7011c6b4e8410a6f12ee4">resourcesPath</a> = std::filesystem::current_path() / &quot;resources&quot;</td></tr>
+<tr class="separator:ab9a6f1ffcdf7011c6b4e8410a6f12ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14735182eb848215618ac0fd0b660f36"><td class="memItemLeft" align="right" valign="top">static const std::filesystem::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1paths.html#a14735182eb848215618ac0fd0b660f36">sourcePath</a> = <a class="el" href="structts_1_1paths.html#ab9a6f1ffcdf7011c6b4e8410a6f12ee4">resourcesPath</a> / &quot;scheme.xml&quot;</td></tr>
+<tr class="separator:a14735182eb848215618ac0fd0b660f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Данные класса</h2>
-<a id="a9899bcab6737d356e58337297c9b3667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9899bcab6737d356e58337297c9b3667">&#9670;&nbsp;</a></span>dbPath</h2>
+<a id="ab9a6f1ffcdf7011c6b4e8410a6f12ee4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a6f1ffcdf7011c6b4e8410a6f12ee4">&#9670;&nbsp;</a></span>resourcesPath</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -95,7 +95,7 @@ $(function() {
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const fs::path ts::paths::dbPath = <a class="el" href="structts_1_1paths.html#af46dc17bb1c97ca7f1d8aac62bfafa29">resourcesPath</a> / &quot;db/sm.db3&quot;</td>
+          <td class="memname">const std::filesystem::path ts::paths::resourcesPath = std::filesystem::current_path() / &quot;resources&quot;</td>
         </tr>
       </table>
   </td>
@@ -107,8 +107,8 @@ $(function() {
 
 </div>
 </div>
-<a id="af46dc17bb1c97ca7f1d8aac62bfafa29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af46dc17bb1c97ca7f1d8aac62bfafa29">&#9670;&nbsp;</a></span>resourcesPath</h2>
+<a id="a14735182eb848215618ac0fd0b660f36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14735182eb848215618ac0fd0b660f36">&#9670;&nbsp;</a></span>sourcePath</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -117,7 +117,7 @@ $(function() {
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const fs::path ts::paths::resourcesPath = fs::current_path() / &quot;resources&quot;</td>
+          <td class="memname">const std::filesystem::path ts::paths::sourcePath = <a class="el" href="structts_1_1paths.html#ab9a6f1ffcdf7011c6b4e8410a6f12ee4">resourcesPath</a> / &quot;scheme.xml&quot;</td>
         </tr>
       </table>
   </td>

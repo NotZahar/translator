@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['general_335',['general',['../structts_1_1messages_1_1general.html',1,'ts::messages']]]
+  ['errors_313',['errors',['../structts_1_1messages_1_1errors.html',1,'ts::messages']]]
 ];
