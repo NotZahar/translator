@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string_view>
+
 #include "options_parser.hpp"
 
 namespace ts {
@@ -10,9 +12,10 @@ namespace ts {
         
         ~Translator() = default;
 
-        void run();
-    
+        void translate();
+        std::string_view getTranslated() const noexcept;
+
     private:
-    
+        std::string _translated;
     };
 }

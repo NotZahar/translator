@@ -7,18 +7,13 @@
 namespace ts {
     namespace po = boost::program_options;
 
-    OptionsParser::OptionsParser(int argc, char** argv)
+    OptionsParser::OptionsParser() noexcept
         : _description(messages::general::HELP_HEADER)
     {
         initOptions();
-        _options = parseOptions(argc, argv);
     }
 
-    OptionsParser::Options OptionsParser::getOptions() const {
-        return _options;
-    }
-
-    void OptionsParser::initOptions() {
+    void OptionsParser::initOptions() noexcept {
         _description.add_options()
             (
                 messages::options::HELP.c_str(), 
@@ -32,7 +27,7 @@ namespace ts {
         ;
     }
 
-    OptionsParser::Options OptionsParser::parseOptions(int argc, char** argv) const {
+    OptionsParser::Options OptionsParser::parseOptions(int argc, char** argv) const{
         Options options;
         po::variables_map variablesMap;
         po::store(

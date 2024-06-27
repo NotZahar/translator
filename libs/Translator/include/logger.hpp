@@ -9,15 +9,17 @@ namespace ts {
     public:
         TS_NCM(Logger)
 
-        static Logger& instance();
+        static Logger& instance() noexcept;
 
-        void log(std::string_view log);
-        void err(std::string_view err);
+        void log(std::string_view log) const noexcept;
+        void err(std::string_view err) const noexcept;
 
-        void logHelp();
+        void flog(const std::string& path, std::string_view log) const noexcept;
+
+        void logHelp() const noexcept;
 
     private:
-        Logger() = default;
+        constexpr Logger() = default;
         
         ~Logger() = default;
     };

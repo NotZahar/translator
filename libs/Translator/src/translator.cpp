@@ -1,6 +1,6 @@
 #include "translator.hpp"
 
-#include "logger.hpp"
+#include "core/source_file.hpp"
 #include "utility/config.hpp"
 
 namespace ts {
@@ -9,7 +9,13 @@ namespace ts {
         config::sourcePath = options.sourcePath;
     }
 
-    void Translator::run() {
-        Logger::instance().log(config::sourcePath);
+    void Translator::translate() {
+        SourceFile src{ config::sourcePath };
+        auto uFormat = src.toUFormat();
+        
+    }
+
+    std::string_view Translator::getTranslated() const noexcept {
+        return _translated;
     }
 }

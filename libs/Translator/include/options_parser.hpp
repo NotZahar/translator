@@ -12,18 +12,15 @@ namespace ts {
             std::string sourcePath = config::sourcePath;
         };
 
-        OptionsParser() = delete;
-        OptionsParser(int argc, char** argv);
+        OptionsParser() noexcept;
         
         ~OptionsParser() = default;
 
-        Options getOptions() const;
-
-    private:
-        void initOptions();
         Options parseOptions(int argc, char** argv) const;
 
+    private:
+        void initOptions() noexcept;
+
         boost::program_options::options_description _description;
-        Options _options;
     };
 }

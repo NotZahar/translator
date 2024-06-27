@@ -25,6 +25,10 @@ target_sources(
             src/translator.cpp
             src/options_parser.cpp
             src/logger.cpp
+
+            # core
+            src/core/source_file.cpp
+            src/core/universal_format.cpp
 )
 
 target_include_directories(
