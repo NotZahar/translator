@@ -80,39 +80,85 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
-<tr class="memitem:a3c02a6771c0ece093878b19ab605c353"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a3c02a6771c0ece093878b19ab605c353">log</a> (std::string_view log)</td></tr>
-<tr class="separator:a3c02a6771c0ece093878b19ab605c353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49aaf4c8dcb34a5be6d5cad54af8798a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a49aaf4c8dcb34a5be6d5cad54af8798a">err</a> (std::string_view err)</td></tr>
-<tr class="separator:a49aaf4c8dcb34a5be6d5cad54af8798a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4ff0e23758419c06d61e9a9c1474bf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#ad4ff0e23758419c06d61e9a9c1474bf2">logHelp</a> ()</td></tr>
-<tr class="separator:ad4ff0e23758419c06d61e9a9c1474bf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a478301561b80c76181677718e4d1302a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a478301561b80c76181677718e4d1302a">log</a> (std::string_view log) const noexcept</td></tr>
+<tr class="separator:a478301561b80c76181677718e4d1302a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5031d8218fb212841ad41e8b3e6c74c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#ae5031d8218fb212841ad41e8b3e6c74c">err</a> (std::string_view err) const noexcept</td></tr>
+<tr class="separator:ae5031d8218fb212841ad41e8b3e6c74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a235f200e0c9a0939a44bde81725afc53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a235f200e0c9a0939a44bde81725afc53">flog</a> (const std::string &amp;path, std::string_view <a class="el" href="classts_1_1Logger.html#a478301561b80c76181677718e4d1302a">log</a>) const noexcept</td></tr>
+<tr class="separator:a235f200e0c9a0939a44bde81725afc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab78d1f1b824097f04d20bae60945938c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#ab78d1f1b824097f04d20bae60945938c">logHelp</a> () const noexcept</td></tr>
+<tr class="separator:ab78d1f1b824097f04d20bae60945938c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Открытые статические члены</h2></td></tr>
-<tr class="memitem:a0a7b2b424f406895a87c9bca907e430a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classts_1_1Logger.html">Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a0a7b2b424f406895a87c9bca907e430a">instance</a> ()</td></tr>
-<tr class="separator:a0a7b2b424f406895a87c9bca907e430a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f15bd8006fcb3e42b7dcaf7f9bc7be"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classts_1_1Logger.html">Logger</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classts_1_1Logger.html#a87f15bd8006fcb3e42b7dcaf7f9bc7be">instance</a> () noexcept</td></tr>
+<tr class="separator:a87f15bd8006fcb3e42b7dcaf7f9bc7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Методы</h2>
-<a id="a49aaf4c8dcb34a5be6d5cad54af8798a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49aaf4c8dcb34a5be6d5cad54af8798a">&#9670;&nbsp;</a></span>err()</h2>
+<a id="ae5031d8218fb212841ad41e8b3e6c74c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5031d8218fb212841ad41e8b3e6c74c">&#9670;&nbsp;</a></span>err()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ts::Logger::err </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>err</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0a7b2b424f406895a87c9bca907e430a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a7b2b424f406895a87c9bca907e430a">&#9670;&nbsp;</a></span>instance()</h2>
+<a id="a235f200e0c9a0939a44bde81725afc53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a235f200e0c9a0939a44bde81725afc53">&#9670;&nbsp;</a></span>flog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ts::Logger::flog </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a87f15bd8006fcb3e42b7dcaf7f9bc7be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87f15bd8006fcb3e42b7dcaf7f9bc7be">&#9670;&nbsp;</a></span>instance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -129,44 +175,60 @@ $(function() {
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a3c02a6771c0ece093878b19ab605c353"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c02a6771c0ece093878b19ab605c353">&#9670;&nbsp;</a></span>log()</h2>
+<a id="a478301561b80c76181677718e4d1302a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a478301561b80c76181677718e4d1302a">&#9670;&nbsp;</a></span>log()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ts::Logger::log </td>
           <td>(</td>
           <td class="paramtype">std::string_view&#160;</td>
           <td class="paramname"><em>log</em></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad4ff0e23758419c06d61e9a9c1474bf2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4ff0e23758419c06d61e9a9c1474bf2">&#9670;&nbsp;</a></span>logHelp()</h2>
+<a id="ab78d1f1b824097f04d20bae60945938c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab78d1f1b824097f04d20bae60945938c">&#9670;&nbsp;</a></span>logHelp()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ts::Logger::logHelp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

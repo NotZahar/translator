@@ -1,9 +1,10 @@
 <map id="libs/Translator/include/translator.hpp" name="libs/Translator/include/translator.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="126,5,290,47"/>
-<area shape="rect" id="node2" href="$options__parser_8hpp.html" title=" " alt="" coords="135,95,281,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,205,196"/>
-<area shape="rect" id="node4" href="$config_8hpp.html" title=" " alt="" coords="229,169,395,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="235,244,293,271"/>
-<area shape="rect" id="node6" href="$paths_8hpp.html" title=" " alt="" coords="318,244,405,271"/>
-<area shape="rect" id="node7" title=" " alt="" coords="316,319,407,345"/>
+<area shape="rect" id="node1" title=" " alt="" coords="53,5,217,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="14,95,111,121"/>
+<area shape="rect" id="node3" href="$options__parser_8hpp.html" title=" " alt="" coords="135,95,281,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,169,205,196"/>
+<area shape="rect" id="node5" href="$config_8hpp.html" title=" " alt="" coords="229,169,395,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="235,244,293,271"/>
+<area shape="rect" id="node7" href="$paths_8hpp.html" title=" " alt="" coords="318,244,405,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="316,319,407,345"/>
 </map>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['what_489',['what',['../classpugi_1_1xpath__exception.html#a145b544b0adf5d3f14ede5ee00639959',1,'pugi::xpath_exception']]],
-  ['write_490',['write',['../classpugi_1_1xml__writer.html#ab7d3b6a8499ceef7799158370e1c2617',1,'pugi::xml_writer::write()'],['../classpugi_1_1xml__writer__file.html#ac12b3943142b20dbd4ffb746c0062171',1,'pugi::xml_writer_file::write()'],['../classpugi_1_1xml__writer__stream.html#a787545964d180d7280fc3b8d662334d9',1,'pugi::xml_writer_stream::write()']]]
+  ['value_513',['value',['../classpugi_1_1xml__attribute.html#a01c4322e802edad9ca2f00a80cee5d8a',1,'pugi::xml_attribute::value()'],['../classpugi_1_1xml__node.html#a0c72eab9fc89e492d8013d9f269820a9',1,'pugi::xml_node::value()']]]
 ];
