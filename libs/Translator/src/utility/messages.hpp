@@ -33,6 +33,7 @@ namespace ts {
         struct errors {
             inline static constexpr char GENERAL_ERROR[] = "ERROR";
             inline static constexpr char CANT_OPEN_FILE[] = "Файл с таким именем не может быть использован";
+            inline static constexpr char INVAILD_SOURCE[] = "Данный файл не может являться входным";
             inline static constexpr char NO_SOURCE[] = "Входной файл не найден";
         };
     };

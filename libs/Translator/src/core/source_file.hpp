@@ -11,11 +11,11 @@ namespace ts {
         SourceFile() = delete;
         explicit SourceFile(std::string_view path) noexcept;
         
-        ~SourceFile() = default;
+        virtual ~SourceFile() = default;
 
-        UFormat toUFormat() const;
+        virtual UFormat toUFormat() const = 0;
 
-    private:
+    protected:
         std::filesystem::path _sourcePath;        
     };
 }

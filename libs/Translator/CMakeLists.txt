@@ -28,6 +28,7 @@ target_sources(
 
             # core
             src/core/source_file.cpp
+            src/core/xml_source_file.cpp
             src/core/universal_format.cpp
 )
 

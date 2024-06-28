@@ -21,6 +21,9 @@ int main(int argc, char** argv) {
     } catch (const std::exception& exception) {
         logger.err(exception.what());
         return EXIT_FAILURE;
+    } catch (...) {
+        logger.err("Непредвиденная ошибка");
+        return EXIT_FAILURE;
     }
 
     logger.flog("out.c", translator.getTranslated());
