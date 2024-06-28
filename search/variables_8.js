@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['offset_573',['offset',['../structpugi_1_1xml__parse__result.html#adb61df40459ba6fb1083d22467983086',1,'pugi::xml_parse_result::offset()'],['../structpugi_1_1xpath__parse__result.html#add47d886c654b4d8a836573b2c2a7acb',1,'pugi::xpath_parse_result::offset()']]]
+  ['no_5fsource_592',['NO_SOURCE',['../structts_1_1messages_1_1errors.html#ab94580010eaecf57cf4e233966940460',1,'ts::messages::errors']]]
 ];
