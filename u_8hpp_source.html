@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>translator: Исходный файл libs/Translator/src/core/u/u.hpp</title>
+<title>translator: Исходный файл libs/Translator/src/core/universal/u.hpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_7a04d3264bd35c3147b8e6b6de6fbcbe.html">Translator</a></li><li class="navelem"><a class="el" href="dir_55fbce4404f7b2af7bff23035618f5c5.html">src</a></li><li class="navelem"><a class="el" href="dir_2e0e3b779c0b1289be67b1dd2035c5b3.html">core</a></li><li class="navelem"><a class="el" href="dir_9098592b4eb272bab4b9a985cd7019a3.html">u</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_7a04d3264bd35c3147b8e6b6de6fbcbe.html">Translator</a></li><li class="navelem"><a class="el" href="dir_55fbce4404f7b2af7bff23035618f5c5.html">src</a></li><li class="navelem"><a class="el" href="dir_2e0e3b779c0b1289be67b1dd2035c5b3.html">core</a></li><li class="navelem"><a class="el" href="dir_1160bcdc41a5c3d85a2d6550b445a391.html">universal</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -94,7 +94,7 @@ $(function() {
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    };</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    template &lt;class T&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Sum.html">   24</a></span>&#160;    struct <a class="code" href="structts_1_1U_1_1Sum.html">Sum</a> : public <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Sum.html">   24</a></span>&#160;    struct <a class="code" href="structts_1_1U_1_1Sum.html">Sum</a> final : public <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Sum.html#ad3f80b9e74e7ce63738301c38b4d67e3">   25</a></span>&#160;        <a class="code" href="structts_1_1U_1_1Sum.html#ad3f80b9e74e7ce63738301c38b4d67e3">Sum</a>() = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Sum.html#acb70fc20f6c5f2f9c70ac982f00b5419">   26</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structts_1_1U_1_1Sum.html#acb70fc20f6c5f2f9c70ac982f00b5419">Sum</a>(<span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; var1, <span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; var2) noexcept </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            : var1{ var1 },</div>
@@ -113,7 +113,7 @@ $(function() {
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Mult.html">   43</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structts_1_1U_1_1Mult.html">Mult</a> : <span class="keyword">public</span> <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Mult.html">   43</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structts_1_1U_1_1Mult.html">Mult</a> final : <span class="keyword">public</span> <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Mult.html#a504bed9bf67c1fe3ef823a88b12e2b8d">   44</a></span>&#160;        <a class="code" href="structts_1_1U_1_1Mult.html#a504bed9bf67c1fe3ef823a88b12e2b8d">Mult</a>() = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Mult.html#a6d468f7d73b1748b9479d505a18edbb7">   45</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structts_1_1U_1_1Mult.html#a6d468f7d73b1748b9479d505a18edbb7">Mult</a>(<span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; var1, <span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; var2) noexcept </div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            : var1{ var1 },</div>
@@ -132,7 +132,7 @@ $(function() {
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Assign.html">   62</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structts_1_1U_1_1Assign.html">Assign</a> : <span class="keyword">public</span> <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Assign.html">   62</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structts_1_1U_1_1Assign.html">Assign</a> final : <span class="keyword">public</span> <a class="code" href="structts_1_1U_1_1Operator.html">Operator</a> {</div>
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Assign.html#ab51d6d9e4732d9397adf4825267becef">   63</a></span>&#160;        <a class="code" href="structts_1_1U_1_1Assign.html#ab51d6d9e4732d9397adf4825267becef">Assign</a>() = <span class="keyword">delete</span>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structts_1_1U_1_1Assign.html#a1c722676edef7a234dcce453b1c42bca">   64</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="structts_1_1U_1_1Assign.html#a1c722676edef7a234dcce453b1c42bca">Assign</a>(<span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; src, <span class="keyword">const</span> <a class="code" href="structts_1_1U_1_1Var.html">Var&lt;T&gt;</a>&amp; dst) noexcept </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            : src{ src },</div>

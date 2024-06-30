@@ -1,13 +1,13 @@
-<map id="libs/Translator/src/core/uformat_builder.hpp" name="libs/Translator/src/core/uformat_builder.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="157,5,347,47"/>
-<area shape="rect" id="node2" href="$selements_8hpp.html" title=" " alt="" coords="88,95,253,121"/>
-<area shape="rect" id="node11" href="$uformat_8hpp.html" title=" " alt="" coords="277,95,392,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,169,83,196"/>
-<area shape="rect" id="node4" title=" " alt="" coords="177,244,239,271"/>
-<area shape="rect" id="node5" title=" " alt="" coords="58,319,182,345"/>
-<area shape="rect" id="node6" href="$sblock_8hpp.html" title=" " alt="" coords="273,244,365,271"/>
-<area shape="rect" id="node10" href="$slink_8hpp.html" title=" " alt="" coords="209,169,290,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="519,319,575,345"/>
-<area shape="rect" id="node8" title=" " alt="" coords="207,319,337,345"/>
-<area shape="rect" id="node9" title=" " alt="" coords="362,319,494,345"/>
+<map id="libs/Translator/src/core/universal/uformat_builder.hpp" name="libs/Translator/src/core/universal/uformat_builder.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="165,5,339,61"/>
+<area shape="rect" id="node2" href="$selements_8hpp.html" title=" " alt="" coords="82,109,259,136"/>
+<area shape="rect" id="node11" href="$uformat_8hpp.html" title=" " alt="" coords="283,109,386,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,184,83,211"/>
+<area shape="rect" id="node4" title=" " alt="" coords="177,259,239,285"/>
+<area shape="rect" id="node5" title=" " alt="" coords="58,333,182,360"/>
+<area shape="rect" id="node6" href="$sblock_8hpp.html" title=" " alt="" coords="273,259,365,285"/>
+<area shape="rect" id="node10" href="$slink_8hpp.html" title=" " alt="" coords="209,184,290,211"/>
+<area shape="rect" id="node7" title=" " alt="" coords="519,333,575,360"/>
+<area shape="rect" id="node8" title=" " alt="" coords="207,333,337,360"/>
+<area shape="rect" id="node9" title=" " alt="" coords="362,333,494,360"/>
 </map>

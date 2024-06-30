@@ -1,12 +1,12 @@
 <map id="libs/Translator/src/core/source/selements.hpp" name="libs/Translator/src/core/source/selements.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="564,5,765,47"/>
-<area shape="rect" id="node2" href="$source__file_8hpp.html" title=" " alt="" coords="324,95,480,136"/>
-<area shape="rect" id="node8" href="$xml__source__file_8cpp.html" title=" " alt="" coords="665,273,851,315"/>
-<area shape="rect" id="node9" href="$uformat__builder_8hpp.html" title=" " alt="" coords="570,95,759,136"/>
-<area shape="rect" id="node3" href="$translator_8hpp.html" title=" " alt="" coords="5,184,169,225"/>
-<area shape="rect" id="node6" href="$source__file_8cpp.html" title=" " alt="" coords="194,184,349,225"/>
-<area shape="rect" id="node7" href="$xml__source__file_8hpp.html" title=" " alt="" coords="373,184,561,225"/>
-<area shape="rect" id="node4" href="$translator_8cpp.html" title=" " alt="" coords="399,273,535,315"/>
-<area shape="rect" id="node5" href="$main_8cpp.html" title=" " alt="" coords="35,281,140,307"/>
-<area shape="rect" id="node10" href="$uformat__builder_8cpp.html" title=" " alt="" coords="637,184,825,225"/>
+<area shape="rect" id="node1" title=" " alt="" coords="561,5,763,47"/>
+<area shape="rect" id="node2" href="$source__file_8hpp.html" title=" " alt="" coords="325,102,481,143"/>
+<area shape="rect" id="node8" href="$xml__source__file_8cpp.html" title=" " alt="" coords="658,303,845,344"/>
+<area shape="rect" id="node9" href="$uformat__builder_8hpp.html" title=" " alt="" coords="575,95,749,151"/>
+<area shape="rect" id="node3" href="$translator_8hpp.html" title=" " alt="" coords="5,206,169,247"/>
+<area shape="rect" id="node6" href="$source__file_8cpp.html" title=" " alt="" coords="194,206,349,247"/>
+<area shape="rect" id="node7" href="$xml__source__file_8hpp.html" title=" " alt="" coords="373,206,561,247"/>
+<area shape="rect" id="node4" href="$translator_8cpp.html" title=" " alt="" coords="399,303,535,344"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title=" " alt="" coords="35,310,140,337"/>
+<area shape="rect" id="node10" href="$uformat__builder_8cpp.html" title=" " alt="" coords="637,199,812,255"/>
 </map>
