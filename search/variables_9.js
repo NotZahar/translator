@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['port_253',['port',['../structts_1_1structures_1_1ULink_1_1UPoint.html#af7ffa50de082119564f8a7f1d2d01a19',1,'ts::structures::ULink::UPoint']]],
-  ['ports_254',['ports',['../structts_1_1structures_1_1UInportBlock.html#a69ea494e547eec251fcd8e1a95b6056e',1,'ts::structures::UInportBlock::ports()'],['../structts_1_1structures_1_1USumBlock.html#a4804f3adacc36ff7f54c5a22a29add00',1,'ts::structures::USumBlock::ports()'],['../structts_1_1structures_1_1UGainBlock.html#a3fe27d49e5edcdeaed913a815fde2a46',1,'ts::structures::UGainBlock::ports()'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a12dfa2d400d54301415f86fcb66f28e6',1,'ts::structures::UUnitDelayBlock::ports()'],['../structts_1_1structures_1_1UOutportBlock.html#a6b8a4b7db84b3d7b0d9ca12328fe6ce9',1,'ts::structures::UOutportBlock::ports()']]],
-  ['ptype_255',['pType',['../structts_1_1structures_1_1UBlock_1_1UPort.html#a1938c2827737c2f0775169db20213445',1,'ts::structures::UBlock::UPort']]]
+  ['port_290',['port',['../structts_1_1structures_1_1SLink_1_1SPoint.html#a5954cd034069a88039cce2f64229f6b4',1,'ts::structures::SLink::SPoint']]],
+  ['ports_291',['ports',['../structts_1_1structures_1_1SInportBlock.html#a06724c10ed32204da24ed99ed5d18c6a',1,'ts::structures::SInportBlock::ports()'],['../structts_1_1structures_1_1SSumBlock.html#a736155ab066390c1a68ecb6bf30671c5',1,'ts::structures::SSumBlock::ports()'],['../structts_1_1structures_1_1SGainBlock.html#a6d2bd688787e79b60ca868f9945ef2a6',1,'ts::structures::SGainBlock::ports()'],['../structts_1_1structures_1_1SUnitDelayBlock.html#a24f0e991e2dbaf93de77753141ee99da',1,'ts::structures::SUnitDelayBlock::ports()'],['../structts_1_1structures_1_1SOutportBlock.html#aeb4f932a4bc7e8ea4b889b0176f9917e',1,'ts::structures::SOutportBlock::ports()']]],
+  ['ptype_292',['pType',['../structts_1_1structures_1_1SBlock_1_1SPort.html#ac31e48972e9a3e2c18dc4493ae87ce24',1,'ts::structures::SBlock::SPort']]]
 ];

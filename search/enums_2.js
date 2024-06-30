@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_271',['type',['../structts_1_1structures_1_1UBlock_1_1UPort.html#af4200c0f174bb414864f84c0570a5a38',1,'ts::structures::UBlock::UPort']]]
+  ['sign_313',['sign',['../structts_1_1structures_1_1SSumBlock.html#a3f721d4c2c4bb735d835c8ad629b8ab7',1,'ts::structures::SSumBlock']]]
 ];

@@ -1,0 +1,8 @@
+<map id="ts::structures::SBlock" name="ts::structures::SBlock">
+<area shape="rect" id="node1" title=" " alt="" coords="5,115,164,141"/>
+<area shape="rect" id="node2" href="$structts_1_1structures_1_1SGainBlock.html" title=" " alt="" coords="216,5,405,32"/>
+<area shape="rect" id="node3" href="$structts_1_1structures_1_1SInportBlock.html" title=" " alt="" coords="212,56,409,83"/>
+<area shape="rect" id="node4" href="$structts_1_1structures_1_1SOutportBlock.html" title=" " alt="" coords="225,107,397,149"/>
+<area shape="rect" id="node5" href="$structts_1_1structures_1_1SSumBlock.html" title=" " alt="" coords="217,173,405,200"/>
+<area shape="rect" id="node6" href="$structts_1_1structures_1_1SUnitDelayBlock.html" title=" " alt="" coords="217,225,405,266"/>
+</map>

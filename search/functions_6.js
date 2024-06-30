@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['main_195',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]]
+  ['log_220',['log',['../classts_1_1Logger.html#a478301561b80c76181677718e4d1302a',1,'ts::Logger']]],
+  ['loghelp_221',['logHelp',['../classts_1_1Logger.html#ab78d1f1b824097f04d20bae60945938c',1,'ts::Logger']]]
 ];

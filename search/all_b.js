@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['name_50',['name',['../structts_1_1structures_1_1UBlock.html#a080edf2e7d3bf4ac71bc664691e9134b',1,'ts::structures::UBlock']]],
-  ['no_5fblock_5ftype_51',['NO_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a9ea5c6a77eaf23e462b411c874443629',1,'ts::messages::errors']]],
-  ['no_5fsource_52',['NO_SOURCE',['../structts_1_1messages_1_1errors.html#ab94580010eaecf57cf4e233966940460',1,'ts::messages::errors']]],
-  ['number_53',['number',['../structts_1_1structures_1_1UBlock_1_1UPort.html#ae177f7d9e744fa47db937d04c6c0a635',1,'ts::structures::UBlock::UPort']]],
-  ['numberofports_54',['numberOfPorts',['../structts_1_1structures_1_1UInportBlock.html#a0510ce30bb8cb491b3f3a8151d02958c',1,'ts::structures::UInportBlock::numberOfPorts()'],['../structts_1_1structures_1_1USumBlock.html#acdf066ab5c79e9c9c5bf51c17025db8a',1,'ts::structures::USumBlock::numberOfPorts()'],['../structts_1_1structures_1_1UGainBlock.html#aabcebf98b8c914b20d27a4224c87d6f7',1,'ts::structures::UGainBlock::numberOfPorts()'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a57a9930458e8c19035c5a1e68f0f78f7',1,'ts::structures::UUnitDelayBlock::numberOfPorts()'],['../structts_1_1structures_1_1UOutportBlock.html#a4043efde46bd8262d29c737fc20c8739',1,'ts::structures::UOutportBlock::numberOfPorts()']]]
+  ['main_51',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
+  ['main_2ecpp_52',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['messages_53',['messages',['../structts_1_1messages.html',1,'ts']]],
+  ['messages_2ehpp_54',['messages.hpp',['../messages_8hpp.html',1,'']]],
+  ['minus_55',['MINUS',['../structts_1_1structures_1_1SSumBlock.html#a3f721d4c2c4bb735d835c8ad629b8ab7affc0d9b54a1fe677c4c9e6b050e67c81',1,'ts::structures::SSumBlock']]],
+  ['mult_56',['Mult',['../structts_1_1U_1_1Mult.html#a504bed9bf67c1fe3ef823a88b12e2b8d',1,'ts::U::Mult::Mult()=delete'],['../structts_1_1U_1_1Mult.html#a6d468f7d73b1748b9479d505a18edbb7',1,'ts::U::Mult::Mult(const Var&lt; T &gt; &amp;var1, const Var&lt; T &gt; &amp;var2) noexcept'],['../structts_1_1U_1_1Mult.html',1,'ts::U::Mult&lt; T &gt;']]]
 ];

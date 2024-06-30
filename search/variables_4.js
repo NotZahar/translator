@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['gain_231',['gain',['../structts_1_1structures_1_1UGainBlock.html#a3acfe8cc6c2082a506eff4dfbd38b964',1,'ts::structures::UGainBlock']]],
-  ['general_5ferror_232',['GENERAL_ERROR',['../structts_1_1messages_1_1errors.html#a09643a4160a6e78090538bf0c3eeeab0',1,'ts::messages::errors']]]
+  ['gain_267',['gain',['../structts_1_1structures_1_1SGainBlock.html#a822004f153e688c16cc34270d55a8aff',1,'ts::structures::SGainBlock']]],
+  ['general_5ferror_268',['GENERAL_ERROR',['../structts_1_1messages_1_1errors.html#a09643a4160a6e78090538bf0c3eeeab0',1,'ts::messages::errors']]]
 ];

@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['parseoptions_62',['parseOptions',['../classts_1_1OptionsParser.html#ac36e1085978e9d7772974152e8dce4c5',1,'ts::OptionsParser']]],
-  ['paths_63',['paths',['../structts_1_1paths.html',1,'ts']]],
-  ['paths_2ehpp_64',['paths.hpp',['../paths_8hpp.html',1,'']]],
-  ['plus_65',['PLUS',['../structts_1_1structures_1_1USumBlock.html#af85e9bd5f3652bec5d67d4ce292c795aa883acd43c77567e1c3baced84ccf6ed7',1,'ts::structures::USumBlock']]],
-  ['port_66',['port',['../structts_1_1structures_1_1ULink_1_1UPoint.html#af7ffa50de082119564f8a7f1d2d01a19',1,'ts::structures::ULink::UPoint']]],
-  ['ports_67',['ports',['../structts_1_1structures_1_1UInportBlock.html#a69ea494e547eec251fcd8e1a95b6056e',1,'ts::structures::UInportBlock::ports()'],['../structts_1_1structures_1_1USumBlock.html#a4804f3adacc36ff7f54c5a22a29add00',1,'ts::structures::USumBlock::ports()'],['../structts_1_1structures_1_1UGainBlock.html#a3fe27d49e5edcdeaed913a815fde2a46',1,'ts::structures::UGainBlock::ports()'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a12dfa2d400d54301415f86fcb66f28e6',1,'ts::structures::UUnitDelayBlock::ports()'],['../structts_1_1structures_1_1UOutportBlock.html#a6b8a4b7db84b3d7b0d9ca12328fe6ce9',1,'ts::structures::UOutportBlock::ports()']]],
-  ['ptype_68',['pType',['../structts_1_1structures_1_1UBlock_1_1UPort.html#a1938c2827737c2f0775169db20213445',1,'ts::structures::UBlock::UPort']]]
+  ['operator_62',['Operator',['../structts_1_1U_1_1Operator.html#a4e4b12e74bae953a9ccc68ab9dae0515',1,'ts::U::Operator::Operator()'],['../structts_1_1U_1_1Operator.html',1,'ts::U::Operator']]],
+  ['operator_28_29_63',['operator()',['../structts_1_1U_1_1Operator.html#ab9c0cc16c560a938506f227ebf7ed3b1',1,'ts::U::Operator::operator()()'],['../structts_1_1U_1_1Sum.html#a274f5856a147238ab46c22a9ee0390f4',1,'ts::U::Sum::operator()()'],['../structts_1_1U_1_1Mult.html#a690bde8679e84ef8b9481be2941c9817',1,'ts::U::Mult::operator()()'],['../structts_1_1U_1_1Assign.html#a2291f2fcf6171ec1c7be4c1921b5cd4c',1,'ts::U::Assign::operator()()']]],
+  ['options_64',['options',['../structts_1_1messages_1_1options.html',1,'ts::messages']]],
+  ['options_65',['Options',['../structts_1_1OptionsParser_1_1Options.html',1,'ts::OptionsParser']]],
+  ['options_5fparser_2ecpp_66',['options_parser.cpp',['../options__parser_8cpp.html',1,'']]],
+  ['options_5fparser_2ehpp_67',['options_parser.hpp',['../options__parser_8hpp.html',1,'']]],
+  ['optionsparser_68',['OptionsParser',['../classts_1_1OptionsParser.html#abfa27e73f18bf4851687ba1b6873ac33',1,'ts::OptionsParser::OptionsParser()'],['../classts_1_1OptionsParser.html',1,'ts::OptionsParser']]],
+  ['out_69',['OUT',['../structts_1_1structures_1_1SBlock_1_1SPort.html#a274fecd00122ce4d598a56931d5cf056aef373774188a51f80463f37b6bd9e83a',1,'ts::structures::SBlock::SPort']]],
+  ['outport_70',['OUTPORT',['../namespacets_1_1structures.html#a5a4d279e72e2d9e4bb81428738cdf19fab106624a38e174689d21aa9c98e5266f',1,'ts::structures']]]
 ];

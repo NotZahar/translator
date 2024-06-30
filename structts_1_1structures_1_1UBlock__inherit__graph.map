@@ -1,8 +1,0 @@
-<map id="ts::structures::UBlock" name="ts::structures::UBlock">
-<area shape="rect" id="node1" title=" " alt="" coords="5,115,167,141"/>
-<area shape="rect" id="node2" href="$structts_1_1structures_1_1UGainBlock.html" title=" " alt="" coords="219,5,409,32"/>
-<area shape="rect" id="node3" href="$structts_1_1structures_1_1UInportBlock.html" title=" " alt="" coords="215,56,413,83"/>
-<area shape="rect" id="node4" href="$structts_1_1structures_1_1UOutportBlock.html" title=" " alt="" coords="227,107,401,149"/>
-<area shape="rect" id="node5" href="$structts_1_1structures_1_1USumBlock.html" title=" " alt="" coords="219,173,409,200"/>
-<area shape="rect" id="node6" href="$structts_1_1structures_1_1UUnitDelayBlock.html" title=" " alt="" coords="219,225,409,266"/>
-</map>

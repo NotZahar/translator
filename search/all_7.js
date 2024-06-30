@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['help_21',['HELP',['../structts_1_1messages_1_1options.html#a18388bca1946bbe2d8a1a4b8a0e9558e',1,'ts::messages::options']]],
-  ['help_22',['help',['../structts_1_1OptionsParser_1_1Options.html#a7aba0df6a37f2ffa30bceef7dc9fa1ab',1,'ts::OptionsParser::Options']]],
-  ['help_5fdescr_23',['HELP_DESCR',['../structts_1_1messages_1_1options.html#ae417088c351afb7e6f604bf6c53bd39e',1,'ts::messages::options']]],
-  ['help_5ff_24',['HELP_F',['../structts_1_1messages_1_1options.html#abd184ece9c6cbee233695451381a6e2c',1,'ts::messages::options']]],
-  ['help_5fheader_25',['HELP_HEADER',['../structts_1_1messages_1_1general.html#a35d79ac120d83395c1e1966a918beaba',1,'ts::messages::general']]],
-  ['help_5fmessage_26',['HELP_MESSAGE',['../structts_1_1messages_1_1general.html#af3d7c26971b45b002709a4593204dcee',1,'ts::messages::general']]],
-  ['help_5fs_27',['HELP_S',['../structts_1_1messages_1_1options.html#a266dfcc203524411c80ba64f9f4d22f3',1,'ts::messages::options']]]
+  ['gain_17',['gain',['../structts_1_1structures_1_1SGainBlock.html#a822004f153e688c16cc34270d55a8aff',1,'ts::structures::SGainBlock']]],
+  ['gain_18',['GAIN',['../namespacets_1_1structures.html#a5a4d279e72e2d9e4bb81428738cdf19fa0803331e7c3fe03c1938ac408faaa0cc',1,'ts::structures']]],
+  ['general_19',['general',['../structts_1_1messages_1_1general.html',1,'ts::messages']]],
+  ['general_5ferror_20',['GENERAL_ERROR',['../structts_1_1messages_1_1errors.html#a09643a4160a6e78090538bf0c3eeeab0',1,'ts::messages::errors']]],
+  ['generateuuid_21',['generateUUID',['../namespacets_1_1uuid.html#aa4abf05a35c0e317095c420a7906c407',1,'ts::uuid']]],
+  ['getelements_22',['getElements',['../classts_1_1SourceFile.html#a6eddd0975ef62ec721902de332a0f3fe',1,'ts::SourceFile::getElements()'],['../classts_1_1XmlSourceFile.html#ac7713f054f5a2baa654f0f492bab3b86',1,'ts::XmlSourceFile::getElements()']]],
+  ['gettranslated_23',['getTranslated',['../classts_1_1Translator.html#a4f1a419cb1adf7026fc686fceef6bf68',1,'ts::Translator']]]
 ];

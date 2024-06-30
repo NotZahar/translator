@@ -1,16 +1,7 @@
 var searchData=
 [
-  ['_7eoptionsparser_120',['~OptionsParser',['../classts_1_1OptionsParser.html#ad3f88e1a577d0a222b1b95fde554edd3',1,'ts::OptionsParser']]],
-  ['_7esourcefile_121',['~SourceFile',['../classts_1_1SourceFile.html#a4e6059b3c58437d2e42fcca4223de5b5',1,'ts::SourceFile']]],
-  ['_7etranslator_122',['~Translator',['../classts_1_1Translator.html#a4299d2725b25b255b36fba476aa429ef',1,'ts::Translator']]],
-  ['_7eublock_123',['~UBlock',['../structts_1_1structures_1_1UBlock.html#af679b0752e073c8355337d4d35641944',1,'ts::structures::UBlock']]],
-  ['_7euelements_124',['~UElements',['../classts_1_1structures_1_1UElements.html#ab7a13a116a01333a6264f88205aeffa2',1,'ts::structures::UElements']]],
-  ['_7euformat_125',['~UFormat',['../classts_1_1structures_1_1UFormat.html#a77fd9b1acc597b1c2e04dcb79f56ee03',1,'ts::structures::UFormat']]],
-  ['_7euformatbuilder_126',['~UFormatBuilder',['../classts_1_1UFormatBuilder.html#aa9bf679d739f5ade3f09d72b06516ed2',1,'ts::UFormatBuilder']]],
-  ['_7eugainblock_127',['~UGainBlock',['../structts_1_1structures_1_1UGainBlock.html#a071f6d989e4bfa6ea6266bb4ebb4b2fc',1,'ts::structures::UGainBlock']]],
-  ['_7euinportblock_128',['~UInportBlock',['../structts_1_1structures_1_1UInportBlock.html#a5e502804ba50f577b12571d490d1199a',1,'ts::structures::UInportBlock']]],
-  ['_7euoutportblock_129',['~UOutportBlock',['../structts_1_1structures_1_1UOutportBlock.html#a28462016634d33c320f4968b18793701',1,'ts::structures::UOutportBlock']]],
-  ['_7eusumblock_130',['~USumBlock',['../structts_1_1structures_1_1USumBlock.html#aa945d882b31c767648571480c2d87c5c',1,'ts::structures::USumBlock']]],
-  ['_7euunitdelayblock_131',['~UUnitDelayBlock',['../structts_1_1structures_1_1UUnitDelayBlock.html#afdd87f32a4235e782cf4cbac0e42e172',1,'ts::structures::UUnitDelayBlock']]],
-  ['_7exmlsourcefile_132',['~XmlSourceFile',['../classts_1_1XmlSourceFile.html#aa9a928f259124019e06d48e58d7f31e2',1,'ts::XmlSourceFile']]]
+  ['value_130',['value',['../structts_1_1U_1_1Var.html#a87bf8e8c1b64a6ad321a23a542fc8857',1,'ts::U::Var']]],
+  ['var_131',['Var',['../structts_1_1U_1_1Var.html',1,'ts::U']]],
+  ['var1_132',['var1',['../structts_1_1U_1_1Sum.html#a0d8fb8488c402ee37c17bad1bca9ce62',1,'ts::U::Sum::var1()'],['../structts_1_1U_1_1Mult.html#a0a4583567bfeb22858c64a88a81020b5',1,'ts::U::Mult::var1()']]],
+  ['var2_133',['var2',['../structts_1_1U_1_1Sum.html#a5baccd4903aaf6ebe01370ed26a7751e',1,'ts::U::Sum::var2()'],['../structts_1_1U_1_1Mult.html#a2f9216909964513680f6f7f233a5e9a3',1,'ts::U::Mult::var2()']]]
 ];

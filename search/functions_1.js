@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['err_187',['err',['../classts_1_1Logger.html#ae5031d8218fb212841ad41e8b3e6c74c',1,'ts::Logger']]]
+  ['build_213',['build',['../classts_1_1UFormatBuilder.html#aec907f1d4aa83d5857566a167a1c2e61',1,'ts::UFormatBuilder']]]
 ];
