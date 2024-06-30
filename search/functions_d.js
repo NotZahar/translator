@@ -1,13 +1,16 @@
 var searchData=
 [
-  ['parent_567',['parent',['../classpugi_1_1xml__node.html#aa5e551fb7095338188a7ed33ca6026b4',1,'pugi::xml_node::parent()'],['../classpugi_1_1xpath__node.html#a0c26a162ebd53968a288fb64dddd49cf',1,'pugi::xpath_node::parent()']]],
-  ['parseoptions_568',['parseOptions',['../classts_1_1OptionsParser.html#ac36e1085978e9d7772974152e8dce4c5',1,'ts::OptionsParser']]],
-  ['path_569',['path',['../classpugi_1_1xml__node.html#ad695e3498bf08d58d0d5c03142a06ba1',1,'pugi::xml_node']]],
-  ['prepend_5fattribute_570',['prepend_attribute',['../classpugi_1_1xml__node.html#a79e6ff9f9c51d1fa7aa88a5b36add3a4',1,'pugi::xml_node']]],
-  ['prepend_5fchild_571',['prepend_child',['../classpugi_1_1xml__node.html#a44d9683f11e29baed1bcb00686b4f2aa',1,'pugi::xml_node::prepend_child(xml_node_type type=node_element)'],['../classpugi_1_1xml__node.html#ac0e4d20eb8e5ac53ec32107240dcd315',1,'pugi::xml_node::prepend_child(const char_t *name)']]],
-  ['prepend_5fcopy_572',['prepend_copy',['../classpugi_1_1xml__node.html#a82e79ec07dc0e894a0567dcadcc7a9b9',1,'pugi::xml_node::prepend_copy(const xml_attribute &amp;proto)'],['../classpugi_1_1xml__node.html#a26d22e6a651616a3cf114f4efeccd602',1,'pugi::xml_node::prepend_copy(const xml_node &amp;proto)']]],
-  ['prepend_5fmove_573',['prepend_move',['../classpugi_1_1xml__node.html#a3a82e734770972017b8d23d8ec07e70a',1,'pugi::xml_node']]],
-  ['previous_5fattribute_574',['previous_attribute',['../classpugi_1_1xml__attribute.html#ab91e12d507b500e92bc6b371be31dc4b',1,'pugi::xml_attribute']]],
-  ['previous_5fsibling_575',['previous_sibling',['../classpugi_1_1xml__node.html#a7fe1a00db01eaedb4f3ee592aa5d735c',1,'pugi::xml_node::previous_sibling() const'],['../classpugi_1_1xml__node.html#a6c0b2cdbafda832011aa90ad6c24de49',1,'pugi::xml_node::previous_sibling(const char_t *name) const']]],
-  ['print_576',['print',['../classpugi_1_1xml__node.html#aafa778f6b591168f7dcc91836044413f',1,'pugi::xml_node::print(xml_writer &amp;writer, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const'],['../classpugi_1_1xml__node.html#a8f7ddf9c80e6809d179ff08b53e91c78',1,'pugi::xml_node::print(std::basic_ostream&lt; char &gt; &amp;os, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, xml_encoding encoding=encoding_auto, unsigned int depth=0) const'],['../classpugi_1_1xml__node.html#a8ccf2a253758126cd493bea62b1ddcb4',1,'pugi::xml_node::print(std::basic_ostream&lt; wchar_t &gt; &amp;os, const char_t *indent=PUGIXML_TEXT(&quot;\t&quot;), unsigned int flags=format_default, unsigned int depth=0) const']]]
+  ['_7eoptionsparser_212',['~OptionsParser',['../classts_1_1OptionsParser.html#ad3f88e1a577d0a222b1b95fde554edd3',1,'ts::OptionsParser']]],
+  ['_7esourcefile_213',['~SourceFile',['../classts_1_1SourceFile.html#a4e6059b3c58437d2e42fcca4223de5b5',1,'ts::SourceFile']]],
+  ['_7etranslator_214',['~Translator',['../classts_1_1Translator.html#a4299d2725b25b255b36fba476aa429ef',1,'ts::Translator']]],
+  ['_7eublock_215',['~UBlock',['../structts_1_1structures_1_1UBlock.html#af679b0752e073c8355337d4d35641944',1,'ts::structures::UBlock']]],
+  ['_7euelements_216',['~UElements',['../classts_1_1structures_1_1UElements.html#ab7a13a116a01333a6264f88205aeffa2',1,'ts::structures::UElements']]],
+  ['_7euformat_217',['~UFormat',['../classts_1_1structures_1_1UFormat.html#a77fd9b1acc597b1c2e04dcb79f56ee03',1,'ts::structures::UFormat']]],
+  ['_7euformatbuilder_218',['~UFormatBuilder',['../classts_1_1UFormatBuilder.html#aa9bf679d739f5ade3f09d72b06516ed2',1,'ts::UFormatBuilder']]],
+  ['_7eugainblock_219',['~UGainBlock',['../structts_1_1structures_1_1UGainBlock.html#a071f6d989e4bfa6ea6266bb4ebb4b2fc',1,'ts::structures::UGainBlock']]],
+  ['_7euinportblock_220',['~UInportBlock',['../structts_1_1structures_1_1UInportBlock.html#a5e502804ba50f577b12571d490d1199a',1,'ts::structures::UInportBlock']]],
+  ['_7euoutportblock_221',['~UOutportBlock',['../structts_1_1structures_1_1UOutportBlock.html#a28462016634d33c320f4968b18793701',1,'ts::structures::UOutportBlock']]],
+  ['_7eusumblock_222',['~USumBlock',['../structts_1_1structures_1_1USumBlock.html#aa945d882b31c767648571480c2d87c5c',1,'ts::structures::USumBlock']]],
+  ['_7euunitdelayblock_223',['~UUnitDelayBlock',['../structts_1_1structures_1_1UUnitDelayBlock.html#afdd87f32a4235e782cf4cbac0e42e172',1,'ts::structures::UUnitDelayBlock']]],
+  ['_7exmlsourcefile_224',['~XmlSourceFile',['../classts_1_1XmlSourceFile.html#aa9a928f259124019e06d48e58d7f31e2',1,'ts::XmlSourceFile']]]
 ];

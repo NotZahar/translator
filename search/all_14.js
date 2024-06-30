@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['what_340',['what',['../classpugi_1_1xpath__exception.html#a145b544b0adf5d3f14ede5ee00639959',1,'pugi::xpath_exception']]],
-  ['write_341',['write',['../classpugi_1_1xml__writer.html#ab7d3b6a8499ceef7799158370e1c2617',1,'pugi::xml_writer::write()'],['../classpugi_1_1xml__writer__file.html#ac12b3943142b20dbd4ffb746c0062171',1,'pugi::xml_writer_file::write()'],['../classpugi_1_1xml__writer__stream.html#a787545964d180d7280fc3b8d662334d9',1,'pugi::xml_writer_stream::write()']]]
+  ['Генератор_20Си_20кода_20из_20описанного_20формата_20блок_2dсхем_20_28xml_20_2d_3e_20Си_29_133',['Генератор Си кода из описанного формата блок-схем (XML -&gt; Си)',['../md_README.html',1,'']]]
 ];

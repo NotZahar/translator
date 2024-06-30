@@ -1,14 +1,16 @@
 var searchData=
 [
-  ['readme_2emd_244',['README.md',['../README_8md.html',1,'']]],
-  ['reference_245',['reference',['../classpugi_1_1xml__node__iterator.html#ae2efdeb44673427f99b7cc1e726bfa13',1,'pugi::xml_node_iterator::reference()'],['../classpugi_1_1xml__attribute__iterator.html#ade97045a1217d0a7897e5f5873297117',1,'pugi::xml_attribute_iterator::reference()'],['../classpugi_1_1xml__named__node__iterator.html#a1c338c7a2aefe04b83f746a963df808b',1,'pugi::xml_named_node_iterator::reference()']]],
-  ['remove_5fattribute_246',['remove_attribute',['../classpugi_1_1xml__node.html#ad2a65ed9e5a0c8ff40918e98c2c2319d',1,'pugi::xml_node::remove_attribute(const xml_attribute &amp;a)'],['../classpugi_1_1xml__node.html#a9b93a949a0c8d23c6457eb18bedf6fe8',1,'pugi::xml_node::remove_attribute(const char_t *name)']]],
-  ['remove_5fattributes_247',['remove_attributes',['../classpugi_1_1xml__node.html#a7c907437d2e917ba6a9888077958de1f',1,'pugi::xml_node']]],
-  ['remove_5fchild_248',['remove_child',['../classpugi_1_1xml__node.html#a8816dfd666bd9507bfb646f7e0a278bd',1,'pugi::xml_node::remove_child(const char_t *name)'],['../classpugi_1_1xml__node.html#a0adf80ff295b5ebfc38d9164b99c1ee3',1,'pugi::xml_node::remove_child(const xml_node &amp;n)']]],
-  ['remove_5fchildren_249',['remove_children',['../classpugi_1_1xml__node.html#aa15c448b268c9f5ef1740c307949422f',1,'pugi::xml_node']]],
-  ['reset_250',['reset',['../classpugi_1_1xml__document.html#a7d325c6309910157080fe69f73922186',1,'pugi::xml_document::reset()'],['../classpugi_1_1xml__document.html#ac35e9409706a0cd8caa7cbf5b80abcca',1,'pugi::xml_document::reset(const xml_document &amp;proto)']]],
-  ['resourcespath_251',['resourcesPath',['../structts_1_1paths.html#ab9a6f1ffcdf7011c6b4e8410a6f12ee4',1,'ts::paths']]],
-  ['result_252',['result',['../classpugi_1_1xpath__query.html#a65b1649e77f75bcc0ed96f0e6a8a04cc',1,'pugi::xpath_query::result()'],['../classpugi_1_1xpath__exception.html#abd08d7d5f7e5dc93a043503529f3b53c',1,'pugi::xpath_exception::result()']]],
-  ['return_5ftype_253',['return_type',['../classpugi_1_1xpath__query.html#acf2b188f7a4b4c5105cc52238f490c2a',1,'pugi::xpath_query']]],
-  ['root_254',['root',['../classpugi_1_1xml__node.html#a775f091ea1847d0c5d841b81718ed9e7',1,'pugi::xml_node']]]
+  ['sampletime_71',['sampleTime',['../structts_1_1structures_1_1UUnitDelayBlock.html#abff622c9cae6404a4813a89545fb6c51',1,'ts::structures::UUnitDelayBlock']]],
+  ['sign_72',['sign',['../structts_1_1structures_1_1USumBlock.html#af85e9bd5f3652bec5d67d4ce292c795a',1,'ts::structures::USumBlock']]],
+  ['signs_73',['signs',['../structts_1_1structures_1_1USumBlock.html#ad3d8965ec15f99248497162bb90fdb2d',1,'ts::structures::USumBlock']]],
+  ['source_74',['source',['../structts_1_1structures_1_1ULink.html#a181a0e9d1b51f2ede8ba612e4e26ad77',1,'ts::structures::ULink']]],
+  ['source_75',['SOURCE',['../structts_1_1messages_1_1options.html#a9d748ad30452f9bd4e320da5b0068b70',1,'ts::messages::options']]],
+  ['source_5fdescr_76',['SOURCE_DESCR',['../structts_1_1messages_1_1options.html#a0a92e3be3fa69209df92973664e33a26',1,'ts::messages::options']]],
+  ['source_5ff_77',['SOURCE_F',['../structts_1_1messages_1_1options.html#a2a172dbb9282685ce9465b6974eae3ee',1,'ts::messages::options']]],
+  ['source_5ffile_2ecpp_78',['source_file.cpp',['../source__file_8cpp.html',1,'']]],
+  ['source_5ffile_2ehpp_79',['source_file.hpp',['../source__file_8hpp.html',1,'']]],
+  ['source_5fs_80',['SOURCE_S',['../structts_1_1messages_1_1options.html#a68a6c8ceb031f0a713c824fd34e59aba',1,'ts::messages::options']]],
+  ['sourcefile_81',['SourceFile',['../classts_1_1SourceFile.html#a9c833fab765ad97790855e05cb5c309b',1,'ts::SourceFile::SourceFile()=delete'],['../classts_1_1SourceFile.html#ad6df74d5754e78c9db8ebd66e0eeeda1',1,'ts::SourceFile::SourceFile(std::string_view path) noexcept'],['../classts_1_1SourceFile.html',1,'ts::SourceFile']]],
+  ['sourcepath_82',['sourcePath',['../structts_1_1OptionsParser_1_1Options.html#a038874d031d5a51d34f00f0ae760f49d',1,'ts::OptionsParser::Options::sourcePath()'],['../structts_1_1config.html#a080be72d02bc7533386eaafee9c494fb',1,'ts::config::sourcePath()'],['../structts_1_1paths.html#a14735182eb848215618ac0fd0b660f36',1,'ts::paths::sourcePath()']]],
+  ['sum_83',['SUM',['../namespacets_1_1U.html#a9df36140e83a6de69f2ce66328b70ce3a6970bdc2201030b9c03fbdcf3973858a',1,'ts::U']]]
 ];

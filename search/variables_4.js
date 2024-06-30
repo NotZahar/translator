@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['encoding_665',['encoding',['../structpugi_1_1xml__parse__result.html#ad11f279dfce644dfe297e24dc5f72c01',1,'pugi::xml_parse_result']]],
-  ['error_666',['error',['../structpugi_1_1xpath__parse__result.html#ab2c625be89b995afac829012bc749fe4',1,'pugi::xpath_parse_result']]]
+  ['gain_231',['gain',['../structts_1_1structures_1_1UGainBlock.html#a3acfe8cc6c2082a506eff4dfbd38b964',1,'ts::structures::UGainBlock']]],
+  ['general_5ferror_232',['GENERAL_ERROR',['../structts_1_1messages_1_1errors.html#a09643a4160a6e78090538bf0c3eeeab0',1,'ts::messages::errors']]]
 ];

@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['inputsigns_687',['inputSigns',['../structts_1_1structures_1_1USumBlock.html#a635290948e68054747efcccbdb1090cc',1,'ts::structures::USumBlock']]],
-  ['invaild_5fsource_688',['INVAILD_SOURCE',['../structts_1_1messages_1_1errors.html#a7ecadce96b3e66d09c0fd6bcf197799b',1,'ts::messages::errors']]],
-  ['invalid_5fblock_5ftype_689',['INVALID_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a5a8e1ea035d181afc8a7316449ab857c',1,'ts::messages::errors']]],
-  ['invalid_5fgain_5fblock_690',['INVALID_GAIN_BLOCK',['../structts_1_1messages_1_1errors.html#af5564db5ad434337254e72192c6c4eb4',1,'ts::messages::errors']]],
-  ['invalid_5fline_5fblock_691',['INVALID_LINE_BLOCK',['../structts_1_1messages_1_1errors.html#a001539ad8191b68fae7586ea5ca398c4',1,'ts::messages::errors']]],
-  ['invalid_5fsum_5fblock_692',['INVALID_SUM_BLOCK',['../structts_1_1messages_1_1errors.html#a9602f675915a67f87206bb6ee9513a55',1,'ts::messages::errors']]],
-  ['invalid_5funit_5fdelay_5fblock_693',['INVALID_UNIT_DELAY_BLOCK',['../structts_1_1messages_1_1errors.html#acf8db4fd2ff13cbc6f6caad66a413ec8',1,'ts::messages::errors']]]
+  ['name_248',['name',['../structts_1_1structures_1_1UBlock.html#a080edf2e7d3bf4ac71bc664691e9134b',1,'ts::structures::UBlock']]],
+  ['no_5fblock_5ftype_249',['NO_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a9ea5c6a77eaf23e462b411c874443629',1,'ts::messages::errors']]],
+  ['no_5fsource_250',['NO_SOURCE',['../structts_1_1messages_1_1errors.html#ab94580010eaecf57cf4e233966940460',1,'ts::messages::errors']]],
+  ['number_251',['number',['../structts_1_1structures_1_1UBlock_1_1UPort.html#ae177f7d9e744fa47db937d04c6c0a635',1,'ts::structures::UBlock::UPort']]],
+  ['numberofports_252',['numberOfPorts',['../structts_1_1structures_1_1UInportBlock.html#a0510ce30bb8cb491b3f3a8151d02958c',1,'ts::structures::UInportBlock::numberOfPorts()'],['../structts_1_1structures_1_1USumBlock.html#acdf066ab5c79e9c9c5bf51c17025db8a',1,'ts::structures::USumBlock::numberOfPorts()'],['../structts_1_1structures_1_1UGainBlock.html#aabcebf98b8c914b20d27a4224c87d6f7',1,'ts::structures::UGainBlock::numberOfPorts()'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a57a9930458e8c19035c5a1e68f0f78f7',1,'ts::structures::UUnitDelayBlock::numberOfPorts()'],['../structts_1_1structures_1_1UOutportBlock.html#a4043efde46bd8262d29c737fc20c8739',1,'ts::structures::UOutportBlock::numberOfPorts()']]]
 ];
