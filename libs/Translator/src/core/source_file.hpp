@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <string_view>
 
-#include "universal_format.hpp"
+#include "structures/uelements.hpp"
 
 namespace ts {
     class SourceFile {
@@ -13,7 +13,7 @@ namespace ts {
         
         virtual ~SourceFile() = default;
 
-        virtual UFormat toUFormat() const = 0;
+        virtual structures::UElements getElements() const = 0;
 
     protected:
         std::filesystem::path _sourcePath;        

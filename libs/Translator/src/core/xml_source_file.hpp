@@ -9,6 +9,6 @@ namespace ts {
         
         ~XmlSourceFile() override = default;
 
-        UFormat toUFormat() const override;
+        structures::UElements getElements() const override;
     };
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <regex>
 #include <string_view>
 
 #include <boost/bimap.hpp>

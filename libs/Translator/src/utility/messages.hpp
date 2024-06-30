@@ -35,6 +35,12 @@ namespace ts {
             inline static constexpr char CANT_OPEN_FILE[] = "Файл с таким именем не может быть использован";
             inline static constexpr char INVAILD_SOURCE[] = "Данный файл не может являться входным";
             inline static constexpr char NO_SOURCE[] = "Входной файл не найден";
+            inline static constexpr char NO_BLOCK_TYPE[] = "Тип блока не определен";
+            inline static constexpr char INVALID_BLOCK_TYPE[] = "Несуществующий тип блока";
+            inline static constexpr char INVALID_SUM_BLOCK[] = "Блок типа Sum невалиден";
+            inline static constexpr char INVALID_GAIN_BLOCK[] = "Блок типа Gain невалиден";
+            inline static constexpr char INVALID_UNIT_DELAY_BLOCK[] = "Блок типа UnitDelay невалиден";
+            inline static constexpr char INVALID_LINE_BLOCK[] = "Блок типа Line невалиден";
         };
     };
 }

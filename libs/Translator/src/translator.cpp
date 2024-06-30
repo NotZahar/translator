@@ -4,7 +4,6 @@
 #include <stdexcept>
 
 #include "core/xml_source_file.hpp"
-#include "logger.hpp"
 #include "utility/config.hpp"
 #include "utility/messages.hpp"
 
@@ -19,7 +18,8 @@ namespace ts {
         if (!sourceFile)
             throw std::runtime_error{ messages::errors::INVAILD_SOURCE };
 
-        auto uFormat = sourceFile->toUFormat();
+        auto uElements = sourceFile->getElements();
+        // ...
     }
 
     std::string_view Translator::getTranslated() const noexcept {
@@ -34,10 +34,10 @@ namespace ts {
         const auto extension = validExtensions.right.find(sourcePath.extension())->second;
         
         switch (extension) {
-        case validExtension::XML:
-            return std::make_unique<XmlSourceFile>(path);
-        default:
-            return nullptr;
+            case validExtension::XML:
+                return std::make_unique<XmlSourceFile>(path);
+            default:
+                return nullptr;
         }
     }
 }
