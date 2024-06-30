@@ -1,8 +1,7 @@
 #pragma once
 
-namespace ts::structures {
-    class UFormat {
-    public:
+namespace ts::U {
+    struct UFormat {
         UFormat() noexcept = default;
         
         ~UFormat() = default;        

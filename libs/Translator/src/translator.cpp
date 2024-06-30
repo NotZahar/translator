@@ -20,7 +20,7 @@ namespace ts {
             throw std::runtime_error{ messages::errors::INVAILD_SOURCE };
 
         auto uElements = sourceFile->getElements();
-        auto uFormat = UFormatBuilder::build(std::move(uElements));
+        /*auto uFormat = */UFormatBuilder::build(uElements);
         // ...
     }
 

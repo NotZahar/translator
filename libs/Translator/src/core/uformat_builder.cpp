@@ -1,10 +1,13 @@
 #include "uformat_builder.hpp"
 
-namespace ts {
-    structures::UFormat UFormatBuilder::build(structures::UElements uElements) {
-        structures::UFormat format;
+#include "u/u.hpp"
 
-        
+namespace ts {
+    U::UFormat UFormatBuilder::build(const structures::SElements& sElements) {
+        U::UFormat format;
+
+        // ... 
+
 
         return format;
     }

@@ -11,10 +11,9 @@
 
 #include <pugixml.hpp>
 
-#include "core/structures/ublock.hpp"
-#include "core/structures/ulink.hpp"
-#include "core/u.hpp"
-#include "structures/uelements.hpp"
+#include "source/sblock.hpp"
+#include "source/slink.hpp"
+#include "source/selements.hpp"
 #include "../utility/messages.hpp"
 
  namespace {
@@ -71,41 +70,41 @@
     inline static const std::regex upointNumberValueRegex{ "[1-9][0-9]*" };
     inline static const std::regex upointPortTypeValueRegex{ "(in|out)" };
 
-    std::unique_ptr<UBlock> makeInportBlock(const std::string& nameValue) {
-        using UPort = UInportBlock::UPort;
+    std::unique_ptr<SBlock> makeInportBlock(const std::string& nameValue) {
+        using SPort = SInportBlock::SPort;
 
-        const std::array<UPort, UInportBlock::numberOfPorts> ports{ 
-            UPort{ UPort::defaultNumber, UPort::type::OUT }
+        const std::array<SPort, SInportBlock::numberOfPorts> ports{ 
+            SPort{ SPort::defaultNumber, SPort::type::OUT }
         };
 
-        return std::make_unique<UInportBlock>(ts::U::block::INPORT, nameValue, ports);
+        return std::make_unique<SInportBlock>(blockType::INPORT, nameValue, ports);
     }
 
-    std::unique_ptr<UBlock> makeSumBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
-        using UPort = USumBlock::UPort;
+    std::unique_ptr<SBlock> makeSumBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+        using SPort = SSumBlock::SPort;
 
         const std::string& inputsAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::INPUTS)->second;
 
-        int portNumber = UPort::defaultNumber;
-        std::array<int, USumBlock::numberOfPorts> portNumbers{
+        int portNumber = SPort::defaultNumber;
+        std::array<int, SSumBlock::numberOfPorts> portNumbers{
             portNumber++,
             portNumber++,
             portNumber
         };
         
-        const std::array<UPort, USumBlock::numberOfPorts> ports{
-            UPort{ portNumbers[0], UPort::type::IN },
-            UPort{ portNumbers[1], UPort::type::IN },
-            UPort{ portNumbers[2], UPort::type::OUT }
+        const std::array<SPort, SSumBlock::numberOfPorts> ports{
+            SPort{ portNumbers[0], SPort::type::IN },
+            SPort{ portNumbers[1], SPort::type::IN },
+            SPort{ portNumbers[2], SPort::type::OUT }
         };
 
-        std::unordered_map<USumBlock::inputPortNumber_t, USumBlock::sign> inputSigns;
+        std::unordered_map<SSumBlock::inputPortNumber_t, SSumBlock::sign> inputSigns;
         
         const auto inputsNode = blockNode.find_child_by_attribute(pNodePattern.c_str(), nameAttributeNamePattern.c_str(), inputsAttributeValuePattern.c_str());
     
         if (inputsNode.empty()) {
-            inputSigns.insert({ portNumbers[0], USumBlock::sign::PLUS });
-            inputSigns.insert({ portNumbers[1], USumBlock::sign::PLUS });
+            inputSigns.insert({ portNumbers[0], SSumBlock::sign::PLUS });
+            inputSigns.insert({ portNumbers[1], SSumBlock::sign::PLUS });
         } else {
             const std::string inputs = inputsNode.text().as_string();
             if (inputs.empty())
@@ -114,72 +113,72 @@
             if (!std::regex_match(inputs, inputsValueRegex))
                 throw std::runtime_error{ ts::messages::errors::INVALID_SUM_BLOCK };
 
-            assert(inputs.size() == (USumBlock::numberOfPorts - 1));
-            inputSigns.insert({ portNumbers[0], USumBlock::signs.right.find(inputs[0])->second });
-            inputSigns.insert({ portNumbers[1], USumBlock::signs.right.find(inputs[1])->second });
+            assert(inputs.size() == (SSumBlock::numberOfPorts - 1));
+            inputSigns.insert({ portNumbers[0], SSumBlock::signs.right.find(inputs[0])->second });
+            inputSigns.insert({ portNumbers[1], SSumBlock::signs.right.find(inputs[1])->second });
         }
 
-        return std::make_unique<USumBlock>(ts::U::block::SUM, nameValue, ports, inputSigns);
+        return std::make_unique<SSumBlock>(blockType::SUM, nameValue, ports, inputSigns);
     }
 
-    std::unique_ptr<UBlock> makeGainBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
-        using UPort = UGainBlock::UPort;
+    std::unique_ptr<SBlock> makeGainBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+        using SPort = SGainBlock::SPort;
 
         const std::string& gainAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::GAIN)->second;
 
-        int portNumber = UPort::defaultNumber;
-        std::array<int, UGainBlock::numberOfPorts> portNumbers{
+        int portNumber = SPort::defaultNumber;
+        std::array<int, SGainBlock::numberOfPorts> portNumbers{
             portNumber++,
             portNumber,
         };
         
-        const std::array<UPort, UGainBlock::numberOfPorts> ports{
-            UPort{ portNumbers[0], UPort::type::IN },
-            UPort{ portNumbers[1], UPort::type::OUT }
+        const std::array<SPort, SGainBlock::numberOfPorts> ports{
+            SPort{ portNumbers[0], SPort::type::IN },
+            SPort{ portNumbers[1], SPort::type::OUT }
         };
 
         const auto gainNode = blockNode.find_child_by_attribute(pNodePattern.c_str(), nameAttributeNamePattern.c_str(), gainAttributeValuePattern.c_str());
         if (gainNode.empty())
             throw std::runtime_error{ ts::messages::errors::INVALID_GAIN_BLOCK };
 
-        return std::make_unique<UGainBlock>(ts::U::block::GAIN, nameValue, ports, std::stod(gainNode.text().as_string()));
+        return std::make_unique<SGainBlock>(blockType::GAIN, nameValue, ports, std::stod(gainNode.text().as_string()));
     }
 
-    std::unique_ptr<UBlock> makeUnitDelayBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
-        using UPort = UUnitDelayBlock::UPort;
+    std::unique_ptr<SBlock> makeUnitDelayBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+        using SPort = SUnitDelayBlock::SPort;
 
         const std::string& sampleTimeAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::SAMPLE_TIME)->second;
 
-        int portNumber = UPort::defaultNumber;
-        std::array<int, UUnitDelayBlock::numberOfPorts> portNumbers{
+        int portNumber = SPort::defaultNumber;
+        std::array<int, SUnitDelayBlock::numberOfPorts> portNumbers{
             portNumber++,
             portNumber,
         };
         
-        const std::array<UPort, UUnitDelayBlock::numberOfPorts> ports{
-            UPort{ portNumbers[0], UPort::type::IN },
-            UPort{ portNumbers[1], UPort::type::OUT }
+        const std::array<SPort, SUnitDelayBlock::numberOfPorts> ports{
+            SPort{ portNumbers[0], SPort::type::IN },
+            SPort{ portNumbers[1], SPort::type::OUT }
         };
 
         const auto sampleTimeNode = blockNode.find_child_by_attribute(pNodePattern.c_str(), nameAttributeNamePattern.c_str(), sampleTimeAttributeValuePattern.c_str());
         if (sampleTimeNode.empty())
             throw std::runtime_error{ ts::messages::errors::INVALID_UNIT_DELAY_BLOCK };
 
-        return std::make_unique<UUnitDelayBlock>(ts::U::block::UNIT_DELAY, nameValue, ports, std::stoi(sampleTimeNode.text().as_string()));
+        return std::make_unique<SUnitDelayBlock>(blockType::UNIT_DELAY, nameValue, ports, std::stoi(sampleTimeNode.text().as_string()));
     }
 
-    std::unique_ptr<UBlock> makeOutportBlock(const std::string& nameValue) {
-        using UPort = UOutportBlock::UPort;
+    std::unique_ptr<SBlock> makeOutportBlock(const std::string& nameValue) {
+        using SPort = SOutportBlock::SPort;
 
-        const std::array<UPort, UOutportBlock::numberOfPorts> ports{ 
-            UPort{ UPort::defaultNumber, UPort::type::IN }
+        const std::array<SPort, SOutportBlock::numberOfPorts> ports{ 
+            SPort{ SPort::defaultNumber, SPort::type::IN }
         };
 
-        return std::make_unique<UOutportBlock>(ts::U::block::OUTPORT, nameValue, ports);
+        return std::make_unique<SOutportBlock>(blockType::OUTPORT, nameValue, ports);
     }
 
-    std::unordered_map<UElements::blockId_t, std::unique_ptr<UBlock>> getBlocks(const pugi::xml_node& systemNode) {
-        std::unordered_map<UElements::blockId_t, std::unique_ptr<UBlock>> uBlocks;
+    std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> getBlocks(const pugi::xml_node& systemNode) {
+        std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> sBlocks;
 
         const std::string& blockNodePattern = xmlNodes.left.find(xmlNode::BLOCK)->second;
         const std::string& pNodePattern = xmlNodes.left.find(xmlNode::P)->second;
@@ -190,7 +189,7 @@
 
         const auto blockNodes = systemNode.children(blockNodePattern.c_str());
         for (const pugi::xml_node& node : blockNodes) {
-            std::unique_ptr<UBlock> uBlock;
+            std::unique_ptr<SBlock> sBlock;
 
             const std::string blockTypeValue = node.attribute(blockTypeAttributeNamePattern.c_str()).as_string();
             const std::string blockNameValue = node.attribute(nameAttributeNamePattern.c_str()).as_string();
@@ -199,38 +198,38 @@
             if (blockTypeValue.empty())
                 throw std::runtime_error{ ts::messages::errors::NO_BLOCK_TYPE };
 
-            if (ts::U::blocks.right.count(blockTypeValue) == 0)
+            if (blockTypes.right.count(blockTypeValue) == 0)
                 throw std::runtime_error{ ts::messages::errors::INVALID_BLOCK_TYPE };
             
-            const ts::U::block blockType = ts::U::blocks.right.find(blockTypeValue)->second;
-            switch (blockType) {
-                case ts::U::block::INPORT: {
-                    uBlock = makeInportBlock(blockNameValue);
+            const blockType blockTp = blockTypes.right.find(blockTypeValue)->second;
+            switch (blockTp) {
+                case blockType::INPORT: {
+                    sBlock = makeInportBlock(blockNameValue);
                     break;
-                } case ts::U::block::SUM: {
-                    uBlock = makeSumBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
+                } case blockType::SUM: {
+                    sBlock = makeSumBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
                     break;
-                } case ts::U::block::GAIN: {
-                    uBlock = makeGainBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
+                } case blockType::GAIN: {
+                    sBlock = makeGainBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
                     break;
-                } case ts::U::block::UNIT_DELAY: {
-                    uBlock = makeUnitDelayBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
+                } case blockType::UNIT_DELAY: {
+                    sBlock = makeUnitDelayBlock(blockNameValue, pNodePattern, nameAttributeNamePattern, node);
                     break;
-                } case ts::U::block::OUTPORT: {
-                    uBlock = makeOutportBlock(blockNameValue);
+                } case blockType::OUTPORT: {
+                    sBlock = makeOutportBlock(blockNameValue);
                     break;
                 }
             }
 
-            assert(!uBlocks.contains(idValue));
-            uBlocks.insert({ idValue, std::move(uBlock) });
+            assert(!sBlocks.contains(idValue));
+            sBlocks.insert({ idValue, std::move(sBlock) });
         }
 
-        return uBlocks;
+        return sBlocks;
     }
 
-    std::vector<ULink> getLinks(const pugi::xml_node& systemNode) {
-        auto getPoint = [](const std::string& string) -> ULink::UPoint {
+    std::vector<SLink> getLinks(const pugi::xml_node& systemNode) {
+        auto getPoint = [](const std::string& string) -> SLink::SPoint {
             auto numberRegexBegin = std::sregex_iterator(string.begin(), string.end(), upointNumberValueRegex);
             auto numberRegexEnd = std::sregex_iterator();
             std::vector<int> numbers;
@@ -249,17 +248,17 @@
             }
 
             assert(numbers.size() == 2); // blockId, portNumber
-            assert(UBlock::UPort::types.right.count(portType) != 0);
-            return ULink::UPoint{
+            assert(SBlock::SPort::types.right.count(portType) != 0);
+            return SLink::SPoint{
                 numbers[0],
-                UBlock::UPort{
+                SBlock::SPort{
                     numbers[1],
-                    UBlock::UPort::types.right.find(portType)->second
+                    SBlock::SPort::types.right.find(portType)->second
                 }
             };
         };
 
-        std::vector<ULink> links;
+        std::vector<SLink> links;
 
         const std::string& linkNodePattern = xmlNodes.left.find(xmlNode::LINE)->second;
         const std::string& pNodePattern = xmlNodes.left.find(xmlNode::P)->second;
@@ -281,10 +280,10 @@
             if (!std::regex_match(source, upointValueRegex))
                 throw std::runtime_error{ ts::messages::errors::INVALID_LINE_BLOCK };
 
-            ULink::UPoint srcPoint = getPoint(source);
+            SLink::SPoint srcPoint = getPoint(source);
 
             // destination
-            std::vector<ULink::UPoint> destinations;
+            std::vector<SLink::SPoint> destinations;
             const auto dstNode = linkNode.find_child_by_attribute(pNodePattern.c_str(), nameAttributeNamePattern.c_str(), destinationAttributeValuePattern.c_str());
             if (dstNode.empty()) {
                 const auto branchNodes = linkNode.children(branchNodePattern.c_str());
@@ -307,7 +306,7 @@
                 destinations.emplace_back(getPoint(destination));
             }
 
-            links.emplace_back(ULink{ std::move(srcPoint), std::move(destinations) });
+            links.emplace_back(SLink{ std::move(srcPoint), std::move(destinations) });
         }
 
         return links; 
@@ -321,7 +320,7 @@ namespace ts {
 
     }
 
-    structures::UElements XmlSourceFile::getElements() const {
+    structures::SElements XmlSourceFile::getElements() const {
         pugi::xml_document xmlDocument;
         pugi::xml_parse_result parseResult = xmlDocument.load_file(_sourcePath.c_str());
         if (!parseResult)
@@ -330,7 +329,7 @@ namespace ts {
         const std::string& systemNodePattern = xmlNodes.left.find(xmlNode::SYSTEM)->second;
         const pugi::xml_node systemNode = xmlDocument.child(systemNodePattern.c_str());
 
-        return structures::UElements{ 
+        return structures::SElements{ 
             getBlocks(systemNode), 
             getLinks(systemNode) 
         };

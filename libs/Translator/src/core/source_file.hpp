@@ -3,7 +3,7 @@
 #include <filesystem>
 #include <string_view>
 
-#include "structures/uelements.hpp"
+#include "source/selements.hpp"
 
 namespace ts {
     class SourceFile {
@@ -13,7 +13,7 @@ namespace ts {
         
         virtual ~SourceFile() = default;
 
-        virtual structures::UElements getElements() const = 0;
+        virtual structures::SElements getElements() const = 0;
 
     protected:
         std::filesystem::path _sourcePath;        

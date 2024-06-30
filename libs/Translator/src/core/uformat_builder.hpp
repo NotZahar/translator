@@ -1,7 +1,7 @@
 #pragma once
 
-#include "structures/uelements.hpp"
-#include "structures/uformat.hpp"
+#include "source/selements.hpp"
+#include "u/uformat.hpp"
 
 namespace ts {
     class UFormatBuilder {
@@ -10,6 +10,6 @@ namespace ts {
 
         ~UFormatBuilder() = default;
 
-        static structures::UFormat build(structures::UElements uElements);
+        static U::UFormat build(const structures::SElements& sElements);
     };
 }
