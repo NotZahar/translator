@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <stdexcept>
 
+#include "core/uformat_builder.hpp"
 #include "core/xml_source_file.hpp"
 #include "utility/config.hpp"
 #include "utility/messages.hpp"
@@ -19,6 +20,7 @@ namespace ts {
             throw std::runtime_error{ messages::errors::INVAILD_SOURCE };
 
         auto uElements = sourceFile->getElements();
+        auto uFormat = UFormatBuilder::build(std::move(uElements));
         // ...
     }
 

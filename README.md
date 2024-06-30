@@ -1,19 +1,19 @@
-### Генератор Си кода из описанного формата блок-схем
+## Генератор Си кода из описанного формата блок-схем
 
-#### Dependencies:
+### Dependencies:
 - Boost v1.82
 - (pugixml v1.14 [ref](https://github.com/zeux/pugixml) - compiled as third-party lib)
 - CMake v3.28
 - Doxygen v1.9
 
-#### Build:
+### Build:
 ```
 mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 ```
 
-#### Usage:
+### Usage:
 Help:
 ```
 ./translator -h
@@ -29,32 +29,71 @@ Choose source:
 ./translator -s source.xml
 ```
 
-#### Concept:
-<!-- here must be U description -->
+### Concept:
+Пример входных данных:
+![Example](example_scheme.png)
 
-```
-  <Block BlockType="Inport" Name="setpoint" SID="16">
-    <P Name="Position">[-20, 403, 10, 417]</P>
-    <Port>                                        <!-- Судя по всему эта строчка - обозначение выходного порта -->
-      <P Name="PortNumber">1</P>
-      <P Name="Name">setpoint</P>                 
-    </Port>
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <Block BlockType="Inport" Name="InportName1" SID="1">
   </Block>
-  <Block BlockType="Inport" Name="feedback" SID="18">
-    <P Name="Position">[-20, 453, 10, 467]</P>
-    <P Name="Port">2</P>                          <!-- Непонятно зачем нужна эта строка -->
-    <Port>
-      <P Name="PortNumber">1</P>
-      <P Name="Name">feedback</P>
-    </Port>
+  <Block BlockType="Inport" Name="InportName2" SID="2">
   </Block>
-  <Block BlockType="Sum" Name="Add1" SID="17">
-    <P Name="Ports">[2, 1]</P>                    <!-- Непонятно зачем нужна эта строка -->
-    <P Name="Position">[105, 402, 135, 433]</P>
-    <P Name="IconShape">rectangular</P>
+  <Block BlockType="Sum" Name="Add1" SID="3">
     <P Name="Inputs">+-</P>
   </Block>
+  <Block BlockType="Sum" Name="Add2" SID="4">
+  </Block>
+  <Block BlockType="Gain" Name="Gain1" SID="5">
+    <P Name="Gain">1</P>
+  </Block>
+  <Block BlockType="Gain" Name="Gain2" SID="6">
+    <P Name="Gain">2</P>
+  </Block>
+  <Block BlockType="UnitDelay" Name="UnitDelay1" SID="7">
+    <P Name="SampleTime">-1</P>
+  </Block>
+  <Block BlockType="Outport" Name="Command" SID="8">
+  </Block>
+  <Line>
+    <P Name="Src">1#out:1</P>
+    <P Name="Dst">3#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Src">2#out:1</P>
+    <P Name="Dst">3#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Src">3#out:1</P>
+    <Branch>
+      <P Name="Dst">5#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="Dst">6#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="Src">5#out:1</P>
+    <P Name="Dst">7#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Src">6#out:1</P>
+    <P Name="Dst">4#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Src">7#out:1</P>
+    <P Name="Dst">4#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Src">4#out:1</P>
+    <P Name="Dst">8#in:1</P>
+  </Line>
+</System>
+
+Сгенерированный код:
 ```
 
-#### Docs:
+```
+
+### Docs:
 - https://notzahar.github.io/translator/
