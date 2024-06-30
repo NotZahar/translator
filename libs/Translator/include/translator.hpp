@@ -18,7 +18,7 @@ namespace ts {
         ~Translator() = default;
 
         void translate();
-        std::string_view getTranslated() const noexcept;
+        [[nodiscard]] std::string_view getTranslated() const noexcept;
 
     private:
         enum class validExtension {
@@ -29,7 +29,7 @@ namespace ts {
             boost::assign::list_of<boost::bimap<validExtension, std::filesystem::path>::relation>
             ( validExtension::XML, ".xml" );
 
-        std::unique_ptr<SourceFile> identifySourceFile(std::string_view path) const noexcept; 
+        [[nodiscard]] std::unique_ptr<SourceFile> identifySourceFile(std::string_view path) const noexcept; 
 
         std::string _translated;
     };

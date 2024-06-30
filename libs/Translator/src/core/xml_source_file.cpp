@@ -70,7 +70,7 @@
     inline static const std::regex upointNumberValueRegex{ "[1-9][0-9]*" };
     inline static const std::regex upointPortTypeValueRegex{ "(in|out)" };
 
-    std::unique_ptr<SBlock> makeInportBlock(const std::string& nameValue) {
+    [[nodiscard]] std::unique_ptr<SBlock> makeInportBlock(const std::string& nameValue) {
         using SPort = SInportBlock::SPort;
 
         const std::array<SPort, SInportBlock::numberOfPorts> ports{ 
@@ -80,7 +80,7 @@
         return std::make_unique<SInportBlock>(blockType::INPORT, nameValue, ports);
     }
 
-    std::unique_ptr<SBlock> makeSumBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+    [[nodiscard]] std::unique_ptr<SBlock> makeSumBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
         using SPort = SSumBlock::SPort;
 
         const std::string& inputsAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::INPUTS)->second;
@@ -121,7 +121,7 @@
         return std::make_unique<SSumBlock>(blockType::SUM, nameValue, ports, inputSigns);
     }
 
-    std::unique_ptr<SBlock> makeGainBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+    [[nodiscard]] std::unique_ptr<SBlock> makeGainBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
         using SPort = SGainBlock::SPort;
 
         const std::string& gainAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::GAIN)->second;
@@ -144,7 +144,7 @@
         return std::make_unique<SGainBlock>(blockType::GAIN, nameValue, ports, std::stod(gainNode.text().as_string()));
     }
 
-    std::unique_ptr<SBlock> makeUnitDelayBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
+    [[nodiscard]] std::unique_ptr<SBlock> makeUnitDelayBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
         using SPort = SUnitDelayBlock::SPort;
 
         const std::string& sampleTimeAttributeValuePattern = xmlAttributeValues.left.find(xmlAttributeValue::SAMPLE_TIME)->second;
@@ -167,7 +167,7 @@
         return std::make_unique<SUnitDelayBlock>(blockType::UNIT_DELAY, nameValue, ports, std::stoi(sampleTimeNode.text().as_string()));
     }
 
-    std::unique_ptr<SBlock> makeOutportBlock(const std::string& nameValue) {
+    [[nodiscard]] std::unique_ptr<SBlock> makeOutportBlock(const std::string& nameValue) {
         using SPort = SOutportBlock::SPort;
 
         const std::array<SPort, SOutportBlock::numberOfPorts> ports{ 
@@ -177,7 +177,7 @@
         return std::make_unique<SOutportBlock>(blockType::OUTPORT, nameValue, ports);
     }
 
-    std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> getBlocks(const pugi::xml_node& systemNode) {
+    [[nodiscard]] std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> getBlocks(const pugi::xml_node& systemNode) {
         std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> sBlocks;
 
         const std::string& blockNodePattern = xmlNodes.left.find(xmlNode::BLOCK)->second;
@@ -222,13 +222,14 @@
             }
 
             assert(!sBlocks.contains(idValue));
+            assert(!sBlock->name.empty());
             sBlocks.insert({ idValue, std::move(sBlock) });
         }
 
         return sBlocks;
     }
 
-    std::vector<SLink> getLinks(const pugi::xml_node& systemNode) {
+    [[nodiscard]] std::vector<SLink> getLinks(const pugi::xml_node& systemNode) {
         auto getPoint = [](const std::string& string) -> SLink::SPoint {
             auto numberRegexBegin = std::sregex_iterator(string.begin(), string.end(), upointNumberValueRegex);
             auto numberRegexEnd = std::sregex_iterator();

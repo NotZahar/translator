@@ -9,6 +9,6 @@ namespace ts {
         
         ~XmlSourceFile() override = default;
 
-        structures::SElements getElements() const override;
+        [[nodiscard]] structures::SElements getElements() const override;
     };
 }

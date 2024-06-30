@@ -13,7 +13,7 @@ namespace ts {
         
         virtual ~SourceFile() = default;
 
-        virtual structures::SElements getElements() const = 0;
+        [[nodiscard]] virtual structures::SElements getElements() const = 0;
 
     protected:
         std::filesystem::path _sourcePath;        

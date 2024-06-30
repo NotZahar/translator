@@ -16,7 +16,7 @@ namespace ts {
         
         ~OptionsParser() = default;
 
-        Options parseOptions(int argc, char** argv) const;
+        [[nodiscard]] Options parseOptions(int argc, char** argv) const;
 
     private:
         void initOptions() noexcept;

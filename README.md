@@ -30,6 +30,19 @@ Choose source:
 ```
 
 ### Concept:
+U = Universal, язык, состоящий из конструкций по типу:
+```
+operatorName1(var1, var2, var3)
+operatorName2(var1)
+```
+
+Алгоритм:
+```
+1) XML -> Source Structures
+2) Source Structures -> U
+3) U -> Си
+```
+
 Пример входных данных:
 ![Example](example_scheme.png)
 

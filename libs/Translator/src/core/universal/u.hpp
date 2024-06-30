@@ -21,7 +21,7 @@ namespace ts::U {
     };
 
     template <class T>
-    struct Sum : public Operator {
+    struct Sum final : public Operator {
         Sum() = delete;
         explicit Sum(const Var<T>& var1, const Var<T>& var2) noexcept 
             : var1{ var1 },
@@ -40,7 +40,7 @@ namespace ts::U {
     };
 
     template <class T>
-    struct Mult : public Operator {
+    struct Mult final : public Operator {
         Mult() = delete;
         explicit Mult(const Var<T>& var1, const Var<T>& var2) noexcept 
             : var1{ var1 },
@@ -59,7 +59,7 @@ namespace ts::U {
     };
 
     template <class T>
-    struct Assign : public Operator {
+    struct Assign final : public Operator {
         Assign() = delete;
         explicit Assign(const Var<T>& src, const Var<T>& dst) noexcept 
             : src{ src },
