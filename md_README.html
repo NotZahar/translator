@@ -88,40 +88,63 @@ Usage:</h2>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
 Concept:</h2>
 <p>Пример входных данных: <img src="example_scheme.png" alt="Example" class="inline"/></p>
-<p name="Inputs">&lt;?xml version="1.0" encoding="utf-8"?&gt; &lt;System&gt; &lt;Block BlockType="Inport" Name="InportName1" SID="1"&gt; &lt;/Block&gt; &lt;Block BlockType="Inport" Name="InportName2" SID="2"&gt; &lt;/Block&gt; &lt;Block BlockType="Sum" Name="Add1" SID="3"&gt; </p>
-<p>+-</p>
-<p name="Gain">&lt;/Block&gt; &lt;Block BlockType="Sum" Name="Add2" SID="4"&gt; &lt;/Block&gt; &lt;Block BlockType="Gain" Name="Gain1" SID="5"&gt; </p>
-<p>1</p>
-<p name="Gain">&lt;/Block&gt; &lt;Block BlockType="Gain" Name="Gain2" SID="6"&gt; </p>
-<p>2</p>
-<p name="SampleTime">&lt;/Block&gt; &lt;Block BlockType="UnitDelay" Name="UnitDelay1" SID="7"&gt; </p>
-<p>-1</p>
-<p name="Src">&lt;/Block&gt; &lt;Block BlockType="Outport" Name="Command" SID="8"&gt; &lt;/Block&gt; &lt;Line&gt; </p>
-<p>1#out:1</p>
-<p>3#in:1</p>
-<p name="Src">&lt;/Line&gt; &lt;Line&gt; </p>
-<p>2#out:1</p>
-<p>3#in:2</p>
-<p name="Src">&lt;/Line&gt; &lt;Line&gt; </p>
-<p>3#out:1</p>
-<p name="Dst">&lt;Branch&gt; </p>
-<p>5#in:1</p>
-<p name="Dst">&lt;/Branch&gt; &lt;Branch&gt; </p>
-<p>6#in:1</p>
-<p name="Src">&lt;/Branch&gt; &lt;/Line&gt; &lt;Line&gt; </p>
-<p>5#out:1</p>
-<p>7#in:1</p>
-<p name="Src">&lt;/Line&gt; &lt;Line&gt; </p>
-<p>6#out:1</p>
-<p>4#in:1</p>
-<p name="Src">&lt;/Line&gt; &lt;Line&gt; </p>
-<p>7#out:1</p>
-<p>4#in:2</p>
-<p name="Src">&lt;/Line&gt; &lt;Line&gt; </p>
-<p>4#out:1</p>
-<p>8#in:1</p>
-<p>&lt;/Line&gt; &lt;/System&gt;</p>
-<p>Сгенерированный код: </p><div class="fragment"></div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+<div class="fragment"><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div>
+<div class="line">&lt;System&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Inport&quot; Name=&quot;InportName1&quot; SID=&quot;1&quot;&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Inport&quot; Name=&quot;InportName2&quot; SID=&quot;2&quot;&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Sum&quot; Name=&quot;Add1&quot; SID=&quot;3&quot;&gt;</div>
+<div class="line">    &lt;P Name=&quot;Inputs&quot;&gt;+-&lt;/P&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Sum&quot; Name=&quot;Add2&quot; SID=&quot;4&quot;&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Gain&quot; Name=&quot;Gain1&quot; SID=&quot;5&quot;&gt;</div>
+<div class="line">    &lt;P Name=&quot;Gain&quot;&gt;1&lt;/P&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Gain&quot; Name=&quot;Gain2&quot; SID=&quot;6&quot;&gt;</div>
+<div class="line">    &lt;P Name=&quot;Gain&quot;&gt;2&lt;/P&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;UnitDelay&quot; Name=&quot;UnitDelay1&quot; SID=&quot;7&quot;&gt;</div>
+<div class="line">    &lt;P Name=&quot;SampleTime&quot;&gt;-1&lt;/P&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Block BlockType=&quot;Outport&quot; Name=&quot;Command&quot; SID=&quot;8&quot;&gt;</div>
+<div class="line">  &lt;/Block&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;1#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;3#in:1&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;2#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;3#in:2&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;3#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;Branch&gt;</div>
+<div class="line">      &lt;P Name=&quot;Dst&quot;&gt;5#in:1&lt;/P&gt;</div>
+<div class="line">    &lt;/Branch&gt;</div>
+<div class="line">    &lt;Branch&gt;</div>
+<div class="line">      &lt;P Name=&quot;Dst&quot;&gt;6#in:1&lt;/P&gt;</div>
+<div class="line">    &lt;/Branch&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;5#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;7#in:1&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;6#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;4#in:1&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;7#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;4#in:2&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">  &lt;Line&gt;</div>
+<div class="line">    &lt;P Name=&quot;Src&quot;&gt;4#out:1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Dst&quot;&gt;8#in:1&lt;/P&gt;</div>
+<div class="line">  &lt;/Line&gt;</div>
+<div class="line">&lt;/System&gt;</div>
+</div><!-- fragment --><p>Сгенерированный код: </p><div class="fragment"></div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
 Docs:</h2>
 <ul>
 <li><a href="https://notzahar.github.io/translator/">https://notzahar.github.io/translator/</a> </li>
