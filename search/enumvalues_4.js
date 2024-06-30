@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['xpath_5ftype_5fboolean_676',['xpath_type_boolean',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6a049dd1494237a55f8aba3392d12a0164',1,'pugi']]],
-  ['xpath_5ftype_5fnode_5fset_677',['xpath_type_node_set',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6af5613748204e2e4861524e7d63a699c9',1,'pugi']]],
-  ['xpath_5ftype_5fnone_678',['xpath_type_none',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6aaa768b8302ccc893f3cc9ba799360a77',1,'pugi']]],
-  ['xpath_5ftype_5fnumber_679',['xpath_type_number',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6a02959f74f4fe93d71a1e109a45f23825',1,'pugi']]],
-  ['xpath_5ftype_5fstring_680',['xpath_type_string',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6ade2b17f4d9fad5bfb1617bf5012cf5ad',1,'pugi']]]
+  ['node_5fcdata_767',['node_cdata',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9adf13d60a4dfd047be0700e1711aeb1ea',1,'pugi']]],
+  ['node_5fcomment_768',['node_comment',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9a445fef674a66777dfd28dbd6bab14fed',1,'pugi']]],
+  ['node_5fdeclaration_769',['node_declaration',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9aad8024cc4a4afbc68c871f3826a00616',1,'pugi']]],
+  ['node_5fdoctype_770',['node_doctype',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9a9504586a29b181817607cc7ec231c9d4',1,'pugi']]],
+  ['node_5fdocument_771',['node_document',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9aab42ba83cf941f7297325eade205bf80',1,'pugi']]],
+  ['node_5felement_772',['node_element',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9a6d223e3a0d8ce8e4ee6f4a2697b8bcd1',1,'pugi']]],
+  ['node_5fnull_773',['node_null',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9ad58c55e810076e076318cc2268191b1f',1,'pugi']]],
+  ['node_5fpcdata_774',['node_pcdata',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9a5c0042693a8b8b6b54c191b4403fca21',1,'pugi']]],
+  ['node_5fpi_775',['node_pi',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9acd772b12b3d5442b9771151f45134440',1,'pugi']]]
 ];

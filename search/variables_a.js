@@ -1,21 +1,8 @@
 var searchData=
 [
-  ['parse_5fcdata_594',['parse_cdata',['../namespacepugi.html#a47b679897f8bc15e4e152978fc88c208',1,'pugi']]],
-  ['parse_5fcomments_595',['parse_comments',['../namespacepugi.html#adcab316176bfaf69158339962fb4ad38',1,'pugi']]],
-  ['parse_5fdeclaration_596',['parse_declaration',['../namespacepugi.html#adb5db03ce720dcd90e900b9bb7e70427',1,'pugi']]],
-  ['parse_5fdefault_597',['parse_default',['../namespacepugi.html#ad7c927d1c1752330637c3318b0d7b366',1,'pugi']]],
-  ['parse_5fdoctype_598',['parse_doctype',['../namespacepugi.html#afa993ffcd3e228d21f48071e7c097f32',1,'pugi']]],
-  ['parse_5fembed_5fpcdata_599',['parse_embed_pcdata',['../namespacepugi.html#a80a72fa1dbed77775ec0498b23246d8d',1,'pugi']]],
-  ['parse_5feol_600',['parse_eol',['../namespacepugi.html#ad4e017365d2ff3ee04e226c35129b475',1,'pugi']]],
-  ['parse_5fescapes_601',['parse_escapes',['../namespacepugi.html#ab5ef8454110599611900ff48012c8ad6',1,'pugi']]],
-  ['parse_5ffragment_602',['parse_fragment',['../namespacepugi.html#a79d7a2d2a9899d79abe6e06fdaa2134f',1,'pugi']]],
-  ['parse_5ffull_603',['parse_full',['../namespacepugi.html#a7d773377222d4cb6951297d61605c6a7',1,'pugi']]],
-  ['parse_5fmerge_5fpcdata_604',['parse_merge_pcdata',['../namespacepugi.html#a6e7064c304ac4351a371cf4d0f8fb386',1,'pugi']]],
-  ['parse_5fminimal_605',['parse_minimal',['../namespacepugi.html#ae5058761cfd25d6cdb7e092659dae1fd',1,'pugi']]],
-  ['parse_5fpi_606',['parse_pi',['../namespacepugi.html#a8fb7ea408d60b4f2ca79dd30b651f545',1,'pugi']]],
-  ['parse_5ftrim_5fpcdata_607',['parse_trim_pcdata',['../namespacepugi.html#a1bc8f34cf3cf5fb2dd350293c0ecc5e3',1,'pugi']]],
-  ['parse_5fwconv_5fattribute_608',['parse_wconv_attribute',['../namespacepugi.html#a1e943812f2de36fc3ee14f7756afdbd7',1,'pugi']]],
-  ['parse_5fwnorm_5fattribute_609',['parse_wnorm_attribute',['../namespacepugi.html#a8617ea5ba78c676aff8b7af960cb2f4b',1,'pugi']]],
-  ['parse_5fws_5fpcdata_610',['parse_ws_pcdata',['../namespacepugi.html#ae492a24302294f1ce3fbd56f2edbf131',1,'pugi']]],
-  ['parse_5fws_5fpcdata_5fsingle_611',['parse_ws_pcdata_single',['../namespacepugi.html#ae7c892ad8288b363daca0c3e1a8e38ee',1,'pugi']]]
+  ['name_691',['name',['../structts_1_1structures_1_1UBlock.html#a080edf2e7d3bf4ac71bc664691e9134b',1,'ts::structures::UBlock']]],
+  ['no_5fblock_5ftype_692',['NO_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a9ea5c6a77eaf23e462b411c874443629',1,'ts::messages::errors']]],
+  ['no_5fsource_693',['NO_SOURCE',['../structts_1_1messages_1_1errors.html#ab94580010eaecf57cf4e233966940460',1,'ts::messages::errors']]],
+  ['number_694',['number',['../structts_1_1structures_1_1UBlock_1_1UPort.html#ae177f7d9e744fa47db937d04c6c0a635',1,'ts::structures::UBlock::UPort']]],
+  ['numberofports_695',['numberOfPorts',['../structts_1_1structures_1_1UInportBlock.html#a0510ce30bb8cb491b3f3a8151d02958c',1,'ts::structures::UInportBlock::numberOfPorts()'],['../structts_1_1structures_1_1USumBlock.html#acdf066ab5c79e9c9c5bf51c17025db8a',1,'ts::structures::USumBlock::numberOfPorts()'],['../structts_1_1structures_1_1UGainBlock.html#aabcebf98b8c914b20d27a4224c87d6f7',1,'ts::structures::UGainBlock::numberOfPorts()'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a57a9930458e8c19035c5a1e68f0f78f7',1,'ts::structures::UUnitDelayBlock::numberOfPorts()'],['../structts_1_1structures_1_1UOutportBlock.html#a4043efde46bd8262d29c737fc20c8739',1,'ts::structures::UOutportBlock::numberOfPorts()']]]
 ];

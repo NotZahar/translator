@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['xml_5fencoding_633',['xml_encoding',['../namespacepugi.html#a03f708f86abeff5fce6842ffd6a0951e',1,'pugi']]],
-  ['xml_5fnode_5ftype_634',['xml_node_type',['../namespacepugi.html#a137e94a038e4ab0ada6477cf7f6153a9',1,'pugi']]],
-  ['xml_5fparse_5fstatus_635',['xml_parse_status',['../namespacepugi.html#a9054ca609e12afb8f3e5892fc6c0b555',1,'pugi']]],
-  ['xpath_5fvalue_5ftype_636',['xpath_value_type',['../namespacepugi.html#ae3820874caf240e9f311bfd2790a84d6',1,'pugi']]]
+  ['sign_746',['sign',['../structts_1_1structures_1_1USumBlock.html#af85e9bd5f3652bec5d67d4ce292c795a',1,'ts::structures::USumBlock']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['type_5fsorted_673',['type_sorted',['../classpugi_1_1xpath__node__set.html#a6c6899c8ecfbce9e42ec85540907080ea9d5ce5e6194ac2003da0d86d9af87437',1,'pugi::xpath_node_set']]],
-  ['type_5fsorted_5freverse_674',['type_sorted_reverse',['../classpugi_1_1xpath__node__set.html#a6c6899c8ecfbce9e42ec85540907080ea7035df3be16759292de59850d6c0b9be',1,'pugi::xpath_node_set']]],
-  ['type_5funsorted_675',['type_unsorted',['../classpugi_1_1xpath__node__set.html#a6c6899c8ecfbce9e42ec85540907080ea7636fa164710ab9b069850ea3b3e4924',1,'pugi::xpath_node_set']]]
+  ['minus_766',['MINUS',['../structts_1_1structures_1_1USumBlock.html#af85e9bd5f3652bec5d67d4ce292c795aaffc0d9b54a1fe677c4c9e6b050e67c81',1,'ts::structures::USumBlock']]]
 ];

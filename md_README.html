@@ -87,7 +87,28 @@ Usage:</h3>
 </div><!-- fragment --><p>Choose source: </p><div class="fragment"><div class="line">./translator -s source.xml</div>
 </div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
 Concept:</h3>
-<h3><a class="anchor" id="autotoc_md7"></a>
+<div class="fragment"><div class="line">&lt;Block BlockType=&quot;Inport&quot; Name=&quot;setpoint&quot; SID=&quot;16&quot;&gt;</div>
+<div class="line">  &lt;P Name=&quot;Position&quot;&gt;[-20, 403, 10, 417]&lt;/P&gt;</div>
+<div class="line">  &lt;Port&gt;                                        &lt;!-- Судя по всему эта строчка - обозначение выходного порта --&gt;</div>
+<div class="line">    &lt;P Name=&quot;PortNumber&quot;&gt;1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Name&quot;&gt;setpoint&lt;/P&gt;                 </div>
+<div class="line">  &lt;/Port&gt;</div>
+<div class="line">&lt;/Block&gt;</div>
+<div class="line">&lt;Block BlockType=&quot;Inport&quot; Name=&quot;feedback&quot; SID=&quot;18&quot;&gt;</div>
+<div class="line">  &lt;P Name=&quot;Position&quot;&gt;[-20, 453, 10, 467]&lt;/P&gt;</div>
+<div class="line">  &lt;P Name=&quot;Port&quot;&gt;2&lt;/P&gt;                          &lt;!-- Непонятно зачем нужна эта строка --&gt;</div>
+<div class="line">  &lt;Port&gt;</div>
+<div class="line">    &lt;P Name=&quot;PortNumber&quot;&gt;1&lt;/P&gt;</div>
+<div class="line">    &lt;P Name=&quot;Name&quot;&gt;feedback&lt;/P&gt;</div>
+<div class="line">  &lt;/Port&gt;</div>
+<div class="line">&lt;/Block&gt;</div>
+<div class="line">&lt;Block BlockType=&quot;Sum&quot; Name=&quot;Add1&quot; SID=&quot;17&quot;&gt;</div>
+<div class="line">  &lt;P Name=&quot;Ports&quot;&gt;[2, 1]&lt;/P&gt;                    &lt;!-- Непонятно зачем нужна эта строка --&gt;</div>
+<div class="line">  &lt;P Name=&quot;Position&quot;&gt;[105, 402, 135, 433]&lt;/P&gt;</div>
+<div class="line">  &lt;P Name=&quot;IconShape&quot;&gt;rectangular&lt;/P&gt;</div>
+<div class="line">  &lt;P Name=&quot;Inputs&quot;&gt;+-&lt;/P&gt;</div>
+<div class="line">&lt;/Block&gt;</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
 Docs:</h3>
 <ul>
 <li><a href="https://notzahar.github.io/translator/">https://notzahar.github.io/translator/</a> </li>

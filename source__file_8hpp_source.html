@@ -76,7 +76,7 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;filesystem&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string_view&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="universal__format_8hpp.html">universal_format.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="uelements_8hpp.html">structures/uelements.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacets.html">ts</a> {</div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classts_1_1SourceFile.html">    9</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classts_1_1SourceFile.html">SourceFile</a> {</div>
@@ -86,20 +86,20 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        </div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classts_1_1SourceFile.html#a4e6059b3c58437d2e42fcca4223de5b5">   14</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classts_1_1SourceFile.html#a4e6059b3c58437d2e42fcca4223de5b5">~SourceFile</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classts_1_1SourceFile.html#a4e4b5fa9c092c4b10fe4de95093f1580">   16</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classts_1_1UFormat.html">UFormat</a> <a class="code" href="classts_1_1SourceFile.html#a4e4b5fa9c092c4b10fe4de95093f1580">toUFormat</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classts_1_1SourceFile.html#a64f87c4f646ff1605c6150a100acd8a6">   16</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classts_1_1structures_1_1UElements.html">structures::UElements</a> <a class="code" href="classts_1_1SourceFile.html#a64f87c4f646ff1605c6150a100acd8a6">getElements</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classts_1_1SourceFile.html#aae85d1e2d4cdf6235871c1588ab2c85b">   19</a></span>&#160;        std::filesystem::path <a class="code" href="classts_1_1SourceFile.html#aae85d1e2d4cdf6235871c1588ab2c85b">_sourcePath</a>;        </div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    };</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
 <div class="ttc" id="aclassts_1_1SourceFile_html"><div class="ttname"><a href="classts_1_1SourceFile.html">ts::SourceFile</a></div><div class="ttdef"><b>Definition:</b> source_file.hpp:9</div></div>
-<div class="ttc" id="aclassts_1_1SourceFile_html_a4e4b5fa9c092c4b10fe4de95093f1580"><div class="ttname"><a href="classts_1_1SourceFile.html#a4e4b5fa9c092c4b10fe4de95093f1580">ts::SourceFile::toUFormat</a></div><div class="ttdeci">virtual UFormat toUFormat() const =0</div></div>
 <div class="ttc" id="aclassts_1_1SourceFile_html_a4e6059b3c58437d2e42fcca4223de5b5"><div class="ttname"><a href="classts_1_1SourceFile.html#a4e6059b3c58437d2e42fcca4223de5b5">ts::SourceFile::~SourceFile</a></div><div class="ttdeci">virtual ~SourceFile()=default</div></div>
+<div class="ttc" id="aclassts_1_1SourceFile_html_a64f87c4f646ff1605c6150a100acd8a6"><div class="ttname"><a href="classts_1_1SourceFile.html#a64f87c4f646ff1605c6150a100acd8a6">ts::SourceFile::getElements</a></div><div class="ttdeci">virtual structures::UElements getElements() const =0</div></div>
 <div class="ttc" id="aclassts_1_1SourceFile_html_a9c833fab765ad97790855e05cb5c309b"><div class="ttname"><a href="classts_1_1SourceFile.html#a9c833fab765ad97790855e05cb5c309b">ts::SourceFile::SourceFile</a></div><div class="ttdeci">SourceFile()=delete</div></div>
 <div class="ttc" id="aclassts_1_1SourceFile_html_aae85d1e2d4cdf6235871c1588ab2c85b"><div class="ttname"><a href="classts_1_1SourceFile.html#aae85d1e2d4cdf6235871c1588ab2c85b">ts::SourceFile::_sourcePath</a></div><div class="ttdeci">std::filesystem::path _sourcePath</div><div class="ttdef"><b>Definition:</b> source_file.hpp:19</div></div>
-<div class="ttc" id="aclassts_1_1UFormat_html"><div class="ttname"><a href="classts_1_1UFormat.html">ts::UFormat</a></div><div class="ttdef"><b>Definition:</b> universal_format.hpp:4</div></div>
+<div class="ttc" id="aclassts_1_1structures_1_1UElements_html"><div class="ttname"><a href="classts_1_1structures_1_1UElements.html">ts::structures::UElements</a></div><div class="ttdef"><b>Definition:</b> uelements.hpp:11</div></div>
 <div class="ttc" id="anamespacets_html"><div class="ttname"><a href="namespacets.html">ts</a></div><div class="ttdef"><b>Definition:</b> logger.hpp:7</div></div>
-<div class="ttc" id="auniversal__format_8hpp_html"><div class="ttname"><a href="universal__format_8hpp.html">universal_format.hpp</a></div></div>
+<div class="ttc" id="auelements_8hpp_html"><div class="ttname"><a href="uelements_8hpp.html">uelements.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

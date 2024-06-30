@@ -1,8 +1,24 @@
 var searchData=
 [
-  ['uformat_281',['UFormat',['../classts_1_1UFormat.html',1,'ts::UFormat'],['../classts_1_1UFormat.html#aedaac074d1ed6081c03d86db09f4bf28',1,'ts::UFormat::UFormat()']]],
-  ['universal_5fformat_2ecpp_282',['universal_format.cpp',['../universal__format_8cpp.html',1,'']]],
-  ['universal_5fformat_2ehpp_283',['universal_format.hpp',['../universal__format_8hpp.html',1,'']]],
-  ['unspecified_5fbool_5ftype_284',['unspecified_bool_type',['../classpugi_1_1xml__node.html#a83fe32b933530b244865ee401b08b037',1,'pugi::xml_node']]],
-  ['uuid_2ehpp_285',['uuid.hpp',['../uuid_8hpp.html',1,'']]]
+  ['u_2ehpp_315',['u.hpp',['../u_8hpp.html',1,'']]],
+  ['ublock_316',['UBlock',['../structts_1_1structures_1_1UBlock.html',1,'ts::structures::UBlock'],['../structts_1_1structures_1_1UBlock.html#a2679273c49735ba3bbd8922a75685d1a',1,'ts::structures::UBlock::UBlock(U::block type, std::string name) noexcept'],['../structts_1_1structures_1_1UBlock.html#a2d9d1cd7489a5aa4aae53672783765d6',1,'ts::structures::UBlock::UBlock()=delete']]],
+  ['ublock_2ehpp_317',['ublock.hpp',['../ublock_8hpp.html',1,'']]],
+  ['uelements_318',['UElements',['../classts_1_1structures_1_1UElements.html',1,'ts::structures::UElements'],['../classts_1_1structures_1_1UElements.html#a2a86b62320550c272cd232497fa73f36',1,'ts::structures::UElements::UElements(std::unordered_map&lt; blockId_t, std::unique_ptr&lt; UBlock &gt;&gt; blocks, std::vector&lt; ULink &gt; links) noexcept'],['../classts_1_1structures_1_1UElements.html#a66323cbbda0c5ad849f2e6d0f21c7694',1,'ts::structures::UElements::UElements()=delete']]],
+  ['uelements_2ehpp_319',['uelements.hpp',['../uelements_8hpp.html',1,'']]],
+  ['uformat_320',['UFormat',['../classts_1_1structures_1_1UFormat.html',1,'ts::structures::UFormat'],['../classts_1_1structures_1_1UFormat.html#af03a777d2eb4faec11cec92211c208ad',1,'ts::structures::UFormat::UFormat()']]],
+  ['uformat_2ehpp_321',['uformat.hpp',['../uformat_8hpp.html',1,'']]],
+  ['uformat_5fbuilder_2ehpp_322',['uformat_builder.hpp',['../uformat__builder_8hpp.html',1,'']]],
+  ['uformatbuilder_323',['UFormatBuilder',['../classts_1_1UFormatBuilder.html',1,'ts::UFormatBuilder'],['../classts_1_1UFormatBuilder.html#a5175221f1aa9baebc0a3d7d09da77328',1,'ts::UFormatBuilder::UFormatBuilder()']]],
+  ['ugainblock_324',['UGainBlock',['../structts_1_1structures_1_1UGainBlock.html',1,'ts::structures::UGainBlock'],['../structts_1_1structures_1_1UGainBlock.html#aa8f9e4988fbcda4197c136a9a7fe0236',1,'ts::structures::UGainBlock::UGainBlock(U::block type, std::string name, std::array&lt; UPort, numberOfPorts &gt; ports, double gain) noexcept'],['../structts_1_1structures_1_1UGainBlock.html#ab490e701cd0a701e99a2a60357e53c57',1,'ts::structures::UGainBlock::UGainBlock()=delete']]],
+  ['uinportblock_325',['UInportBlock',['../structts_1_1structures_1_1UInportBlock.html',1,'ts::structures::UInportBlock'],['../structts_1_1structures_1_1UInportBlock.html#acad32a99d6348ff3a427b0ac94805cf0',1,'ts::structures::UInportBlock::UInportBlock(U::block type, std::string name, std::array&lt; UPort, numberOfPorts &gt; ports) noexcept'],['../structts_1_1structures_1_1UInportBlock.html#a11a86f900fcdd9e3c3c7f47e60b8e3e6',1,'ts::structures::UInportBlock::UInportBlock()=delete']]],
+  ['ulink_326',['ULink',['../structts_1_1structures_1_1ULink.html',1,'ts::structures']]],
+  ['ulink_2ehpp_327',['ulink.hpp',['../ulink_8hpp.html',1,'']]],
+  ['unit_5fdelay_328',['UNIT_DELAY',['../namespacets_1_1U.html#a9df36140e83a6de69f2ce66328b70ce3ad72a26aa07cf3fefd8b6a45f3708fb29',1,'ts::U']]],
+  ['unspecified_5fbool_5ftype_329',['unspecified_bool_type',['../classpugi_1_1xml__node.html#a83fe32b933530b244865ee401b08b037',1,'pugi::xml_node']]],
+  ['uoutportblock_330',['UOutportBlock',['../structts_1_1structures_1_1UOutportBlock.html',1,'ts::structures::UOutportBlock'],['../structts_1_1structures_1_1UOutportBlock.html#a76883fb6238c2d45509f8f67df77fc04',1,'ts::structures::UOutportBlock::UOutportBlock()=delete'],['../structts_1_1structures_1_1UOutportBlock.html#a04d82fadd221df231a6cd7f221ff46ae',1,'ts::structures::UOutportBlock::UOutportBlock(U::block type, std::string name, std::array&lt; UPort, numberOfPorts &gt; ports) noexcept']]],
+  ['upoint_331',['UPoint',['../structts_1_1structures_1_1ULink_1_1UPoint.html',1,'ts::structures::ULink']]],
+  ['uport_332',['UPort',['../structts_1_1structures_1_1UBlock_1_1UPort.html',1,'ts::structures::UBlock::UPort'],['../structts_1_1structures_1_1UBlock_1_1UPort.html#a1b3eb380a8379eb021d2e74f61b87ed6',1,'ts::structures::UBlock::UPort::UPort()=delete'],['../structts_1_1structures_1_1UBlock_1_1UPort.html#aa990c6f145b59d021f633ab2bbdba94f',1,'ts::structures::UBlock::UPort::UPort(int number, type pType) noexcept']]],
+  ['usumblock_333',['USumBlock',['../structts_1_1structures_1_1USumBlock.html',1,'ts::structures::USumBlock'],['../structts_1_1structures_1_1USumBlock.html#a6c1d50be3415cc1b68ce5a84ff331395',1,'ts::structures::USumBlock::USumBlock()=delete'],['../structts_1_1structures_1_1USumBlock.html#a0c481108c9eb41a54417e8b1cead6119',1,'ts::structures::USumBlock::USumBlock(U::block type, std::string name, std::array&lt; UPort, numberOfPorts &gt; ports, std::unordered_map&lt; inputPortNumber_t, sign &gt; inputSigns) noexcept']]],
+  ['uuid_2ehpp_334',['uuid.hpp',['../uuid_8hpp.html',1,'']]],
+  ['uunitdelayblock_335',['UUnitDelayBlock',['../structts_1_1structures_1_1UUnitDelayBlock.html',1,'ts::structures::UUnitDelayBlock'],['../structts_1_1structures_1_1UUnitDelayBlock.html#ad5c656ab9b142a1cc46059f2114d285c',1,'ts::structures::UUnitDelayBlock::UUnitDelayBlock()=delete'],['../structts_1_1structures_1_1UUnitDelayBlock.html#a080175ddb380672d883fd3c462db56a6',1,'ts::structures::UUnitDelayBlock::UUnitDelayBlock(U::block type, std::string name, std::array&lt; UPort, numberOfPorts &gt; ports, int sampleTime) noexcept']]]
 ];

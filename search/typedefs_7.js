@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unspecified_5fbool_5ftype_630',['unspecified_bool_type',['../classpugi_1_1xml__node.html#a83fe32b933530b244865ee401b08b037',1,'pugi::xml_node']]]
+  ['string_5ft_742',['string_t',['../namespacepugi.html#af21b4445994e55a076cdcabdb104d6b2',1,'pugi']]]
 ];

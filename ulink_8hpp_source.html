@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>translator: Исходный файл libs/Translator/src/core/structures/ulink.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">translator
+   &#160;<span id="projectnumber">0.0.1</span>
+   </div>
+   <div id="projectbrief">Генератор Си кода из описанного формата блок-схем</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_6719ab1f1f7655efc2fa43f7eb574fd1.html">libs</a></li><li class="navelem"><a class="el" href="dir_7a04d3264bd35c3147b8e6b6de6fbcbe.html">Translator</a></li><li class="navelem"><a class="el" href="dir_55fbce4404f7b2af7bff23035618f5c5.html">src</a></li><li class="navelem"><a class="el" href="dir_2e0e3b779c0b1289be67b1dd2035c5b3.html">core</a></li><li class="navelem"><a class="el" href="dir_7f3551aa83dc68e7df99c4da3755a898.html">structures</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ulink.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ulink_8hpp.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ublock_8hpp.html">ublock.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacets_1_1structures.html">ts::structures</a> {</div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink.html">    8</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structts_1_1structures_1_1ULink.html">ULink</a> {</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink_1_1UPoint.html">    9</a></span>&#160;        <span class="keyword">struct </span><a class="code" href="structts_1_1structures_1_1ULink_1_1UPoint.html">UPoint</a> {</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink_1_1UPoint.html#afd308e0126ec46843491ae4d0e3d06e9">   10</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="structts_1_1structures_1_1ULink_1_1UPoint.html#afd308e0126ec46843491ae4d0e3d06e9">blockId</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink_1_1UPoint.html#af7ffa50de082119564f8a7f1d2d01a19">   11</a></span>&#160;            <a class="code" href="structts_1_1structures_1_1UBlock_1_1UPort.html">UBlock::UPort</a> <a class="code" href="structts_1_1structures_1_1ULink_1_1UPoint.html#af7ffa50de082119564f8a7f1d2d01a19">port</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        };</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink.html#a181a0e9d1b51f2ede8ba612e4e26ad77">   14</a></span>&#160;        <a class="code" href="structts_1_1structures_1_1ULink_1_1UPoint.html">UPoint</a> <a class="code" href="structts_1_1structures_1_1ULink.html#a181a0e9d1b51f2ede8ba612e4e26ad77">source</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structts_1_1structures_1_1ULink.html#a7bb8b44a44cb56480b07b9f32a20fa88">   15</a></span>&#160;        std::vector&lt;UPoint&gt; <a class="code" href="structts_1_1structures_1_1ULink.html#a7bb8b44a44cb56480b07b9f32a20fa88">destinations</a>;        </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    };</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
+<div class="ttc" id="anamespacets_1_1structures_html"><div class="ttname"><a href="namespacets_1_1structures.html">ts::structures</a></div><div class="ttdef"><b>Definition:</b> ublock.hpp:11</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1UBlock_1_1UPort_html"><div class="ttname"><a href="structts_1_1structures_1_1UBlock_1_1UPort.html">ts::structures::UBlock::UPort</a></div><div class="ttdef"><b>Definition:</b> ublock.hpp:13</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_1_1UPoint_html"><div class="ttname"><a href="structts_1_1structures_1_1ULink_1_1UPoint.html">ts::structures::ULink::UPoint</a></div><div class="ttdef"><b>Definition:</b> ulink.hpp:9</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_1_1UPoint_html_af7ffa50de082119564f8a7f1d2d01a19"><div class="ttname"><a href="structts_1_1structures_1_1ULink_1_1UPoint.html#af7ffa50de082119564f8a7f1d2d01a19">ts::structures::ULink::UPoint::port</a></div><div class="ttdeci">UBlock::UPort port</div><div class="ttdef"><b>Definition:</b> ulink.hpp:11</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_1_1UPoint_html_afd308e0126ec46843491ae4d0e3d06e9"><div class="ttname"><a href="structts_1_1structures_1_1ULink_1_1UPoint.html#afd308e0126ec46843491ae4d0e3d06e9">ts::structures::ULink::UPoint::blockId</a></div><div class="ttdeci">int blockId</div><div class="ttdef"><b>Definition:</b> ulink.hpp:10</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_html"><div class="ttname"><a href="structts_1_1structures_1_1ULink.html">ts::structures::ULink</a></div><div class="ttdef"><b>Definition:</b> ulink.hpp:8</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_html_a181a0e9d1b51f2ede8ba612e4e26ad77"><div class="ttname"><a href="structts_1_1structures_1_1ULink.html#a181a0e9d1b51f2ede8ba612e4e26ad77">ts::structures::ULink::source</a></div><div class="ttdeci">UPoint source</div><div class="ttdef"><b>Definition:</b> ulink.hpp:14</div></div>
+<div class="ttc" id="astructts_1_1structures_1_1ULink_html_a7bb8b44a44cb56480b07b9f32a20fa88"><div class="ttname"><a href="structts_1_1structures_1_1ULink.html#a7bb8b44a44cb56480b07b9f32a20fa88">ts::structures::ULink::destinations</a></div><div class="ttdeci">std::vector&lt; UPoint &gt; destinations</div><div class="ttdef"><b>Definition:</b> ulink.hpp:15</div></div>
+<div class="ttc" id="aublock_8hpp_html"><div class="ttname"><a href="ublock_8hpp.html">ublock.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
+</body>
+</html>
