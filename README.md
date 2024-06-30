@@ -33,6 +33,7 @@ Choose source:
 Пример входных данных:
 ![Example](example_scheme.png)
 
+```
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <Block BlockType="Inport" Name="InportName1" SID="1">
@@ -89,6 +90,7 @@ Choose source:
     <P Name="Dst">8#in:1</P>
   </Line>
 </System>
+```
 
 Сгенерированный код:
 ```
