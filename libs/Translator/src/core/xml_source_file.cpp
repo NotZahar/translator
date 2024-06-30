@@ -281,7 +281,7 @@
             if (!std::regex_match(source, upointValueRegex))
                 throw std::runtime_error{ ts::messages::errors::INVALID_LINE_BLOCK };
 
-            auto srcPoint = getPoint(source);
+            ULink::UPoint srcPoint = getPoint(source);
 
             // destination
             std::vector<ULink::UPoint> destinations;
@@ -310,7 +310,7 @@
             links.emplace_back(ULink{ std::move(srcPoint), std::move(destinations) });
         }
 
-        return links;     
+        return links; 
     }
 }
 

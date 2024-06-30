@@ -11,9 +11,6 @@ find_package(
             system
             program_options
 )
-find_package(
-    SQLiteCpp REQUIRED
-)
 
 add_library(
     ${PROJECT_NAME} STATIC
