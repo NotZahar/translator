@@ -1,3 +1,6 @@
 <map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
-<area shape="rect" id="node1" href="$structts_1_1U_1_1Var.html" title=" " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node1" href="$structts_1_1U_1_1Operator.html" title=" " alt="" coords="5,56,123,83"/>
+<area shape="rect" id="node2" href="$structts_1_1U_1_1Assign.html" title=" " alt="" coords="171,5,312,32"/>
+<area shape="rect" id="node3" href="$structts_1_1U_1_1Mult.html" title=" " alt="" coords="178,56,305,83"/>
+<area shape="rect" id="node4" href="$structts_1_1U_1_1Sum.html" title=" " alt="" coords="178,107,305,133"/>
 </map>

@@ -74,20 +74,24 @@ $(function() {
 <div class="title">Файл slink.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;boost/container_hash/hash.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="sblock_8hpp_source.html">sblock.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для slink.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="slink_8hpp__incl.png" border="0" usemap="#alibs_2Translator_2src_2core_2source_2slink_8hpp" alt=""/></div>
 <map name="alibs_2Translator_2src_2core_2source_2slink_8hpp" id="alibs_2Translator_2src_2core_2source_2slink_8hpp">
-<area shape="rect" title=" " alt="" coords="91,5,255,47"/>
-<area shape="rect" title=" " alt="" coords="91,95,154,121"/>
-<area shape="rect" href="sblock_8hpp.html" title=" " alt="" coords="178,95,270,121"/>
-<area shape="rect" title=" " alt="" coords="5,169,61,196"/>
-<area shape="rect" title=" " alt="" coords="86,169,210,196"/>
-<area shape="rect" title=" " alt="" coords="235,169,365,196"/>
-<area shape="rect" title=" " alt="" coords="390,169,522,196"/>
+<area shape="rect" title=" " alt="" coords="139,5,303,47"/>
+<area shape="rect" title=" " alt="" coords="5,102,97,129"/>
+<area shape="rect" title=" " alt="" coords="121,102,184,129"/>
+<area shape="rect" title=" " alt="" coords="208,95,369,136"/>
+<area shape="rect" href="sblock_8hpp.html" title=" " alt="" coords="393,102,485,129"/>
+<area shape="rect" title=" " alt="" coords="221,184,277,211"/>
+<area shape="rect" title=" " alt="" coords="301,184,425,211"/>
+<area shape="rect" title=" " alt="" coords="450,184,581,211"/>
+<area shape="rect" title=" " alt="" coords="605,184,737,211"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -95,17 +99,17 @@ $(function() {
 <div class="dyncontent">
 <div class="center"><img src="slink_8hpp__dep__incl.png" border="0" usemap="#alibs_2Translator_2src_2core_2source_2slink_8hppdep" alt=""/></div>
 <map name="alibs_2Translator_2src_2core_2source_2slink_8hppdep" id="alibs_2Translator_2src_2core_2source_2slink_8hppdep">
-<area shape="rect" title=" " alt="" coords="699,5,863,47"/>
-<area shape="rect" href="selements_8hpp.html" title=" " alt="" coords="611,95,813,136"/>
-<area shape="rect" href="xml__source__file_8cpp.html" title=" " alt="" coords="728,392,915,433"/>
-<area shape="rect" href="source__file_8hpp.html" title=" " alt="" coords="514,191,670,233"/>
-<area shape="rect" href="uformat__builder_8hpp.html" title=" " alt="" coords="29,184,203,240"/>
-<area shape="rect" href="translator_8hpp.html" title=" " alt="" coords="227,295,391,337"/>
-<area shape="rect" href="source__file_8cpp.html" title=" " alt="" coords="416,295,571,337"/>
-<area shape="rect" href="xml__source__file_8hpp.html" title=" " alt="" coords="595,295,783,337"/>
-<area shape="rect" href="translator_8cpp.html" title=" " alt="" coords="313,392,449,433"/>
-<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="185,399,290,426"/>
-<area shape="rect" href="uformat__builder_8cpp.html" title=" " alt="" coords="29,288,203,344"/>
+<area shape="rect" title=" " alt="" coords="694,5,858,47"/>
+<area shape="rect" href="selements_8hpp.html" title=" " alt="" coords="481,95,682,136"/>
+<area shape="rect" href="xml__source__file_8cpp.html" title=" " alt="" coords="557,392,744,433"/>
+<area shape="rect" href="uformat__builder_8cpp.html" title=" " alt="" coords="689,288,863,344"/>
+<area shape="rect" href="source__file_8hpp.html" title=" " alt="" coords="223,191,379,233"/>
+<area shape="rect" href="uformat__builder_8hpp.html" title=" " alt="" coords="438,184,613,240"/>
+<area shape="rect" href="translator_8hpp.html" title=" " alt="" coords="185,295,349,337"/>
+<area shape="rect" href="source__file_8cpp.html" title=" " alt="" coords="5,295,160,337"/>
+<area shape="rect" href="xml__source__file_8hpp.html" title=" " alt="" coords="373,295,561,337"/>
+<area shape="rect" href="translator_8cpp.html" title=" " alt="" coords="397,392,533,433"/>
+<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="214,399,319,426"/>
 </map>
 </div>
 </div>
@@ -116,6 +120,10 @@ $(function() {
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1structures_1_1SLink.html">ts::structures::SLink</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1structures_1_1SLink_1_1SPoint.html">ts::structures::SLink::SPoint</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1structures_1_1SPointHash.html">ts::structures::SPointHash</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structts_1_1structures_1_1SPointEqual.html">ts::structures::SPointEqual</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
