@@ -42,7 +42,7 @@ namespace ts::structures {
                 : number{ number },
                   pType{ pType }
             {}
-
+            
             int number;
             type pType;
         };

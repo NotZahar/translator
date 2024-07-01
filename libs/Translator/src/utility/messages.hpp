@@ -41,6 +41,9 @@ namespace ts {
             inline static constexpr char INVALID_GAIN_BLOCK[] = "Блок типа Gain невалиден";
             inline static constexpr char INVALID_UNIT_DELAY_BLOCK[] = "Блок типа UnitDelay невалиден";
             inline static constexpr char INVALID_LINE_BLOCK[] = "Блок типа Line невалиден";
+            inline static constexpr char INVALID_LINK[] = "Встречена невалидная связь";
+            inline static constexpr char NO_INPUT_VARS[] = "Нет входных переменных";
+            inline static constexpr char NO_OUTPUT_VARS[] = "Нет выходных переменных";
         };
     };
 }
