@@ -30,7 +30,7 @@ Choose source:
 ```
 
 ### Concept:
-U = Universal, язык, состоящий из конструкций по типу:
+U (от Universal) - язык, состоящий из конструкций по типу:
 ```
 operatorName1(var1, var2, var3)
 operatorName2(var1)

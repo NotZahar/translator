@@ -44,6 +44,8 @@ namespace ts {
             inline static constexpr char INVALID_LINK[] = "Встречена невалидная связь";
             inline static constexpr char NO_INPUT_VARS[] = "Нет входных переменных";
             inline static constexpr char NO_OUTPUT_VARS[] = "Нет выходных переменных";
+            inline static constexpr char NO_INPUT_LINK[] = "Нет связи, исходящей из Inport блока";
+            inline static constexpr char WRONG_BLOCK_TYPE[] = "Встречен невалидный тип блока при создании порядка команд";
         };
     };
 }

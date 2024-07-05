@@ -19,8 +19,9 @@ namespace ts {
         if (!sourceFile)
             throw std::runtime_error{ messages::errors::INVAILD_SOURCE };
 
+        UFormatBuilder uFormatBuilder;
         auto sElements = sourceFile->getElements();
-        auto uFormat = UFormatBuilder::build(sElements);
+        auto uFormat = uFormatBuilder.build(sElements);
         // ...
     }
 
