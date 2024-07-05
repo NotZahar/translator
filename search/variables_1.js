@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['blockid_268',['blockId',['../structts_1_1structures_1_1SLink_1_1SPoint.html#a905f329e68562604ad3bfb17fb8af85b',1,'ts::structures::SLink::SPoint']]],
-  ['blocks_269',['blocks',['../structts_1_1structures_1_1SElements.html#a7595a4c7d028cd477c067faf697f53a0',1,'ts::structures::SElements']]]
+  ['arg1_284',['arg1',['../structts_1_1U_1_1Sum.html#a6d9672972e38686aa5b8d4a37a9a340e',1,'ts::U::Sum::arg1()'],['../structts_1_1U_1_1Mult.html#a67f72fa578e4919f8d913c8af6de4fb7',1,'ts::U::Mult::arg1()']]],
+  ['arg2_285',['arg2',['../structts_1_1U_1_1Sum.html#a6d1d3cd99db11607a983338cee7e6d6d',1,'ts::U::Sum::arg2()'],['../structts_1_1U_1_1Mult.html#a35f397c08456f804963aef80118a6556',1,'ts::U::Mult::arg2()']]]
 ];

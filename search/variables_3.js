@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['defaultnumber_271',['defaultNumber',['../structts_1_1structures_1_1SBlock_1_1SPort.html#aabe87f2db11f6d93c0172b1417ba8f2b',1,'ts::structures::SBlock::SPort']]],
-  ['destinations_272',['destinations',['../structts_1_1structures_1_1SLink.html#aaaccfc6ba4c7b3721292815ab9847f79',1,'ts::structures::SLink']]],
-  ['dst_273',['dst',['../structts_1_1U_1_1Assign.html#ab3e5f6d61c109d41ee737cf5b49ab651',1,'ts::U::Assign']]]
+  ['cant_5fopen_5ffile_289',['CANT_OPEN_FILE',['../structts_1_1messages_1_1errors.html#af9f3b383c4d6f360455a74e61accf256',1,'ts::messages::errors']]]
 ];

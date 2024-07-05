@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['plus_333',['PLUS',['../structts_1_1structures_1_1SSumBlock.html#a3f721d4c2c4bb735d835c8ad629b8ab7a883acd43c77567e1c3baced84ccf6ed7',1,'ts::structures::SSumBlock']]]
+  ['out_359',['OUT',['../structts_1_1structures_1_1SBlock_1_1SPort.html#a274fecd00122ce4d598a56931d5cf056aef373774188a51f80463f37b6bd9e83a',1,'ts::structures::SBlock::SPort']]],
+  ['outport_360',['OUTPORT',['../namespacets_1_1structures.html#a5a4d279e72e2d9e4bb81428738cdf19fab106624a38e174689d21aa9c98e5266f',1,'ts::structures']]]
 ];

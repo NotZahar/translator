@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['value_135',['value',['../structts_1_1U_1_1Var.html#a87bf8e8c1b64a6ad321a23a542fc8857',1,'ts::U::Var']]],
-  ['var_136',['Var',['../structts_1_1U_1_1Var.html',1,'ts::U']]],
-  ['var1_137',['var1',['../structts_1_1U_1_1Sum.html#a0d8fb8488c402ee37c17bad1bca9ce62',1,'ts::U::Sum::var1()'],['../structts_1_1U_1_1Mult.html#a0a4583567bfeb22858c64a88a81020b5',1,'ts::U::Mult::var1()']]],
-  ['var2_138',['var2',['../structts_1_1U_1_1Sum.html#a5baccd4903aaf6ebe01370ed26a7751e',1,'ts::U::Sum::var2()'],['../structts_1_1U_1_1Mult.html#a2f9216909964513680f6f7f233a5e9a3',1,'ts::U::Mult::var2()']]]
+  ['value_147',['value',['../structts_1_1U_1_1Var.html#a04c7dbd48419e29989999dab4a000f31',1,'ts::U::Var']]],
+  ['valuesign_148',['valueSign',['../structts_1_1U_1_1Var.html#a67a7c4e3313cfe90bba520961a7a309c',1,'ts::U::Var']]],
+  ['var_149',['Var',['../structts_1_1U_1_1Var.html',1,'ts::U::Var'],['../structts_1_1U_1_1Var.html#af15ea80bb83c030717d84c168666356a',1,'ts::U::Var::Var()=delete'],['../structts_1_1U_1_1Var.html#a433756c8782d83215065e3d341bd0dd3',1,'ts::U::Var::Var(type varType, linkage linkageType, std::optional&lt; std::string &gt; name, std::optional&lt; std::string &gt; value, std::optional&lt; sign &gt; valueSign) noexcept']]],
+  ['vartype_150',['varType',['../structts_1_1U_1_1Var.html#ab3586b1fcc598dd6519c67554bf81402',1,'ts::U::Var']]]
 ];

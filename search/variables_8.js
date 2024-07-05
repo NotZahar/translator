@@ -1,10 +1,11 @@
 var searchData=
 [
-  ['name_293',['name',['../structts_1_1structures_1_1SBlock.html#ada7b0407d78360ece656c7caff7b4644',1,'ts::structures::SBlock']]],
-  ['no_5fblock_5ftype_294',['NO_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a9ea5c6a77eaf23e462b411c874443629',1,'ts::messages::errors']]],
-  ['no_5finput_5fvars_295',['NO_INPUT_VARS',['../structts_1_1messages_1_1errors.html#a5729f0eeff15228c1ee5c677a5775188',1,'ts::messages::errors']]],
-  ['no_5foutput_5fvars_296',['NO_OUTPUT_VARS',['../structts_1_1messages_1_1errors.html#a21b577184fd4c12df43453a29aa32a31',1,'ts::messages::errors']]],
-  ['no_5fsource_297',['NO_SOURCE',['../structts_1_1messages_1_1errors.html#ab94580010eaecf57cf4e233966940460',1,'ts::messages::errors']]],
-  ['number_298',['number',['../structts_1_1structures_1_1SBlock_1_1SPort.html#a90958087a435214fbf56221f37ebbc16',1,'ts::structures::SBlock::SPort']]],
-  ['numberofports_299',['numberOfPorts',['../structts_1_1structures_1_1SInportBlock.html#a082a801e7703f25a5fb5e6df473cc8e8',1,'ts::structures::SInportBlock::numberOfPorts()'],['../structts_1_1structures_1_1SSumBlock.html#a425acdaf6972dda3ce189e552c1c92a4',1,'ts::structures::SSumBlock::numberOfPorts()'],['../structts_1_1structures_1_1SGainBlock.html#a8841484833e8ca9fa3b7ec98c4d086c9',1,'ts::structures::SGainBlock::numberOfPorts()'],['../structts_1_1structures_1_1SUnitDelayBlock.html#ae3a4e1b1867a594c8f644f1bfc1fb4cc',1,'ts::structures::SUnitDelayBlock::numberOfPorts()'],['../structts_1_1structures_1_1SOutportBlock.html#aafd6869c0f26b443649e14709ceeb683',1,'ts::structures::SOutportBlock::numberOfPorts()']]]
+  ['inputsigns_303',['inputSigns',['../structts_1_1structures_1_1SSumBlock.html#a83dbb8aae52dd0fe841029a0d04c0e13',1,'ts::structures::SSumBlock']]],
+  ['invaild_5fsource_304',['INVAILD_SOURCE',['../structts_1_1messages_1_1errors.html#a7ecadce96b3e66d09c0fd6bcf197799b',1,'ts::messages::errors']]],
+  ['invalid_5fblock_5ftype_305',['INVALID_BLOCK_TYPE',['../structts_1_1messages_1_1errors.html#a5a8e1ea035d181afc8a7316449ab857c',1,'ts::messages::errors']]],
+  ['invalid_5fgain_5fblock_306',['INVALID_GAIN_BLOCK',['../structts_1_1messages_1_1errors.html#af5564db5ad434337254e72192c6c4eb4',1,'ts::messages::errors']]],
+  ['invalid_5fline_5fblock_307',['INVALID_LINE_BLOCK',['../structts_1_1messages_1_1errors.html#a001539ad8191b68fae7586ea5ca398c4',1,'ts::messages::errors']]],
+  ['invalid_5flink_308',['INVALID_LINK',['../structts_1_1messages_1_1errors.html#afc75feea980aa496455e7e1ad0a29aed',1,'ts::messages::errors']]],
+  ['invalid_5fsum_5fblock_309',['INVALID_SUM_BLOCK',['../structts_1_1messages_1_1errors.html#a9602f675915a67f87206bb6ee9513a55',1,'ts::messages::errors']]],
+  ['invalid_5funit_5fdelay_5fblock_310',['INVALID_UNIT_DELAY_BLOCK',['../structts_1_1messages_1_1errors.html#acf8db4fd2ff13cbc6f6caad66a413ec8',1,'ts::messages::errors']]]
 ];
