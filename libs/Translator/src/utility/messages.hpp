@@ -39,6 +39,7 @@ namespace ts {
             inline static constexpr char INVALID_BLOCK_TYPE[] = "Несуществующий тип блока";
             inline static constexpr char INVALID_SUM_BLOCK[] = "Блок типа Sum невалиден";
             inline static constexpr char INVALID_GAIN_BLOCK[] = "Блок типа Gain невалиден";
+            inline static constexpr char INVALID_GAIN_VALUE[] = "Невалидное значение Gain";
             inline static constexpr char INVALID_UNIT_DELAY_BLOCK[] = "Блок типа UnitDelay невалиден";
             inline static constexpr char INVALID_LINE_BLOCK[] = "Блок типа Line невалиден";
             inline static constexpr char INVALID_LINK[] = "Встречена невалидная связь";
@@ -46,6 +47,7 @@ namespace ts {
             inline static constexpr char NO_OUTPUT_VARS[] = "Нет выходных переменных";
             inline static constexpr char NO_INPUT_LINK[] = "Нет связи, исходящей из Inport блока";
             inline static constexpr char WRONG_BLOCK_TYPE[] = "Встречен невалидный тип блока при создании порядка команд";
+            inline static constexpr char EXTRA_LINKS[] = "Встречены лишние связи";
         };
     };
 }

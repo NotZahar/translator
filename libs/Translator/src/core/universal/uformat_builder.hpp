@@ -23,6 +23,16 @@ namespace ts {
         [[nodiscard]] U::UFormat build(structures::SElements& sElements);
 
     private:
+        enum class uOperatorPriority {
+            high,
+            normal
+        };
+
+        struct MakeOperatorResult {
+            std::unique_ptr<U::Operator> uOperator;
+            uOperatorPriority uPriority;
+        };
+
         class UCodeOperatorBuilder {
         public:
             struct BlockData {
@@ -34,7 +44,7 @@ namespace ts {
 
             ~UCodeOperatorBuilder() = default;
 
-            [[nodiscard]] std::unique_ptr<U::Operator> makeOperator(
+            [[nodiscard]] MakeOperatorResult makeOperator(
                 BlockData srcBlock, 
                 BlockData destBlock,
                 const structures::SLink::SPoint& srcPoint,
@@ -50,11 +60,11 @@ namespace ts {
                     std::optional<structures::SLink::SPoint> destPoint;
                 };
                 
-                bool linkExists() const noexcept {
+                [[nodiscard]] bool linkExists() const noexcept {
                     return link.srcBlock && link.srcPoint && link.destPoint;
                 }
 
-                PointsLink getLink() const noexcept {
+                [[nodiscard]] PointsLink getLink() const noexcept {
                     assert(linkExists());
                     return link;
                 }
@@ -65,10 +75,9 @@ namespace ts {
 
             // key == dest operator block id
             std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _sumOperatorBuildData;
-            std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _multOperatorBuildData;
         };
 
-        void makeUCode(
+        [[nodiscard]] std::vector<std::unique_ptr<U::Operator>> makeUCode(
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& outVars,

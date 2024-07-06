@@ -141,7 +141,14 @@
         if (gainNode.empty())
             throw std::runtime_error{ ts::messages::errors::INVALID_GAIN_BLOCK };
 
-        return std::make_unique<SGainBlock>(blockType::GAIN, nameValue, ports, std::stod(gainNode.text().as_string()));
+        const std::string gainValueStr = gainNode.text().as_string();
+        if (gainValueStr.empty()) 
+            throw std::runtime_error{ ts::messages::errors::INVALID_GAIN_BLOCK };
+        const double gainValue = std::stod(gainValueStr);
+        if (gainValue < 0)
+            throw std::runtime_error{ ts::messages::errors::INVALID_GAIN_VALUE };
+
+        return std::make_unique<SGainBlock>(blockType::GAIN, nameValue, ports, gainValue);
     }
 
     [[nodiscard]] std::unique_ptr<SBlock> makeUnitDelayBlock(const std::string& nameValue, const std::string& pNodePattern, const std::string& nameAttributeNamePattern, const pugi::xml_node& blockNode) {
