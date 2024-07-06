@@ -6,6 +6,8 @@
 #include <boost/bimap.hpp>
 #include <boost/assign.hpp>
 
+#include "../universal/u.hpp"
+
 namespace ts::structures {
     enum class blockType {
         INPORT,
@@ -77,20 +79,15 @@ namespace ts::structures {
     struct SSumBlock final : public SBlock {
         using inputPortNumber_t = int;
 
-        enum class sign {
-            PLUS,
-            MINUS
-        };
-
-        inline static const boost::bimap<sign, char> signs = 
-            boost::assign::list_of<boost::bimap<sign, char>::relation>
-            ( sign::PLUS, '+' )
-            ( sign::MINUS, '-' );
+        inline static const boost::bimap<U::Var::sign, char> signs = 
+            boost::assign::list_of<boost::bimap<U::Var::sign, char>::relation>
+            ( U::Var::sign::PLUS, '+' )
+            ( U::Var::sign::MINUS, '-' );
 
         inline static constexpr int numberOfPorts = 3;
 
         SSumBlock() = delete;
-        SSumBlock(blockType type, std::string name, std::array<SPort, numberOfPorts> ports, std::unordered_map<inputPortNumber_t, sign> inputSigns) noexcept
+        SSumBlock(blockType type, std::string name, std::array<SPort, numberOfPorts> ports, std::unordered_map<inputPortNumber_t, U::Var::sign> inputSigns) noexcept
             : SBlock{ type, std::move(name) },
               ports{ ports },
               inputSigns{ std::move(inputSigns) }
@@ -99,7 +96,7 @@ namespace ts::structures {
         ~SSumBlock() override = default;
 
         std::array<SPort, numberOfPorts> ports;
-        std::unordered_map<inputPortNumber_t, sign> inputSigns;
+        std::unordered_map<inputPortNumber_t, U::Var::sign> inputSigns;
     };
 
     struct SGainBlock final : public SBlock {

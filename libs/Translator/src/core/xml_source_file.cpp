@@ -98,13 +98,13 @@
             SPort{ portNumbers[2], SPort::type::OUT }
         };
 
-        std::unordered_map<SSumBlock::inputPortNumber_t, SSumBlock::sign> inputSigns;
+        std::unordered_map<SSumBlock::inputPortNumber_t, ts::U::Var::sign> inputSigns;
         
         const auto inputsNode = blockNode.find_child_by_attribute(pNodePattern.c_str(), nameAttributeNamePattern.c_str(), inputsAttributeValuePattern.c_str());
     
         if (inputsNode.empty()) {
-            inputSigns.insert({ portNumbers[0], SSumBlock::sign::PLUS });
-            inputSigns.insert({ portNumbers[1], SSumBlock::sign::PLUS });
+            inputSigns.insert({ portNumbers[0], ts::U::Var::sign::PLUS });
+            inputSigns.insert({ portNumbers[1], ts::U::Var::sign::PLUS });
         } else {
             const std::string inputs = inputsNode.text().as_string();
             if (inputs.empty())

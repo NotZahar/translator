@@ -1,6 +1,7 @@
 #include "uformat_builder.hpp"
 
 #include <cassert>
+#include <memory>
 #include <optional>
 #include <stdexcept>
 #include <unordered_map>
@@ -8,7 +9,11 @@
 #include "core/universal/u.hpp"
 #include "core/source/sblock.hpp"
 #include "core/source/slink.hpp"
+#include "logger.hpp"
 #include "utility/messages.hpp"
+
+#define ERR_LINE_WRAPPER(err) \
+    (std::format("{}: {}:{}", err, __FUNCTION__, __LINE__))
 
 namespace {
     using namespace ts::structures;
@@ -75,19 +80,19 @@ namespace ts {
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& outVars,
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) {
         if (inVars.empty())
-            throw std::runtime_error{ ts::messages::errors::NO_INPUT_VARS };
+            throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_INPUT_VARS) };
 
         if (outVars.empty())
-            throw std::runtime_error{ ts::messages::errors::NO_OUTPUT_VARS };
+            throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_OUTPUT_VARS) };
 
-        UCodeLineBuilder uCodeLineBuilder;
+        UCodeOperatorBuilder uCodeOperatorBuilder;
         std::unordered_map<int, std::string> varNames; // TODO: unused
         for (const auto& inVar : inVars) {
             const SElements::blockId_t srcBlockId = inVar.first;
             const auto& srcBlock = inVar.second;
             
             if (!splittedLinks.contains(srcBlockId))
-                throw std::runtime_error{ ts::messages::errors::NO_INPUT_LINK };
+                throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_INPUT_LINK) };
 
             for (const auto& links = splittedLinks.at(srcBlockId); const auto& link : links) {
                 assert(srcBlockId == link.first.blockId);
@@ -97,16 +102,22 @@ namespace ts {
                 const SElements::blockId_t destBlockId = destPoint.blockId;
                 
                 if (!operators.contains(destBlockId))
-                    throw std::runtime_error{ ts::messages::errors::INVALID_LINK };
+                    throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
 
                 const auto& destBlock = operators.at(destBlockId);
-                auto codeLine = uCodeLineBuilder.makeOperatorLine(
-                    UCodeLineBuilder::BlockData{ srcBlockId, srcBlock }, 
-                    UCodeLineBuilder::BlockData{ destBlockId, destBlock },
+                auto codeLine = uCodeOperatorBuilder.makeOperator(
+                    UCodeOperatorBuilder::BlockData{ srcBlockId, srcBlock }, 
+                    UCodeOperatorBuilder::BlockData{ destBlockId, destBlock },
                     srcPoint,
                     destPoint
                 );
 
+                Logger::instance().log("@@@@");
+                if (!codeLine)
+                    continue;
+
+                auto sumOp = dynamic_cast<U::Sum*>(&*codeLine);
+                Logger::instance().log(std::format("sum({}, {}, {})", *sumOp->res.name, *sumOp->arg1.name, *sumOp->arg2.name));
                 // TODO: may be nullptr
 
                 // TODO: [here]
@@ -114,13 +125,14 @@ namespace ts {
         }
 
         // process other operators
+        // check if extra
     }
 
-    bool UFormatBuilder::UCodeLineBuilder::extraBuildDataExists() const noexcept {
+    bool UFormatBuilder::UCodeOperatorBuilder::extraBuildDataExists() const noexcept {
         return !_sumOperatorBuildData.empty() || !_multOperatorBuildData.empty();
     }
 
-    std::unique_ptr<U::Operator> UFormatBuilder::UCodeLineBuilder::makeOperatorLine(
+    std::unique_ptr<U::Operator> UFormatBuilder::UCodeOperatorBuilder::makeOperator(
             BlockData srcBlock,
             BlockData destBlock,
             const structures::SLink::SPoint& srcPoint,
@@ -133,38 +145,79 @@ namespace ts {
         assert(destBlock.blockId == destPoint.blockId);
 
         switch (destBlock.block->type) {
-            case ts::structures::blockType::INPORT: {                
-                throw std::runtime_error{ messages::errors::INVALID_LINK };
+            case ts::structures::blockType::INPORT: {
+                throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
             } case ts::structures::blockType::SUM: {
                 assert(dynamic_cast<SSumBlock*>(&*destBlock.block));
                 if (_sumOperatorBuildData.contains(destBlock.blockId)) {
-                    const UOperator2BuildData& sumBuildData = _sumOperatorBuildData.at(destBlock.blockId);
-                    assert(sumBuildData.oneDestPointAlreadyOccupied());
-                    UOperator2BuildData::PointsLink occupiedPointsLink = sumBuildData.getOccupiedPointsLink();
-                    UOperator2BuildData::PointsLink freePointsLink = sumBuildData.getFreePointsLink();
-                    // TODO: [here]
-                    // match signs && numbers
-                    // create u operator
-                } else {
-                    _sumOperatorBuildData.insert({
-                        destBlock.blockId,
-                        UOperator2BuildData{
-                            UOperator2BuildData::PointsLink{
-                                &*srcBlock.block,
-                                srcPoint,
-                                destPoint  
-                            },
-                            UOperator2BuildData::PointsLink{
-                                std::nullopt,
-                                std::nullopt,
-                                std::nullopt    
-                            },
-                            &*destBlock.block
-                        }
-                    });
+                    SSumBlock* destSumBlock = static_cast<SSumBlock*>(&*destBlock.block);
+                    const U2ArgsOperatorBuildData& sumBuildData = _sumOperatorBuildData.at(destBlock.blockId);
+                    const U2ArgsOperatorBuildData::PointsLink sumArg1LinkData = sumBuildData.getLink();
+                    assert(sumArg1LinkData.srcBlock && sumArg1LinkData.srcPoint && sumArg1LinkData.destPoint);
+
+                    assert(destSumBlock);
+                    const auto& destSumPorts = destSumBlock->ports;
+                    const auto& destSumInputSigns = destSumBlock->inputSigns;
+                    const auto& destSumPort1 = destSumPorts[0];
+                    const auto& destSumPort2 = destSumPorts[1];
+                    assert(destSumInputSigns.contains(destSumPort1.number));
+                    assert(destSumInputSigns.contains(destSumPort2.number));
+                    assert(destSumPort1.pType == SBlock::SPort::type::IN);
+                    assert(destSumPort2.pType == SBlock::SPort::type::IN);
+                    assert(destSumPort1.number != destSumPort2.number);
+
+                    std::string arg1Name;
+                    std::string arg2Name;
+                    U::Var::sign arg1Sign;
+                    U::Var::sign arg2Sign;
+
+                    const auto& destArg1Port = sumArg1LinkData.destPoint->port;
+                    const auto& destArg2Port = destPoint.port;
+                    if (sumArg1LinkData.srcPoint.value().blockId == srcBlock.blockId)
+                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                    if (destArg1Port.number == destArg2Port.number)
+                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                    if (destArg1Port.pType != SBlock::SPort::type::IN || destArg2Port.pType != SBlock::SPort::type::IN)
+                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                    
+                    arg1Name = sumArg1LinkData.srcBlock.value()->name;
+                    arg2Name = srcBlock.block->name;
+                    arg1Sign = destSumInputSigns.at(destSumPort1.number);
+                    arg2Sign = destSumInputSigns.at(destSumPort2.number);
+                    if (destArg1Port.number == destSumPort1.number && destArg2Port.number == destSumPort2.number) {
+                        // nothing
+                    } else if (destArg1Port.number == destSumPort2.number && destArg2Port.number == destSumPort1.number) {
+                        std::swap(arg1Name, arg2Name);
+                        std::swap(arg1Sign, arg2Sign);
+                    } else {
+                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                    }
+                    
+                    const U::Var sumRes = U::Var{ U::Var::type::DOUBLE, destSumBlock->name, std::nullopt, std::nullopt };
+                    const U::Var sumArg1 = U::Var{ U::Var::type::DOUBLE, arg1Name, std::nullopt, arg1Sign };
+                    const U::Var sumArg2 = U::Var{ U::Var::type::DOUBLE, arg2Name, std::nullopt, arg2Sign };
+
+                    uOperator = std::make_unique<U::Sum>(sumRes, sumArg1, sumArg2);
+                    _sumOperatorBuildData.erase(destBlock.blockId);
+                    
+                    break;
                 }
 
+                _sumOperatorBuildData.insert({
+                    destBlock.blockId,
+                    U2ArgsOperatorBuildData{
+                        U2ArgsOperatorBuildData::PointsLink{
+                            &*srcBlock.block,
+                            srcPoint,
+                            destPoint
+                        },
+                        &*destBlock.block
+                    }
+                });
+
                 break;
+            } default: {
+                throw 1; // TODO: delete
             }
         }
 

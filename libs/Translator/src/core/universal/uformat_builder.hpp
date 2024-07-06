@@ -23,18 +23,18 @@ namespace ts {
         [[nodiscard]] U::UFormat build(structures::SElements& sElements);
 
     private:
-        class UCodeLineBuilder {
+        class UCodeOperatorBuilder {
         public:
             struct BlockData {
                 structures::SElements::blockId_t blockId;
                 const std::unique_ptr<structures::SBlock>& block;
             };
 
-            UCodeLineBuilder() noexcept = default;
+            UCodeOperatorBuilder() noexcept = default;
 
-            ~UCodeLineBuilder() = default;
+            ~UCodeOperatorBuilder() = default;
 
-            [[nodiscard]] std::unique_ptr<U::Operator> makeOperatorLine(
+            [[nodiscard]] std::unique_ptr<U::Operator> makeOperator(
                 BlockData srcBlock, 
                 BlockData destBlock,
                 const structures::SLink::SPoint& srcPoint,
@@ -43,58 +43,29 @@ namespace ts {
             [[nodiscard]] bool extraBuildDataExists() const noexcept;
 
         private:
-            struct UOperator2BuildData {
+            struct U2ArgsOperatorBuildData {
                 struct PointsLink {
                     std::optional<structures::SBlock*> srcBlock;
                     std::optional<structures::SLink::SPoint> srcPoint;
-                    std::optional<structures::SLink::SPoint> destPoint;    
+                    std::optional<structures::SLink::SPoint> destPoint;
                 };
                 
-                bool oneDestPointAlreadyOccupied() const noexcept {
-                    assert(!src1.srcBlock || !src2.srcBlock);
-                    return (src1.srcBlock && src1.srcPoint && src1.destPoint)
-                        || (src2.srcBlock && src2.srcPoint && src2.destPoint);
+                bool linkExists() const noexcept {
+                    return link.srcBlock && link.srcPoint && link.destPoint;
                 }
 
-                PointsLink getOccupiedPointsLink() const noexcept {
-                    assert(oneDestPointAlreadyOccupied());
-                    if (src1.srcBlock) {
-                        assert(src1.srcPoint && src1.destPoint);
-                        return src1;
-                    }
-
-                    if (src2.srcBlock) {
-                        assert(src2.srcPoint && src2.destPoint);
-                        return src2;
-                    }
-
-                    assert(false);
-                    return {};
+                PointsLink getLink() const noexcept {
+                    assert(linkExists());
+                    return link;
                 }
 
-                PointsLink getFreePointsLink() const noexcept {
-                    if (!src1.srcBlock) {
-                        assert(!src1.srcBlock && !src1.srcPoint && !src1.destPoint);
-                        return src1;
-                    }
-
-                    if (!src2.srcBlock) {
-                        assert(!src2.srcBlock && !src2.srcPoint && !src2.destPoint);
-                        return src2;
-                    }
-
-                    assert(false);
-                    return {};    
-                }
-
-                PointsLink src1;
-                PointsLink src2;
+                PointsLink link;
                 structures::SBlock* destBlock;
             };
 
             // key == dest operator block id
-            std::unordered_map<structures::SElements::blockId_t, UOperator2BuildData> _sumOperatorBuildData;
-            std::unordered_map<structures::SElements::blockId_t, UOperator2BuildData> _multOperatorBuildData;
+            std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _sumOperatorBuildData;
+            std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _multOperatorBuildData;
         };
 
         void makeUCode(

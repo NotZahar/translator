@@ -23,16 +23,10 @@ namespace ts::U {
             PLUS,
             MINUS
         };
-        
-        enum class linkage {
-            INTERNAL,
-            EXTERNAL
-        };
 
         Var() = delete;
-        Var(type varType, linkage linkageType, std::optional<std::string> name, std::optional<std::string> value, std::optional<sign> valueSign) noexcept 
+        Var(type varType, std::optional<std::string> name, std::optional<std::string> value, std::optional<sign> valueSign) noexcept 
             : varType{ varType },
-              linkageType{ linkageType },
               name{ name },
               value{ value },
               valueSign{ valueSign }
@@ -41,7 +35,6 @@ namespace ts::U {
         }
 
         type varType;
-        linkage linkageType;
         std::optional<std::string> name;
         std::optional<std::string> value;
         std::optional<sign> valueSign;
