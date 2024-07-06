@@ -36,6 +36,12 @@ operatorName1(var1, var2, var3)
 operatorName2(var1)
 ```
 
+Пример кода на U:
+```
+sum(res, arg1, arg2)
+inc(res)
+```
+
 Алгоритм:
 ```
 1) XML -> Source Structures
@@ -44,8 +50,10 @@ operatorName2(var1)
 ```
 
 Пример входных данных:
+
 ![Example](example_scheme.png)
 
+В виде XML:
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <System>
@@ -107,7 +115,7 @@ operatorName2(var1)
 
 Сгенерированный код:
 ```
-
+<!-- TODO: add code example -->
 ```
 
 ### Docs:

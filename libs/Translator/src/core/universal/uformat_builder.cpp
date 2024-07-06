@@ -9,10 +9,9 @@
 #include "core/universal/u.hpp"
 #include "core/source/sblock.hpp"
 #include "core/source/slink.hpp"
-#include "logger.hpp"
 #include "utility/messages.hpp"
 
-#define ERR_LINE_WRAPPER(err) \
+#define ERR_WITH_LINE(err) \
     (std::format("{}: {}:{}", err, __FUNCTION__, __LINE__))
 
 namespace {
@@ -80,10 +79,10 @@ namespace ts {
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& outVars,
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) {
         if (inVars.empty())
-            throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_INPUT_VARS) };
+            throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
 
         if (outVars.empty())
-            throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_OUTPUT_VARS) };
+            throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_OUTPUT_VARS) };
 
         UCodeOperatorBuilder uCodeOperatorBuilder;
         std::unordered_map<int, std::string> varNames; // TODO: unused
@@ -92,7 +91,7 @@ namespace ts {
             const auto& srcBlock = inVar.second;
             
             if (!splittedLinks.contains(srcBlockId))
-                throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::NO_INPUT_LINK) };
+                throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_LINK) };
 
             for (const auto& links = splittedLinks.at(srcBlockId); const auto& link : links) {
                 assert(srcBlockId == link.first.blockId);
@@ -102,25 +101,19 @@ namespace ts {
                 const SElements::blockId_t destBlockId = destPoint.blockId;
                 
                 if (!operators.contains(destBlockId))
-                    throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                    throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
 
                 const auto& destBlock = operators.at(destBlockId);
-                auto codeLine = uCodeOperatorBuilder.makeOperator(
+                auto uOperator = uCodeOperatorBuilder.makeOperator(
                     UCodeOperatorBuilder::BlockData{ srcBlockId, srcBlock }, 
                     UCodeOperatorBuilder::BlockData{ destBlockId, destBlock },
                     srcPoint,
                     destPoint
                 );
 
-                Logger::instance().log("@@@@");
-                if (!codeLine)
+                if (!uOperator)
                     continue;
-
-                auto sumOp = dynamic_cast<U::Sum*>(&*codeLine);
-                Logger::instance().log(std::format("sum({}, {}, {})", *sumOp->res.name, *sumOp->arg1.name, *sumOp->arg2.name));
-                // TODO: may be nullptr
-
-                // TODO: [here]
+                // TODO: here
             }
         }
 
@@ -146,7 +139,7 @@ namespace ts {
 
         switch (destBlock.block->type) {
             case ts::structures::blockType::INPORT: {
-                throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
             } case ts::structures::blockType::SUM: {
                 assert(dynamic_cast<SSumBlock*>(&*destBlock.block));
                 if (_sumOperatorBuildData.contains(destBlock.blockId)) {
@@ -174,11 +167,11 @@ namespace ts {
                     const auto& destArg1Port = sumArg1LinkData.destPoint->port;
                     const auto& destArg2Port = destPoint.port;
                     if (sumArg1LinkData.srcPoint.value().blockId == srcBlock.blockId)
-                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                        throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     if (destArg1Port.number == destArg2Port.number)
-                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                        throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     if (destArg1Port.pType != SBlock::SPort::type::IN || destArg2Port.pType != SBlock::SPort::type::IN)
-                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                        throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     
                     arg1Name = sumArg1LinkData.srcBlock.value()->name;
                     arg2Name = srcBlock.block->name;
@@ -190,7 +183,7 @@ namespace ts {
                         std::swap(arg1Name, arg2Name);
                         std::swap(arg1Sign, arg2Sign);
                     } else {
-                        throw std::runtime_error{ ERR_LINE_WRAPPER(ts::messages::errors::INVALID_LINK) };
+                        throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     }
                     
                     const U::Var sumRes = U::Var{ U::Var::type::DOUBLE, destSumBlock->name, std::nullopt, std::nullopt };
@@ -216,8 +209,6 @@ namespace ts {
                 });
 
                 break;
-            } default: {
-                throw 1; // TODO: delete
             }
         }
 
