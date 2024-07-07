@@ -7,7 +7,7 @@
 
 #include "../source/selements.hpp"
 #include "uformat.hpp"
-#include "core/source/sblock.hpp"
+#include "../source/sblock.hpp"
 #include "u.hpp"
 
 namespace ts {
@@ -28,30 +28,22 @@ namespace ts {
             normal
         };
 
+        struct MakeUResult {
+            std::vector<U::Var> uVars;
+            std::vector<U::Var> uExportVars;
+            std::vector<std::unique_ptr<U::Operator>> uCode;
+        };
+
+        struct ProcessLayerResult {
+            std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>> bloksToProcessNext;
+        };
+
         struct MakeOperatorResult {
             std::unique_ptr<U::Operator> uOperator;
             uOperatorPriority uPriority;
         };
 
         class UCodeOperatorBuilder {
-        public:
-            struct BlockData {
-                structures::SElements::blockId_t blockId;
-                const std::unique_ptr<structures::SBlock>& block;
-            };
-
-            UCodeOperatorBuilder() noexcept = default;
-
-            ~UCodeOperatorBuilder() = default;
-
-            [[nodiscard]] MakeOperatorResult makeOperator(
-                BlockData srcBlock, 
-                BlockData destBlock,
-                const structures::SLink::SPoint& srcPoint,
-                const structures::SLink::SPoint& destPoint);
-        
-            [[nodiscard]] bool extraBuildDataExists() const noexcept;
-
         private:
             struct U2ArgsOperatorBuildData {
                 struct PointsLink {
@@ -73,14 +65,41 @@ namespace ts {
                 structures::SBlock* destBlock;
             };
 
+        public:
+            struct BlockData {
+                structures::SElements::blockId_t blockId;
+                const std::unique_ptr<structures::SBlock>& block;
+            };
+
+            UCodeOperatorBuilder() noexcept = default;
+
+            ~UCodeOperatorBuilder() = default;
+
+            [[nodiscard]] MakeOperatorResult makeOperator(
+                BlockData srcBlock, 
+                BlockData destBlock,
+                const structures::SLink::SPoint& srcPoint,
+                const structures::SLink::SPoint& destPoint);
+        
+            [[nodiscard]] bool extraBuildDataExists() const noexcept;
+            [[nodiscard]] const std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData>& getSumOperatorBuildData() const noexcept;
+
+        private:
             // key == dest operator block id
             std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _sumOperatorBuildData;
         };
 
-        [[nodiscard]] std::vector<std::unique_ptr<U::Operator>> makeUCode(
+        [[nodiscard]] ProcessLayerResult processLayer(
+            const splittedLinks_t& splittedLinks,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& srcBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& destBlocks,
+            UCodeOperatorBuilder& uCodeOperatorBuilder,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal) const;
+
+        [[nodiscard]] MakeUResult makeU(
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& outVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators);
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) const;
     };
 }

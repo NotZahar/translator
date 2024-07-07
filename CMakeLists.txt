@@ -34,6 +34,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
                 -Wextra 
                 -Werror 
                 -pedantic
+                -g # TODO: delete
     )
 endif()
 

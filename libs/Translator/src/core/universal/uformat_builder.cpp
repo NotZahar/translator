@@ -1,16 +1,17 @@
 #include "uformat_builder.hpp"
 
 #include <cassert>
+#include <format>
 #include <memory>
 #include <optional>
-#include <stdexcept>
 #include <string>
 #include <unordered_map>
 
-#include "core/universal/u.hpp"
-#include "core/source/sblock.hpp"
-#include "core/source/slink.hpp"
-#include "utility/messages.hpp"
+#include "../universal/u.hpp"
+#include "../source/sblock.hpp"
+#include "../source/slink.hpp"
+#include "../../utility/messages.hpp"
+#include "logger.hpp"
 
 #define ERR_WITH_LINE(err) \
     (std::format("{}: {}:{}", err, __FUNCTION__, __LINE__))
@@ -21,7 +22,6 @@ namespace {
     void categorizeBlocks(
             std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& sBlocks, 
             std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& inVars,
-            std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& outVars, 
             std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& operators) noexcept {
         for (auto& block : sBlocks) {
             switch (block.second->type) {
@@ -29,8 +29,7 @@ namespace {
                     inVars.insert({ block.first, std::move(block.second) });
                     break;
                 case blockType::OUTPORT:
-                    outVars.insert({ block.first, std::move(block.second) });
-                    break;
+                    [[fallthrough]];
                 case blockType::SUM:
                     [[fallthrough]];
                 case blockType::GAIN:
@@ -65,60 +64,74 @@ namespace ts {
         U::UFormat format;
 
         std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> inVars;
-        std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> outVars;
         std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> operators;
         
-        categorizeBlocks(sElements.blocks, inVars, outVars, operators);
-        auto uCode = makeUCode(splitLinks(sElements.links), inVars, outVars, operators);
+        categorizeBlocks(sElements.blocks, inVars, operators);
+        auto uCode = makeU(splitLinks(sElements.links), inVars, operators);
+        for (const auto& c : uCode.uCode) { // TODO: delete
+            if (dynamic_cast<U::Sum*>(&*c)) {
+                Logger::instance().log(std::format("{}({}, {}, {})", "sum", dynamic_cast<U::Sum*>(&*c)->res.name.value(), dynamic_cast<U::Sum*>(&*c)->arg1.name.value(), dynamic_cast<U::Sum*>(&*c)->arg2.name.value()));
+                continue;
+            }
+            
+            if (dynamic_cast<U::Mult*>(&*c)) {
+                Logger::instance().log(std::format("{}({}, {}, {})", "mult", dynamic_cast<U::Mult*>(&*c)->res.name.value(), dynamic_cast<U::Mult*>(&*c)->arg1.name.value(), dynamic_cast<U::Mult*>(&*c)->arg2.value.value()));
+                continue;
+            }
+
+            if (dynamic_cast<U::Assign*>(&*c)) {
+                Logger::instance().log(std::format("{}({}, {})", "assign", dynamic_cast<U::Assign*>(&*c)->to.name.value(), dynamic_cast<U::Assign*>(&*c)->from.name.value()));
+                continue;
+            }
+        }
+
         // TODO: [here]
 
         return format;
     }
 
-    std::vector<std::unique_ptr<U::Operator>> UFormatBuilder::makeUCode(
-            splittedLinks_t splittedLinks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& outVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) {
-        std::vector<std::unique_ptr<U::Operator>> uCode;
-        std::vector<std::unique_ptr<U::Operator>> uCodeHigh;
-        std::vector<std::unique_ptr<U::Operator>> uCodeNormal;
-
-        if (inVars.empty())
-            throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
-
-        if (outVars.empty())
-            throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_OUTPUT_VARS) };
-
-        UCodeOperatorBuilder uCodeOperatorBuilder;
-        for (const auto& inVar : inVars) {
-            const SElements::blockId_t srcBlockId = inVar.first;
-            const auto& srcBlock = inVar.second;
+    [[nodiscard]] UFormatBuilder::ProcessLayerResult UFormatBuilder::processLayer(
+            const splittedLinks_t& splittedLinks,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& srcBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& destBlocks,
+            UCodeOperatorBuilder& uCodeOperatorBuilder,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal) const {
+        ProcessLayerResult result;
+        for (const auto& srcBlock : srcBlocks) {
+            const SElements::blockId_t srcBlockId = srcBlock.first;
+            const std::unique_ptr<structures::SBlock>& srcBlockData = srcBlock.second;
             
-            if (!splittedLinks.contains(srcBlockId))
-                throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_LINK) };
+            if (!splittedLinks.contains(srcBlockId)) {
+                if (srcBlockData->type == blockType::OUTPORT)
+                    return result;
+                throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NOT_EXISTING_LINK) };
+            }
 
-            for (const auto& links = splittedLinks.at(srcBlockId); const auto& link : links) {
+            for (const splittedLink_t& links = splittedLinks.at(srcBlockId); const auto& link : links) {
                 assert(srcBlockId == link.first.blockId);
                 
                 const SLink::SPoint& srcPoint = link.first;
                 const SLink::SPoint& destPoint = link.second;
                 const SElements::blockId_t destBlockId = destPoint.blockId;
                 
-                if (!operators.contains(destBlockId))
+                if (!destBlocks.contains(destBlockId))
                     throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
 
-                const auto& destBlock = operators.at(destBlockId);
+                const std::unique_ptr<structures::SBlock>& destBlockData = destBlocks.at(destBlockId);
                 MakeOperatorResult makeOperatorResult = uCodeOperatorBuilder.makeOperator(
-                    UCodeOperatorBuilder::BlockData{ srcBlockId, srcBlock }, 
-                    UCodeOperatorBuilder::BlockData{ destBlockId, destBlock },
+                    UCodeOperatorBuilder::BlockData{ srcBlockId, srcBlockData }, 
+                    UCodeOperatorBuilder::BlockData{ destBlockId, destBlockData },
                     srcPoint,
                     destPoint
                 );
 
+                result.bloksToProcessNext.insert({ destBlockId, destBlockData->clone() });
+
                 if (!makeOperatorResult.uOperator)
                     continue;
 
+                assert(makeOperatorResult.uOperator);
                 switch (makeOperatorResult.uPriority) {
                     case uOperatorPriority::high:
                         uCodeHigh.emplace_back(std::move(makeOperatorResult.uOperator));
@@ -130,22 +143,54 @@ namespace ts {
             }
         }
 
-        // TODO: process other operators
-        
+        return result;
+    }
 
-        if (uCodeOperatorBuilder.extraBuildDataExists())
-            throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
+    UFormatBuilder::MakeUResult UFormatBuilder::makeU(
+            splittedLinks_t splittedLinks,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
+            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) const {
+        std::vector<std::unique_ptr<U::Operator>> uCode;
+        std::vector<std::unique_ptr<U::Operator>> uCodeHigh;
+        std::vector<std::unique_ptr<U::Operator>> uCodeNormal;
+        UCodeOperatorBuilder uCodeOperatorBuilder;
+
+        if (inVars.empty())
+            throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
+
+        auto processResult = processLayer(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal);
+        while (!processResult.bloksToProcessNext.empty()) {
+            auto processResultInternal = processLayer(splittedLinks, processResult.bloksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal);
+            processResult.bloksToProcessNext.clear();
+            for (auto& internalBlock : processResultInternal.bloksToProcessNext)
+                processResult.bloksToProcessNext.insert(std::move(internalBlock));
+        }
+
+        // if (uCodeOperatorBuilder.extraBuildDataExists()) {
+        //     for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) {
+        //         Logger::instance().log(std::format("{}", op.first));
+        //     }
+        //     throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
+        // } // TODO: uncomment
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
             uCode.emplace_back(std::move(normalOperator));
 
         assert(uCode.size() >= uCodeNormal.size());
-        return uCode;
+        return UFormatBuilder::MakeUResult{
+            {}, // TODO:
+            {}, // TODO:
+            std::move(uCode)
+        };
     }
 
     bool UFormatBuilder::UCodeOperatorBuilder::extraBuildDataExists() const noexcept {
         return !_sumOperatorBuildData.empty();
+    }
+
+    [[nodiscard]] const std::unordered_map<structures::SElements::blockId_t, UFormatBuilder::UCodeOperatorBuilder::U2ArgsOperatorBuildData>& UFormatBuilder::UCodeOperatorBuilder::getSumOperatorBuildData() const noexcept {
+        return _sumOperatorBuildData;
     }
 
     UFormatBuilder::MakeOperatorResult UFormatBuilder::UCodeOperatorBuilder::makeOperator(

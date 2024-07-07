@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <memory>
 #include <unordered_map>
 
 #include <boost/bimap.hpp>
@@ -51,6 +52,8 @@ namespace ts::structures {
 
         virtual ~SBlock() = default;
 
+        virtual std::unique_ptr<SBlock> clone() const = 0;
+
         blockType type;
         std::string name;
 
@@ -72,6 +75,10 @@ namespace ts::structures {
         {}
 
         ~SInportBlock() override = default;
+
+        std::unique_ptr<SBlock> clone() const override {
+            return std::make_unique<SInportBlock>(type, name, ports);
+        }
 
         std::array<SPort, numberOfPorts> ports;
     };
@@ -95,6 +102,10 @@ namespace ts::structures {
 
         ~SSumBlock() override = default;
 
+        std::unique_ptr<SBlock> clone() const override {
+            return std::make_unique<SSumBlock>(type, name, ports, inputSigns);
+        }
+
         std::array<SPort, numberOfPorts> ports;
         std::unordered_map<inputPortNumber_t, U::Var::sign> inputSigns;
     };
@@ -110,6 +121,10 @@ namespace ts::structures {
         {}
 
         ~SGainBlock() override = default;
+
+        std::unique_ptr<SBlock> clone() const override {
+            return std::make_unique<SGainBlock>(type, name, ports, gain);
+        }
 
         std::array<SPort, numberOfPorts> ports;
         double gain;
@@ -127,6 +142,10 @@ namespace ts::structures {
 
         ~SUnitDelayBlock() override = default;
 
+        std::unique_ptr<SBlock> clone() const override {
+            return std::make_unique<SUnitDelayBlock>(type, name, ports, sampleTime);
+        }
+
         std::array<SPort, numberOfPorts> ports;
         int sampleTime;
     };
@@ -141,6 +160,10 @@ namespace ts::structures {
         {}
 
         ~SOutportBlock() override = default;
+
+        std::unique_ptr<SBlock> clone() const override {
+            return std::make_unique<SOutportBlock>(type, name, ports);
+        }
 
         std::array<SPort, numberOfPorts> ports;
     };
