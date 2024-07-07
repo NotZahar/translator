@@ -93,9 +93,6 @@ namespace ts {
                 BlockData destBlock,
                 const structures::SLink::SPoint& srcPoint,
                 const structures::SLink::SPoint& destPoint);
-        
-            [[nodiscard]] bool extraBuildDataExists() const noexcept;
-            [[nodiscard]] const std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData>& getSumOperatorBuildData() const noexcept;
 
         private:
             // key == dest operator block id
@@ -111,7 +108,8 @@ namespace ts {
             UCodeOperatorBuilder& uCodeOperatorBuilder,
             std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
             std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
-            std::vector<std::shared_ptr<U::Operator>>& uCodeLow) const;
+            std::vector<std::shared_ptr<U::Operator>>& uCodeLow,
+            bool forwardDirection = true) const;
 
         [[nodiscard]] MakeUResult makeU(
             splittedLinks_t splittedLinks,

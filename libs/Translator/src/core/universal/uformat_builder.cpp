@@ -99,7 +99,8 @@ namespace ts {
             UCodeOperatorBuilder& uCodeOperatorBuilder,
             std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
             std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
-            std::vector<std::shared_ptr<U::Operator>>& uCodeLow) const {
+            std::vector<std::shared_ptr<U::Operator>>& uCodeLow,
+            bool forwardDirection) const {
         ProcessLayerResult result;
         for (const auto& srcBlock : srcBlocks) {
             const SElements::blockId_t srcBlockId = srcBlock.first;
@@ -107,7 +108,7 @@ namespace ts {
             
             if (!splittedLinks.contains(srcBlockId)) {
                 if (srcBlockData->type == blockType::OUTPORT)
-                    return result;
+                    continue;
                 throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NOT_EXISTING_LINK) };
             }
 
@@ -122,10 +123,11 @@ namespace ts {
                     throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
 
                 const std::shared_ptr<structures::SBlock> destBlockData = destBlocks.at(destBlockId);
-                Logger::instance().log(std::format("{} -> {}", srcBlockData->name, destBlockData->name)); // TODO: delete
+                if (!forwardDirection && destBlockData->type != blockType::UNIT_DELAY)
+                    continue;
             
-                if (destBlockData->type == blockType::UNIT_DELAY) {
-                    result.blocksToProcessInFuture.insert({ destBlockId, destBlockData->clone() });
+                if (forwardDirection && destBlockData->type == blockType::UNIT_DELAY) {
+                    result.blocksToProcessInFuture.insert({ srcBlockId, srcBlockData->clone() });
                     continue;
                 }
 
@@ -177,44 +179,25 @@ namespace ts {
         UFormatBuilder::ProcessLayerResult processResult = processLinks(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
         blocksToProcessInFuture = std::move(processResult.blocksToProcessInFuture);
         while (!processResult.blocksToProcessNext.empty()) {
-            auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+            auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);            
             processResult.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
             for (const auto& futureBlock : processResultInternal.blocksToProcessInFuture)
                 blocksToProcessInFuture.insert(futureBlock);
         }
 
-        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessInFuture, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
-        while (!processResultFuture.blocksToProcessNext.empty()) {
-            auto processResultInternal = processLinks(splittedLinks, processResultFuture.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
-            processResultFuture.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
-            if (!processResultFuture.blocksToProcessInFuture.empty())
-                throw std::runtime_error{ ts::messages::errors::INTERNAL_ERROR };
-        }
-
-        // if (uCodeOperatorBuilder.extraBuildDataExists()) {
-        //     for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) { // TODO: delete
-        //         Logger::instance().log(std::format("EXTRA: {}", op.first));
-        //     }
-        //     throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
-        // }
+        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessInFuture, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, false);
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
             uCode.emplace_back(normalOperator);
+        for (auto& lowOperator : uCodeLow)
+            uCode.emplace_back(lowOperator);
 
         return UFormatBuilder::MakeUResult{
             {}, // TODO:
             {}, // TODO:
             std::move(uCode)
         };
-    }
-
-    bool UFormatBuilder::UCodeOperatorBuilder::extraBuildDataExists() const noexcept {
-        return !_sumOperatorBuildData.empty() || !_incompletedBlocks.empty() || !_ready2ArgOperators.empty();
-    }
-
-    [[nodiscard]] const std::unordered_map<structures::SElements::blockId_t, UFormatBuilder::UCodeOperatorBuilder::U2ArgsOperatorBuildData>& UFormatBuilder::UCodeOperatorBuilder::getSumOperatorBuildData() const noexcept {
-        return _sumOperatorBuildData;
     }
 
     UFormatBuilder::MakeOperatorResult UFormatBuilder::UCodeOperatorBuilder::makeOperator(
