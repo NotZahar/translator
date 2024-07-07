@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['help_32',['HELP',['../structts_1_1messages_1_1options.html#a18388bca1946bbe2d8a1a4b8a0e9558e',1,'ts::messages::options']]],
-  ['help_33',['help',['../structts_1_1OptionsParser_1_1Options.html#a7aba0df6a37f2ffa30bceef7dc9fa1ab',1,'ts::OptionsParser::Options']]],
+  ['help_32',['help',['../structts_1_1OptionsParser_1_1Options.html#a7aba0df6a37f2ffa30bceef7dc9fa1ab',1,'ts::OptionsParser::Options']]],
+  ['help_33',['HELP',['../structts_1_1messages_1_1options.html#a18388bca1946bbe2d8a1a4b8a0e9558e',1,'ts::messages::options']]],
   ['help_5fdescr_34',['HELP_DESCR',['../structts_1_1messages_1_1options.html#ae417088c351afb7e6f604bf6c53bd39e',1,'ts::messages::options']]],
   ['help_5ff_35',['HELP_F',['../structts_1_1messages_1_1options.html#abd184ece9c6cbee233695451381a6e2c',1,'ts::messages::options']]],
   ['help_5fheader_36',['HELP_HEADER',['../structts_1_1messages_1_1general.html#a35d79ac120d83395c1e1966a918beaba',1,'ts::messages::general']]],

@@ -1,15 +1,16 @@
 <map id="libs/Translator/src/core/universal/u.hpp" name="libs/Translator/src/core/universal/u.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="101,5,260,47"/>
-<area shape="rect" id="node2" href="$sblock_8hpp.html" title=" " alt="" coords="267,95,441,136"/>
-<area shape="rect" id="node11" href="$uformat__builder_8hpp.html" title=" " alt="" coords="171,363,345,419"/>
-<area shape="rect" id="node12" href="$uformat__builder_8cpp.html" title=" " alt="" coords="5,467,180,523"/>
-<area shape="rect" id="node3" href="$selements_8hpp.html" title=" " alt="" coords="421,273,623,315"/>
-<area shape="rect" id="node10" href="$xml__source__file_8cpp.html" title=" " alt="" coords="782,571,969,612"/>
-<area shape="rect" id="node13" href="$slink_8hpp.html" title=" " alt="" coords="320,184,484,225"/>
-<area shape="rect" id="node4" href="$source__file_8hpp.html" title=" " alt="" coords="444,370,600,411"/>
-<area shape="rect" id="node5" href="$translator_8hpp.html" title=" " alt="" coords="256,474,420,515"/>
-<area shape="rect" id="node8" href="$source__file_8cpp.html" title=" " alt="" coords="445,474,599,515"/>
-<area shape="rect" id="node9" href="$xml__source__file_8hpp.html" title=" " alt="" coords="624,474,812,515"/>
-<area shape="rect" id="node6" href="$translator_8cpp.html" title=" " alt="" coords="210,571,346,612"/>
-<area shape="rect" id="node7" href="$main_8cpp.html" title=" " alt="" coords="371,578,476,605"/>
+<area shape="rect" id="node1" title=" " alt="" coords="673,5,831,47"/>
+<area shape="rect" id="node2" href="$sblock_8hpp.html" title=" " alt="" coords="469,95,643,136"/>
+<area shape="rect" id="node11" href="$uformat__builder_8hpp.html" title=" " alt="" coords="498,363,673,419"/>
+<area shape="rect" id="node12" href="$uformat__builder_8cpp.html" title=" " alt="" coords="793,467,967,523"/>
+<area shape="rect" id="node14" href="$uformat_8hpp.html" title=" " alt="" coords="715,273,917,315"/>
+<area shape="rect" id="node3" href="$selements_8hpp.html" title=" " alt="" coords="221,273,422,315"/>
+<area shape="rect" id="node10" href="$xml__source__file_8cpp.html" title=" " alt="" coords="5,571,192,612"/>
+<area shape="rect" id="node13" href="$slink_8hpp.html" title=" " alt="" coords="370,184,534,225"/>
+<area shape="rect" id="node4" href="$source__file_8hpp.html" title=" " alt="" coords="255,370,411,411"/>
+<area shape="rect" id="node5" href="$translator_8hpp.html" title=" " alt="" coords="605,474,769,515"/>
+<area shape="rect" id="node8" href="$source__file_8cpp.html" title=" " alt="" coords="161,474,316,515"/>
+<area shape="rect" id="node9" href="$xml__source__file_8hpp.html" title=" " alt="" coords="341,474,529,515"/>
+<area shape="rect" id="node6" href="$translator_8cpp.html" title=" " alt="" coords="485,571,621,612"/>
+<area shape="rect" id="node7" href="$main_8cpp.html" title=" " alt="" coords="646,578,751,605"/>
 </map>
