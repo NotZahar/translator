@@ -21,21 +21,23 @@ namespace {
 
     void categorizeBlocks(
             std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& sBlocks, 
-            std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& inVars,
-            std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>>& operators) noexcept {
+            std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>>& inVars,
+            std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>>& operators) noexcept {
         for (auto& block : sBlocks) {
             switch (block.second->type) {
                 case blockType::INPORT:
-                    inVars.insert({ block.first, std::move(block.second) });
+                    inVars.insert({ block.first, block.second->clone() });
                     break;
                 case blockType::OUTPORT:
                     [[fallthrough]];
                 case blockType::SUM:
                     [[fallthrough]];
                 case blockType::GAIN:
-                    [[fallthrough]];
+                    operators.insert({ block.first, block.second->clone() });
+                    break;
                 case blockType::UNIT_DELAY:
-                    operators.insert({ block.first, std::move(block.second) });
+                    inVars.insert({ block.first, block.second->clone() });
+                    operators.insert({ block.first, block.second->clone() });
                     break;
             }
         }
@@ -63,8 +65,8 @@ namespace ts {
     U::UFormat UFormatBuilder::build(structures::SElements& sElements) {
         U::UFormat format;
 
-        std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> inVars;
-        std::unordered_map<SElements::blockId_t, std::unique_ptr<SBlock>> operators;
+        std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>> inVars;
+        std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>> operators;
         
         categorizeBlocks(sElements.blocks, inVars, operators);
         auto uCode = makeU(splitLinks(sElements.links), inVars, operators);
@@ -90,17 +92,18 @@ namespace ts {
         return format;
     }
 
-    [[nodiscard]] UFormatBuilder::ProcessLayerResult UFormatBuilder::processLayer(
+    [[nodiscard]] UFormatBuilder::ProcessLayerResult UFormatBuilder::processLinks(
             const splittedLinks_t& splittedLinks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& srcBlocks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& destBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& srcBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& destBlocks,
             UCodeOperatorBuilder& uCodeOperatorBuilder,
             std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal) const {
+            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeLow) const {
         ProcessLayerResult result;
         for (const auto& srcBlock : srcBlocks) {
             const SElements::blockId_t srcBlockId = srcBlock.first;
-            const std::unique_ptr<structures::SBlock>& srcBlockData = srcBlock.second;
+            const std::shared_ptr<structures::SBlock> srcBlockData = srcBlock.second;
             
             if (!splittedLinks.contains(srcBlockId)) {
                 if (srcBlockData->type == blockType::OUTPORT)
@@ -118,15 +121,24 @@ namespace ts {
                 if (!destBlocks.contains(destBlockId))
                     throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
 
-                const std::unique_ptr<structures::SBlock>& destBlockData = destBlocks.at(destBlockId);
+                const std::shared_ptr<structures::SBlock> destBlockData = destBlocks.at(destBlockId);
+                Logger::instance().log(std::format("{} -> {}", srcBlockData->name, destBlockData->name)); // TODO: delete
+            
+                if (destBlockData->type == blockType::UNIT_DELAY) {
+                    Logger::instance().log(std::format("########")); // TODO: delete
+                    result.blocksToProcessInFuture.insert({ destBlockId, destBlockData->clone() });
+                    continue;
+                }
+
+                Logger::instance().log("EEEEEEEEEEE " + destBlockData->name);
+                result.blocksToProcessNext.insert({ destBlockId, destBlockData->clone() });
+
                 MakeOperatorResult makeOperatorResult = uCodeOperatorBuilder.makeOperator(
-                    UCodeOperatorBuilder::BlockData{ srcBlockId, srcBlockData }, 
-                    UCodeOperatorBuilder::BlockData{ destBlockId, destBlockData },
+                    BlockData{ srcBlockId, srcBlockData }, 
+                    BlockData{ destBlockId, destBlockData },
                     srcPoint,
                     destPoint
                 );
-
-                result.bloksToProcessNext.insert({ destBlockId, destBlockData->clone() });
 
                 if (!makeOperatorResult.uOperator)
                     continue;
@@ -139,6 +151,9 @@ namespace ts {
                     case uOperatorPriority::normal:
                         uCodeNormal.emplace_back(std::move(makeOperatorResult.uOperator));
                         break;
+                    case uOperatorPriority::low:
+                        uCodeLow.emplace_back(std::move(makeOperatorResult.uOperator));
+                        break;
                 }
             }
         }
@@ -148,30 +163,41 @@ namespace ts {
 
     UFormatBuilder::MakeUResult UFormatBuilder::makeU(
             splittedLinks_t splittedLinks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) const {
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const {
         std::vector<std::unique_ptr<U::Operator>> uCode;
         std::vector<std::unique_ptr<U::Operator>> uCodeHigh;
         std::vector<std::unique_ptr<U::Operator>> uCodeNormal;
+        std::vector<std::unique_ptr<U::Operator>> uCodeLow;
         UCodeOperatorBuilder uCodeOperatorBuilder;
+        std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessInFuture;
 
         if (inVars.empty())
             throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
 
-        auto processResult = processLayer(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal);
-        while (!processResult.bloksToProcessNext.empty()) {
-            auto processResultInternal = processLayer(splittedLinks, processResult.bloksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal);
-            processResult.bloksToProcessNext.clear();
-            for (auto& internalBlock : processResultInternal.bloksToProcessNext)
-                processResult.bloksToProcessNext.insert(std::move(internalBlock));
+        UFormatBuilder::ProcessLayerResult processResult = processLinks(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+        blocksToProcessInFuture = std::move(processResult.blocksToProcessInFuture);
+        while (!processResult.blocksToProcessNext.empty()) {
+            auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+            processResult.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
+            for (const auto& futureBlock : processResultInternal.blocksToProcessInFuture)
+                blocksToProcessInFuture.insert(futureBlock);
         }
 
-        // if (uCodeOperatorBuilder.extraBuildDataExists()) {
-        //     for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) {
-        //         Logger::instance().log(std::format("{}", op.first));
-        //     }
-        //     throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
-        // } // TODO: uncomment
+        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessInFuture, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+        while (!processResultFuture.blocksToProcessNext.empty()) {
+            auto processResultInternal = processLinks(splittedLinks, processResultFuture.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+            processResultFuture.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
+            if (!processResultFuture.blocksToProcessInFuture.empty())
+                throw std::runtime_error{ ts::messages::errors::INTERNAL_ERROR };
+        }
+
+        if (uCodeOperatorBuilder.extraBuildDataExists()) {
+            for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) { // TODO: delete
+                Logger::instance().log(std::format("EXTRA: {}", op.first));
+            }
+            throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
+        }
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
@@ -210,10 +236,10 @@ namespace ts {
             case ts::structures::blockType::INPORT: {
                 throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
             } case ts::structures::blockType::SUM: {
-                assert(dynamic_cast<SSumBlock*>(&*destBlock.block));
+                assert(dynamic_cast<SSumBlock*>(destBlock.block.get()));
                 
                 if (_sumOperatorBuildData.contains(destBlock.blockId)) {
-                    SSumBlock* destSumBlock = static_cast<SSumBlock*>(&*destBlock.block);
+                    SSumBlock* destSumBlock = static_cast<SSumBlock*>(destBlock.block.get());
                     const U2ArgsOperatorBuildData& sumBuildData = _sumOperatorBuildData.at(destBlock.blockId);
                     const U2ArgsOperatorBuildData::PointsLink sumArg1LinkData = sumBuildData.getLink();
                     assert(destSumBlock);
@@ -236,6 +262,8 @@ namespace ts {
 
                     const auto& destArg1Port = sumArg1LinkData.destPoint->port;
                     const auto& destArg2Port = destPoint.port;
+                    // TODO: delete
+                    Logger::instance().log(std::format("{}-{} + {}-{} = {}-{}", sumArg1LinkData.srcPoint.value().blockId, (int)sumArg1LinkData.srcBlock.value()->type, srcBlock.blockId, (int)srcBlock.block->type, destBlock.blockId, (int)destBlock.block->type));
                     if (sumArg1LinkData.srcPoint.value().blockId == srcBlock.blockId)
                         throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     if (destArg1Port.number == destArg2Port.number)
@@ -266,23 +294,31 @@ namespace ts {
                     break;
                 }
 
+                // if (srcBlock.blockId == 21) {
+                //     // TODO: may be unit delay
+                //     Logger::instance().log(std::format("@@@ 21"));
+                    
+                //     break;
+                // }
+
+                Logger::instance().log(std::format("ADDED: {}", destBlock.block->name));
                 _sumOperatorBuildData.insert({
                     destBlock.blockId,
                     U2ArgsOperatorBuildData{
                         U2ArgsOperatorBuildData::PointsLink{
-                            &*srcBlock.block,
+                            srcBlock.block,
                             srcPoint,
                             destPoint
                         },
-                        &*destBlock.block
+                        destBlock.block
                     }
                 });
 
                 break;
             } case ts::structures::blockType::GAIN: {
-                assert(dynamic_cast<SGainBlock*>(&*destBlock.block));
+                assert(dynamic_cast<SGainBlock*>(destBlock.block.get()));
                 
-                SGainBlock* destGainBlock = static_cast<SGainBlock*>(&*destBlock.block);
+                SGainBlock* destGainBlock = static_cast<SGainBlock*>(destBlock.block.get());
                 assert(destGainBlock);
 
                 assert(destGainBlock->ports[0].pType == SBlock::SPort::type::IN);
@@ -295,9 +331,9 @@ namespace ts {
                 
                 break;
             } case ts::structures::blockType::UNIT_DELAY: {
-                assert(dynamic_cast<SUnitDelayBlock*>(&*destBlock.block));
+                assert(dynamic_cast<SUnitDelayBlock*>(destBlock.block.get()));
                 
-                SUnitDelayBlock* destUnitDelayBlock = static_cast<SUnitDelayBlock*>(&*destBlock.block);
+                SUnitDelayBlock* destUnitDelayBlock = static_cast<SUnitDelayBlock*>(destBlock.block.get());
                 assert(destUnitDelayBlock);
 
                 assert(destUnitDelayBlock->ports[0].pType == SBlock::SPort::type::IN);
@@ -306,13 +342,13 @@ namespace ts {
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
 
                 result.uOperator = std::make_unique<U::Assign>(to, from);
-                result.uPriority = uOperatorPriority::normal;
+                result.uPriority = uOperatorPriority::low;
                 
                 break;
             } case ts::structures::blockType::OUTPORT: {
-                assert(dynamic_cast<SOutportBlock*>(&*destBlock.block));
+                assert(dynamic_cast<SOutportBlock*>(destBlock.block.get()));
                 
-                SOutportBlock* destOutportBlock = static_cast<SOutportBlock*>(&*destBlock.block);
+                SOutportBlock* destOutportBlock = static_cast<SOutportBlock*>(destBlock.block.get());
                 assert(destOutportBlock);
 
                 assert(destOutportBlock->ports[0].pType == SBlock::SPort::type::IN);
@@ -321,6 +357,7 @@ namespace ts {
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
 
                 result.uOperator = std::make_unique<U::Assign>(to, from);
+                result.uPriority = uOperatorPriority::normal;
             }
         }
 

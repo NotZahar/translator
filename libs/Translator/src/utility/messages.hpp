@@ -48,6 +48,7 @@ namespace ts {
             inline static constexpr char NOT_EXISTING_LINK[] = "Встречена несуществующая связь";
             inline static constexpr char WRONG_BLOCK_TYPE[] = "Встречен невалидный тип блока при создании порядка команд";
             inline static constexpr char EXTRA_LINKS[] = "Встречены лишние связи";
+            inline static constexpr char INTERNAL_ERROR[] = "Внутренняя ошибка";
         };
     };
 }

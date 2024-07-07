@@ -52,7 +52,7 @@ namespace ts::structures {
 
         virtual ~SBlock() = default;
 
-        virtual std::unique_ptr<SBlock> clone() const = 0;
+        virtual std::shared_ptr<SBlock> clone() const = 0;
 
         blockType type;
         std::string name;
@@ -76,8 +76,8 @@ namespace ts::structures {
 
         ~SInportBlock() override = default;
 
-        std::unique_ptr<SBlock> clone() const override {
-            return std::make_unique<SInportBlock>(type, name, ports);
+        std::shared_ptr<SBlock> clone() const override {
+            return std::make_shared<SInportBlock>(type, name, ports);
         }
 
         std::array<SPort, numberOfPorts> ports;
@@ -102,8 +102,8 @@ namespace ts::structures {
 
         ~SSumBlock() override = default;
 
-        std::unique_ptr<SBlock> clone() const override {
-            return std::make_unique<SSumBlock>(type, name, ports, inputSigns);
+        std::shared_ptr<SBlock> clone() const override {
+            return std::make_shared<SSumBlock>(type, name, ports, inputSigns);
         }
 
         std::array<SPort, numberOfPorts> ports;
@@ -122,8 +122,8 @@ namespace ts::structures {
 
         ~SGainBlock() override = default;
 
-        std::unique_ptr<SBlock> clone() const override {
-            return std::make_unique<SGainBlock>(type, name, ports, gain);
+        std::shared_ptr<SBlock> clone() const override {
+            return std::make_shared<SGainBlock>(type, name, ports, gain);
         }
 
         std::array<SPort, numberOfPorts> ports;
@@ -142,8 +142,8 @@ namespace ts::structures {
 
         ~SUnitDelayBlock() override = default;
 
-        std::unique_ptr<SBlock> clone() const override {
-            return std::make_unique<SUnitDelayBlock>(type, name, ports, sampleTime);
+        std::shared_ptr<SBlock> clone() const override {
+            return std::make_shared<SUnitDelayBlock>(type, name, ports, sampleTime);
         }
 
         std::array<SPort, numberOfPorts> ports;
@@ -161,8 +161,8 @@ namespace ts::structures {
 
         ~SOutportBlock() override = default;
 
-        std::unique_ptr<SBlock> clone() const override {
-            return std::make_unique<SOutportBlock>(type, name, ports);
+        std::shared_ptr<SBlock> clone() const override {
+            return std::make_shared<SOutportBlock>(type, name, ports);
         }
 
         std::array<SPort, numberOfPorts> ports;

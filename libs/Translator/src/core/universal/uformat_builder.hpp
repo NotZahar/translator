@@ -25,7 +25,13 @@ namespace ts {
     private:
         enum class uOperatorPriority {
             high,
-            normal
+            normal,
+            low
+        };
+
+        struct BlockData {
+            structures::SElements::blockId_t blockId;
+            std::shared_ptr<structures::SBlock> block;
         };
 
         struct MakeUResult {
@@ -35,7 +41,8 @@ namespace ts {
         };
 
         struct ProcessLayerResult {
-            std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>> bloksToProcessNext;
+            std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessNext;
+            std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessInFuture;
         };
 
         struct MakeOperatorResult {
@@ -47,7 +54,7 @@ namespace ts {
         private:
             struct U2ArgsOperatorBuildData {
                 struct PointsLink {
-                    std::optional<structures::SBlock*> srcBlock;
+                    std::optional<std::shared_ptr<structures::SBlock>> srcBlock;
                     std::optional<structures::SLink::SPoint> srcPoint;
                     std::optional<structures::SLink::SPoint> destPoint;
                 };
@@ -62,15 +69,10 @@ namespace ts {
                 }
 
                 PointsLink link;
-                structures::SBlock* destBlock;
+                std::shared_ptr<structures::SBlock> destBlock;
             };
 
         public:
-            struct BlockData {
-                structures::SElements::blockId_t blockId;
-                const std::unique_ptr<structures::SBlock>& block;
-            };
-
             UCodeOperatorBuilder() noexcept = default;
 
             ~UCodeOperatorBuilder() = default;
@@ -89,17 +91,18 @@ namespace ts {
             std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _sumOperatorBuildData;
         };
 
-        [[nodiscard]] ProcessLayerResult processLayer(
+        [[nodiscard]] ProcessLayerResult processLinks(
             const splittedLinks_t& splittedLinks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& srcBlocks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& destBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& srcBlocks,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& destBlocks,
             UCodeOperatorBuilder& uCodeOperatorBuilder,
             std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal) const;
+            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal,
+            std::vector<std::unique_ptr<U::Operator>>& uCodeLow) const;
 
         [[nodiscard]] MakeUResult makeU(
             splittedLinks_t splittedLinks,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& inVars,
-            const std::unordered_map<structures::SElements::blockId_t, std::unique_ptr<structures::SBlock>>& operators) const;
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
+            const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const;
     };
 }
