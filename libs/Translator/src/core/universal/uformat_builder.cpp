@@ -97,9 +97,9 @@ namespace ts {
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& srcBlocks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& destBlocks,
             UCodeOperatorBuilder& uCodeOperatorBuilder,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeLow) const {
+            std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
+            std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
+            std::vector<std::shared_ptr<U::Operator>>& uCodeLow) const {
         ProcessLayerResult result;
         for (const auto& srcBlock : srcBlocks) {
             const SElements::blockId_t srcBlockId = srcBlock.first;
@@ -125,12 +125,10 @@ namespace ts {
                 Logger::instance().log(std::format("{} -> {}", srcBlockData->name, destBlockData->name)); // TODO: delete
             
                 if (destBlockData->type == blockType::UNIT_DELAY) {
-                    Logger::instance().log(std::format("########")); // TODO: delete
                     result.blocksToProcessInFuture.insert({ destBlockId, destBlockData->clone() });
                     continue;
                 }
 
-                Logger::instance().log("EEEEEEEEEEE " + destBlockData->name);
                 result.blocksToProcessNext.insert({ destBlockId, destBlockData->clone() });
 
                 MakeOperatorResult makeOperatorResult = uCodeOperatorBuilder.makeOperator(
@@ -140,20 +138,21 @@ namespace ts {
                     destPoint
                 );
 
-                if (!makeOperatorResult.uOperator)
+                if (makeOperatorResult.uOperators.empty())
                     continue;
 
-                assert(makeOperatorResult.uOperator);
-                switch (makeOperatorResult.uPriority) {
-                    case uOperatorPriority::high:
-                        uCodeHigh.emplace_back(std::move(makeOperatorResult.uOperator));
-                        break;
-                    case uOperatorPriority::normal:
-                        uCodeNormal.emplace_back(std::move(makeOperatorResult.uOperator));
-                        break;
-                    case uOperatorPriority::low:
-                        uCodeLow.emplace_back(std::move(makeOperatorResult.uOperator));
-                        break;
+                for (const auto& operators : makeOperatorResult.uOperators) {
+                    switch (operators.uPriority) {
+                        case uOperatorPriority::high:
+                            uCodeHigh.emplace_back(operators.uOperator);
+                            break;
+                        case uOperatorPriority::normal:
+                            uCodeNormal.emplace_back(operators.uOperator);
+                            break;
+                        case uOperatorPriority::low:
+                            uCodeLow.emplace_back(operators.uOperator);
+                            break;
+                    }
                 }
             }
         }
@@ -165,10 +164,10 @@ namespace ts {
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const {
-        std::vector<std::unique_ptr<U::Operator>> uCode;
-        std::vector<std::unique_ptr<U::Operator>> uCodeHigh;
-        std::vector<std::unique_ptr<U::Operator>> uCodeNormal;
-        std::vector<std::unique_ptr<U::Operator>> uCodeLow;
+        std::vector<std::shared_ptr<U::Operator>> uCode;
+        std::vector<std::shared_ptr<U::Operator>> uCodeHigh;
+        std::vector<std::shared_ptr<U::Operator>> uCodeNormal;
+        std::vector<std::shared_ptr<U::Operator>> uCodeLow;
         UCodeOperatorBuilder uCodeOperatorBuilder;
         std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessInFuture;
 
@@ -192,18 +191,17 @@ namespace ts {
                 throw std::runtime_error{ ts::messages::errors::INTERNAL_ERROR };
         }
 
-        if (uCodeOperatorBuilder.extraBuildDataExists()) {
-            for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) { // TODO: delete
-                Logger::instance().log(std::format("EXTRA: {}", op.first));
-            }
-            throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
-        }
+        // if (uCodeOperatorBuilder.extraBuildDataExists()) {
+        //     for (const auto& op : uCodeOperatorBuilder.getSumOperatorBuildData()) { // TODO: delete
+        //         Logger::instance().log(std::format("EXTRA: {}", op.first));
+        //     }
+        //     throw std::runtime_error{ ts::messages::errors::EXTRA_LINKS };
+        // }
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
-            uCode.emplace_back(std::move(normalOperator));
+            uCode.emplace_back(normalOperator);
 
-        assert(uCode.size() >= uCodeNormal.size());
         return UFormatBuilder::MakeUResult{
             {}, // TODO:
             {}, // TODO:
@@ -212,7 +210,7 @@ namespace ts {
     }
 
     bool UFormatBuilder::UCodeOperatorBuilder::extraBuildDataExists() const noexcept {
-        return !_sumOperatorBuildData.empty();
+        return !_sumOperatorBuildData.empty() || !_incompletedBlocks.empty() || !_ready2ArgOperators.empty();
     }
 
     [[nodiscard]] const std::unordered_map<structures::SElements::blockId_t, UFormatBuilder::UCodeOperatorBuilder::U2ArgsOperatorBuildData>& UFormatBuilder::UCodeOperatorBuilder::getSumOperatorBuildData() const noexcept {
@@ -225,7 +223,6 @@ namespace ts {
             const structures::SLink::SPoint& srcPoint,
             const structures::SLink::SPoint& destPoint) {
         UFormatBuilder::MakeOperatorResult result;
-        result.uPriority = uOperatorPriority::high;
 
         assert(srcBlock.block);
         assert(destBlock.block);
@@ -262,9 +259,9 @@ namespace ts {
 
                     const auto& destArg1Port = sumArg1LinkData.destPoint->port;
                     const auto& destArg2Port = destPoint.port;
-                    // TODO: delete
-                    Logger::instance().log(std::format("{}-{} + {}-{} = {}-{}", sumArg1LinkData.srcPoint.value().blockId, (int)sumArg1LinkData.srcBlock.value()->type, srcBlock.blockId, (int)srcBlock.block->type, destBlock.blockId, (int)destBlock.block->type));
-                    if (sumArg1LinkData.srcPoint.value().blockId == srcBlock.blockId)
+                    const structures::SElements::blockId_t srcBlockId1 = sumArg1LinkData.srcPoint.value().blockId;
+                    const structures::SElements::blockId_t srcBlockId2 = srcBlock.blockId;
+                    if (srcBlockId1 == srcBlockId2)
                         throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     if (destArg1Port.number == destArg2Port.number)
                         throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
@@ -288,20 +285,35 @@ namespace ts {
                     const U::Var sumArg1 = U::Var{ U::Var::type::DOUBLE, arg1Name, std::nullopt, arg1Sign };
                     const U::Var sumArg2 = U::Var{ U::Var::type::DOUBLE, arg2Name, std::nullopt, arg2Sign };
 
-                    result.uOperator = std::make_unique<U::Sum>(sumRes, sumArg1, sumArg2);
+                    auto uOperator = std::make_shared<U::Sum>(sumRes, sumArg1, sumArg2); 
+                    const bool firstArgCompleted = _incompletedBlocks.contains(srcBlockId1);
+                    const bool secondArgCompleted = _incompletedBlocks.contains(srcBlockId2);
+                    if (firstArgCompleted && secondArgCompleted) {
+                        _ready2ArgOperators.emplace_back(Ready2ArgOperator{ MakeOperatorResult::OperatorData{ uOperator }, { srcBlockId1, srcBlockId2 } });
+                    } else if (firstArgCompleted) {
+                        _ready2ArgOperators.emplace_back(Ready2ArgOperator{ MakeOperatorResult::OperatorData{ uOperator }, { srcBlockId1 } });
+                    } else if (secondArgCompleted) {
+                        _ready2ArgOperators.emplace_back(Ready2ArgOperator{ MakeOperatorResult::OperatorData{ uOperator }, { srcBlockId2 } });
+                    } else {
+                        result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::move(uOperator) });
+                        assert(_incompletedBlocks.contains(destBlock.blockId));
+                        _incompletedBlocks.erase(destBlock.blockId);
+
+                        for (auto it = _ready2ArgOperators.begin(); it != _ready2ArgOperators.end();) {
+                            std::erase(it->incompletedBlocks, destBlock.blockId);
+                            if (it->incompletedBlocks.empty()) {
+                                result.uOperators.emplace_back(it->uOperatorData);
+                                it = _ready2ArgOperators.erase(it);
+                            } else {
+                                ++it;
+                            }
+                        }
+                    }
+
                     _sumOperatorBuildData.erase(destBlock.blockId);
-                    
                     break;
                 }
 
-                // if (srcBlock.blockId == 21) {
-                //     // TODO: may be unit delay
-                //     Logger::instance().log(std::format("@@@ 21"));
-                    
-                //     break;
-                // }
-
-                Logger::instance().log(std::format("ADDED: {}", destBlock.block->name));
                 _sumOperatorBuildData.insert({
                     destBlock.blockId,
                     U2ArgsOperatorBuildData{
@@ -313,6 +325,8 @@ namespace ts {
                         destBlock.block
                     }
                 });
+
+                _incompletedBlocks.insert(destBlock.blockId);
 
                 break;
             } case ts::structures::blockType::GAIN: {
@@ -327,7 +341,8 @@ namespace ts {
                 const U::Var multArg1 = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
                 const U::Var multArg2 = U::Var{ U::Var::type::DOUBLE, std::nullopt, std::to_string(destGainBlock->gain), U::Var::sign::PLUS };
 
-                result.uOperator = std::make_unique<U::Mult>(multRes, multArg1, multArg2);
+                assert(!_incompletedBlocks.contains(destBlock.blockId));
+                result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Mult>(multRes, multArg1, multArg2) });
                 
                 break;
             } case ts::structures::blockType::UNIT_DELAY: {
@@ -341,8 +356,8 @@ namespace ts {
                 const U::Var to = U::Var{ U::Var::type::DOUBLE, destUnitDelayBlock->name, std::nullopt, std::nullopt };
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
 
-                result.uOperator = std::make_unique<U::Assign>(to, from);
-                result.uPriority = uOperatorPriority::low;
+                assert(!_incompletedBlocks.contains(destBlock.blockId));
+                result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Assign>(to, from), uOperatorPriority::low });
                 
                 break;
             } case ts::structures::blockType::OUTPORT: {
@@ -356,8 +371,8 @@ namespace ts {
                 const U::Var to = U::Var{ U::Var::type::DOUBLE, destOutportBlock->name, std::nullopt, std::nullopt };
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
 
-                result.uOperator = std::make_unique<U::Assign>(to, from);
-                result.uPriority = uOperatorPriority::normal;
+                assert(!_incompletedBlocks.contains(destBlock.blockId));
+                result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Assign>(to, from), uOperatorPriority::normal });
             }
         }
 

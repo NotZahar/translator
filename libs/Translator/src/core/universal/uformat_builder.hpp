@@ -4,6 +4,8 @@
 #include <memory>
 #include <optional>
 #include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 #include "../source/selements.hpp"
 #include "uformat.hpp"
@@ -37,7 +39,7 @@ namespace ts {
         struct MakeUResult {
             std::vector<U::Var> uVars;
             std::vector<U::Var> uExportVars;
-            std::vector<std::unique_ptr<U::Operator>> uCode;
+            std::vector<std::shared_ptr<U::Operator>> uCode;
         };
 
         struct ProcessLayerResult {
@@ -46,8 +48,17 @@ namespace ts {
         };
 
         struct MakeOperatorResult {
-            std::unique_ptr<U::Operator> uOperator;
-            uOperatorPriority uPriority;
+            struct OperatorData {
+                std::shared_ptr<U::Operator> uOperator;
+                uOperatorPriority uPriority = uOperatorPriority::high;
+            };
+
+            std::vector<OperatorData> uOperators;
+        };
+
+        struct Ready2ArgOperator {
+            MakeOperatorResult::OperatorData uOperatorData;
+            std::vector<structures::SElements::blockId_t> incompletedBlocks;
         };
 
         class UCodeOperatorBuilder {
@@ -89,6 +100,8 @@ namespace ts {
         private:
             // key == dest operator block id
             std::unordered_map<structures::SElements::blockId_t, U2ArgsOperatorBuildData> _sumOperatorBuildData;
+            std::unordered_set<structures::SElements::blockId_t> _incompletedBlocks;
+            std::vector<Ready2ArgOperator> _ready2ArgOperators;
         };
 
         [[nodiscard]] ProcessLayerResult processLinks(
@@ -96,9 +109,9 @@ namespace ts {
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& srcBlocks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& destBlocks,
             UCodeOperatorBuilder& uCodeOperatorBuilder,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeHigh,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeNormal,
-            std::vector<std::unique_ptr<U::Operator>>& uCodeLow) const;
+            std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
+            std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
+            std::vector<std::shared_ptr<U::Operator>>& uCodeLow) const;
 
         [[nodiscard]] MakeUResult makeU(
             splittedLinks_t splittedLinks,
