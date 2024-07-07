@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['operator_182',['Operator',['../structts_1_1U_1_1Operator.html',1,'ts::U']]],
-  ['options_183',['options',['../structts_1_1messages_1_1options.html',1,'ts::messages']]],
-  ['options_184',['Options',['../structts_1_1OptionsParser_1_1Options.html',1,'ts::OptionsParser']]],
-  ['optionsparser_185',['OptionsParser',['../classts_1_1OptionsParser.html',1,'ts']]]
+  ['paths_184',['paths',['../structts_1_1paths.html',1,'ts']]],
+  ['pointslink_185',['PointsLink',['../structts_1_1UFormatBuilder_1_1UCodeOperatorBuilder_1_1U2ArgsOperatorBuildData_1_1PointsLink.html',1,'ts::UFormatBuilder::UCodeOperatorBuilder::U2ArgsOperatorBuildData']]]
 ];
