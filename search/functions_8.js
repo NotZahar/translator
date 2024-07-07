@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['operator_246',['Operator',['../structts_1_1U_1_1Operator.html#a4e4b12e74bae953a9ccc68ab9dae0515',1,'ts::U::Operator']]],
-  ['operator_28_29_247',['operator()',['../structts_1_1structures_1_1SPointHash.html#ad190db5ec8c780df341192183d911b1f',1,'ts::structures::SPointHash::operator()()'],['../structts_1_1structures_1_1SPointEqual.html#aae45dee61c506cabff30d2566e732ab8',1,'ts::structures::SPointEqual::operator()()']]],
-  ['optionsparser_248',['OptionsParser',['../classts_1_1OptionsParser.html#abfa27e73f18bf4851687ba1b6873ac33',1,'ts::OptionsParser']]]
+  ['main_246',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
+  ['mult_247',['Mult',['../structts_1_1U_1_1Mult.html#a9f14d65536888b2fdb0474392a213e0b',1,'ts::U::Mult::Mult()=delete'],['../structts_1_1U_1_1Mult.html#aba0c65d5ab9803d94cc5d9e558544b8b',1,'ts::U::Mult::Mult(const Var &amp;res, const Var &amp;arg1, const Var &amp;arg2) noexcept']]]
 ];

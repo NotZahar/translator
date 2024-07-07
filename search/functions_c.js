@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['uformat_262',['UFormat',['../structts_1_1U_1_1UFormat.html#a0aac711e639cb01b9fe4215139ec0714',1,'ts::U::UFormat']]],
-  ['uformatbuilder_263',['UFormatBuilder',['../classts_1_1UFormatBuilder.html#a12e9b148aeaf5feb6ef742958ccdfe13',1,'ts::UFormatBuilder']]]
+  ['translate_262',['translate',['../classts_1_1Translator.html#a69f63798bbe3e210b527744bcb3c7982',1,'ts::Translator']]],
+  ['translator_263',['Translator',['../classts_1_1Translator.html#a67d27c56f7db5d4dd314eca3dff74fbd',1,'ts::Translator::Translator()=delete'],['../classts_1_1Translator.html#a863f444462ca5d09b0ef34b0383c7725',1,'ts::Translator::Translator(OptionsParser::Options options) noexcept']]]
 ];

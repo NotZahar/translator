@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['var_264',['Var',['../structts_1_1U_1_1Var.html#af15ea80bb83c030717d84c168666356a',1,'ts::U::Var::Var()=delete'],['../structts_1_1U_1_1Var.html#ada6e166180ea8ede0c16dc52bfb5384b',1,'ts::U::Var::Var(type varType, std::optional&lt; std::string &gt; name, std::optional&lt; std::string &gt; value, std::optional&lt; sign &gt; valueSign) noexcept']]]
+  ['uformat_264',['UFormat',['../structts_1_1U_1_1UFormat.html#a0aac711e639cb01b9fe4215139ec0714',1,'ts::U::UFormat']]],
+  ['uformatbuilder_265',['UFormatBuilder',['../classts_1_1UFormatBuilder.html#a12e9b148aeaf5feb6ef742958ccdfe13',1,'ts::UFormatBuilder']]]
 ];
