@@ -11,7 +11,7 @@
 #include "../source/sblock.hpp"
 #include "../source/slink.hpp"
 #include "../../utility/messages.hpp"
-#include "logger.hpp"
+#include "core/universal/uformat.hpp"
 
 #define ERR_WITH_LINE(err) \
     (std::format("{}: {}:{}", err, __FUNCTION__, __LINE__))
@@ -63,33 +63,11 @@ namespace {
 
 namespace ts {
     U::UFormat UFormatBuilder::build(structures::SElements& sElements) {
-        U::UFormat format;
-
         std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>> inVars;
         std::unordered_map<SElements::blockId_t, std::shared_ptr<SBlock>> operators;
         
         categorizeBlocks(sElements.blocks, inVars, operators);
-        auto uCode = makeU(splitLinks(sElements.links), inVars, operators);
-        for (const auto& c : uCode.uCode) { // TODO: delete
-            if (dynamic_cast<U::Sum*>(&*c)) {
-                Logger::instance().log(std::format("{}({}, {}, {})", "sum", dynamic_cast<U::Sum*>(&*c)->res.name.value(), dynamic_cast<U::Sum*>(&*c)->arg1.name.value(), dynamic_cast<U::Sum*>(&*c)->arg2.name.value()));
-                continue;
-            }
-            
-            if (dynamic_cast<U::Mult*>(&*c)) {
-                Logger::instance().log(std::format("{}({}, {}, {})", "mult", dynamic_cast<U::Mult*>(&*c)->res.name.value(), dynamic_cast<U::Mult*>(&*c)->arg1.name.value(), dynamic_cast<U::Mult*>(&*c)->arg2.value.value()));
-                continue;
-            }
-
-            if (dynamic_cast<U::Assign*>(&*c)) {
-                Logger::instance().log(std::format("{}({}, {})", "assign", dynamic_cast<U::Assign*>(&*c)->to.name.value(), dynamic_cast<U::Assign*>(&*c)->from.name.value()));
-                continue;
-            }
-        }
-
-        // TODO: [here]
-
-        return format;
+        return makeU(splitLinks(sElements.links), inVars, operators);
     }
 
     [[nodiscard]] UFormatBuilder::ProcessLayerResult UFormatBuilder::processLinks(
@@ -127,7 +105,7 @@ namespace ts {
                     continue;
             
                 if (forwardDirection && destBlockData->type == blockType::UNIT_DELAY) {
-                    result.blocksToProcessInFuture.insert({ srcBlockId, srcBlockData->clone() });
+                    result.blocksToProcessReverse.insert({ srcBlockId, srcBlockData->clone() });
                     continue;
                 }
 
@@ -162,30 +140,33 @@ namespace ts {
         return result;
     }
 
-    UFormatBuilder::MakeUResult UFormatBuilder::makeU(
+    U::UFormat UFormatBuilder::makeU(
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const {
+        std::vector<U::Var> uVars;
+        std::vector<U::Var> uInitializedVars;
+        std::vector<U::Var> uExportVars;
         std::vector<std::shared_ptr<U::Operator>> uCode;
         std::vector<std::shared_ptr<U::Operator>> uCodeHigh;
         std::vector<std::shared_ptr<U::Operator>> uCodeNormal;
         std::vector<std::shared_ptr<U::Operator>> uCodeLow;
         UCodeOperatorBuilder uCodeOperatorBuilder;
-        std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessInFuture;
+        std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessReverse;
 
         if (inVars.empty())
             throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
 
         UFormatBuilder::ProcessLayerResult processResult = processLinks(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
-        blocksToProcessInFuture = std::move(processResult.blocksToProcessInFuture);
+        blocksToProcessReverse = std::move(processResult.blocksToProcessReverse);
         while (!processResult.blocksToProcessNext.empty()) {
             auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);            
             processResult.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
-            for (const auto& futureBlock : processResultInternal.blocksToProcessInFuture)
-                blocksToProcessInFuture.insert(futureBlock);
+            for (const auto& futureBlock : processResultInternal.blocksToProcessReverse)
+                blocksToProcessReverse.insert(futureBlock);
         }
 
-        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessInFuture, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, false);
+        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessReverse, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, false);
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
@@ -193,9 +174,10 @@ namespace ts {
         for (auto& lowOperator : uCodeLow)
             uCode.emplace_back(lowOperator);
 
-        return UFormatBuilder::MakeUResult{
-            {}, // TODO:
-            {}, // TODO:
+        return U::UFormat{
+            std::move(uVars),
+            std::move(uInitializedVars),
+            std::move(uExportVars),
             std::move(uCode)
         };
     }

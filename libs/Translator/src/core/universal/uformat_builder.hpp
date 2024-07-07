@@ -36,15 +36,9 @@ namespace ts {
             std::shared_ptr<structures::SBlock> block;
         };
 
-        struct MakeUResult {
-            std::vector<U::Var> uVars;
-            std::vector<U::Var> uExportVars;
-            std::vector<std::shared_ptr<U::Operator>> uCode;
-        };
-
         struct ProcessLayerResult {
             std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessNext;
-            std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessInFuture;
+            std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>> blocksToProcessReverse;
         };
 
         struct MakeOperatorResult {
@@ -111,7 +105,7 @@ namespace ts {
             std::vector<std::shared_ptr<U::Operator>>& uCodeLow,
             bool forwardDirection = true) const;
 
-        [[nodiscard]] MakeUResult makeU(
+        [[nodiscard]] U::UFormat makeU(
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const;
