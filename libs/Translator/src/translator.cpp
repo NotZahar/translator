@@ -3,8 +3,9 @@
 #include <filesystem>
 #include <stdexcept>
 
-#include "core/universal/uformat_builder.hpp"
 #include "core/xml_source_file.hpp"
+#include "core/universal/uformat_builder.hpp"
+#include "core/backend/c.hpp"
 #include "utility/config.hpp"
 #include "utility/messages.hpp"
 
@@ -22,7 +23,7 @@ namespace ts {
         UFormatBuilder uFormatBuilder;
         auto sElements = sourceFile->getElements();
         auto uFormat = uFormatBuilder.build(sElements);
-        // ...
+        _translated = backend::C::toC(std::move(uFormat));
     }
 
     std::string_view Translator::getTranslated() const noexcept {
