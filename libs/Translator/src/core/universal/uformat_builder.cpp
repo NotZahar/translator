@@ -78,6 +78,9 @@ namespace ts {
             std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
             std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
             std::vector<std::shared_ptr<U::Operator>>& uCodeLow,
+            std::unordered_map<std::string, U::Var>& uVars,
+            std::unordered_map<std::string, U::Var>& uInitializedVars,
+            std::unordered_map<std::string, U::Var>& uExportVars,
             bool forwardDirection) const {
         ProcessLayerResult result;
         for (const auto& srcBlock : srcBlocks) {
@@ -118,6 +121,13 @@ namespace ts {
                     destPoint
                 );
 
+                for (const auto& var : makeOperatorResult.uVars)
+                    uVars.insert({ var.first, var.second });
+                for (const auto& var : makeOperatorResult.uInitializedVars)
+                    uInitializedVars.insert({ var.first, var.second });
+                for (const auto& var : makeOperatorResult.uExportVars)
+                    uExportVars.insert({ var.first, var.second });
+
                 if (makeOperatorResult.uOperators.empty())
                     continue;
 
@@ -144,9 +154,9 @@ namespace ts {
             splittedLinks_t splittedLinks,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& inVars,
             const std::unordered_map<structures::SElements::blockId_t, std::shared_ptr<structures::SBlock>>& operators) const {
-        std::vector<U::Var> uVars;
-        std::vector<U::Var> uInitializedVars;
-        std::vector<U::Var> uExportVars;
+        std::unordered_map<std::string, U::Var> uVars;
+        std::unordered_map<std::string, U::Var> uInitializedVars;
+        std::unordered_map<std::string, U::Var> uExportVars;
         std::vector<std::shared_ptr<U::Operator>> uCode;
         std::vector<std::shared_ptr<U::Operator>> uCodeHigh;
         std::vector<std::shared_ptr<U::Operator>> uCodeNormal;
@@ -157,16 +167,16 @@ namespace ts {
         if (inVars.empty())
             throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::NO_INPUT_VARS) };
 
-        UFormatBuilder::ProcessLayerResult processResult = processLinks(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);
+        UFormatBuilder::ProcessLayerResult processResult = processLinks(splittedLinks, inVars, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, uVars, uInitializedVars, uExportVars);
         blocksToProcessReverse = std::move(processResult.blocksToProcessReverse);
         while (!processResult.blocksToProcessNext.empty()) {
-            auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow);            
+            auto processResultInternal = processLinks(splittedLinks, processResult.blocksToProcessNext, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, uVars, uInitializedVars, uExportVars);
             processResult.blocksToProcessNext = std::move(processResultInternal.blocksToProcessNext);
             for (const auto& futureBlock : processResultInternal.blocksToProcessReverse)
                 blocksToProcessReverse.insert(futureBlock);
         }
 
-        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessReverse, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, false);
+        UFormatBuilder::ProcessLayerResult processResultFuture = processLinks(splittedLinks, blocksToProcessReverse, operators, uCodeOperatorBuilder, uCodeHigh, uCodeNormal, uCodeLow, uVars, uInitializedVars, uExportVars, false);
 
         uCode = std::move(uCodeHigh);
         for (auto& normalOperator : uCodeNormal)
@@ -174,10 +184,20 @@ namespace ts {
         for (auto& lowOperator : uCodeLow)
             uCode.emplace_back(lowOperator);
 
+        std::vector<U::Var> vars;
+        std::vector<U::Var> initializedVars;
+        std::vector<U::Var> exportVars;
+        for (const auto& var : uVars)
+            vars.emplace_back(var.second);
+        for (const auto& var : uInitializedVars)
+            initializedVars.emplace_back(var.second);
+        for (const auto& var : uExportVars)
+            exportVars.emplace_back(var.second);
+
         return U::UFormat{
-            std::move(uVars),
-            std::move(uInitializedVars),
-            std::move(uExportVars),
+            vars,
+            initializedVars,
+            exportVars,
             std::move(uCode)
         };
     }
@@ -237,11 +257,14 @@ namespace ts {
                     arg2Name = srcBlock.block->name;
                     arg1Sign = destSumInputSigns.at(destSumPort1.number);
                     arg2Sign = destSumInputSigns.at(destSumPort2.number);
+                    bool arg1IsInport = sumArg1LinkData.srcBlock.value()->type == blockType::INPORT;
+                    bool arg2IsInport = srcBlock.block->type == blockType::INPORT;
                     if (destArg1Port.number == destSumPort1.number && destArg2Port.number == destSumPort2.number) {
                         // nothing
                     } else if (destArg1Port.number == destSumPort2.number && destArg2Port.number == destSumPort1.number) {
                         std::swap(arg1Name, arg2Name);
                         std::swap(arg1Sign, arg2Sign);
+                        std::swap(arg1IsInport, arg2IsInport);
                     } else {
                         throw std::runtime_error{ ERR_WITH_LINE(ts::messages::errors::INVALID_LINK) };
                     }
@@ -249,7 +272,14 @@ namespace ts {
                     const U::Var sumRes = U::Var{ U::Var::type::DOUBLE, destSumBlock->name, std::nullopt, std::nullopt };
                     const U::Var sumArg1 = U::Var{ U::Var::type::DOUBLE, arg1Name, std::nullopt, arg1Sign };
                     const U::Var sumArg2 = U::Var{ U::Var::type::DOUBLE, arg2Name, std::nullopt, arg2Sign };
-
+                    result.uVars.insert({ sumRes.name.value(), sumRes });
+                    result.uVars.insert({ sumArg1.name.value(), sumArg1 });
+                    result.uVars.insert({ sumArg2.name.value(), sumArg2 });
+                    if (arg1IsInport)
+                        result.uExportVars.insert({ sumArg1.name.value(), sumArg1 });
+                    if (arg2IsInport)
+                        result.uExportVars.insert({ sumArg2.name.value(), sumArg2 });
+                    
                     auto uOperator = std::make_shared<U::Sum>(sumRes, sumArg1, sumArg2); 
                     const bool firstArgCompleted = _incompletedBlocks.contains(srcBlockId1);
                     const bool secondArgCompleted = _incompletedBlocks.contains(srcBlockId2);
@@ -305,10 +335,14 @@ namespace ts {
                 const U::Var multRes = U::Var{ U::Var::type::DOUBLE, destGainBlock->name, std::nullopt, std::nullopt };
                 const U::Var multArg1 = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
                 const U::Var multArg2 = U::Var{ U::Var::type::DOUBLE, std::nullopt, std::to_string(destGainBlock->gain), U::Var::sign::PLUS };
+                result.uVars.insert({ multRes.name.value(), multRes });
+                result.uVars.insert({ multArg1.name.value(), multArg1 });
+                if (srcBlock.block->type == blockType::INPORT)
+                    result.uExportVars.insert({ multArg1.name.value(), multArg1 });
 
                 assert(!_incompletedBlocks.contains(destBlock.blockId));
                 result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Mult>(multRes, multArg1, multArg2) });
-                
+
                 break;
             } case ts::structures::blockType::UNIT_DELAY: {
                 assert(dynamic_cast<SUnitDelayBlock*>(destBlock.block.get()));
@@ -320,10 +354,15 @@ namespace ts {
                 
                 const U::Var to = U::Var{ U::Var::type::DOUBLE, destUnitDelayBlock->name, std::nullopt, std::nullopt };
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
+                result.uVars.insert({ to.name.value(), to });
+                result.uVars.insert({ from.name.value(), from });
+                result.uInitializedVars.insert({ to.name.value(), to });
+                if (srcBlock.block->type == blockType::INPORT)
+                    result.uExportVars.insert({ from.name.value(), from });
 
                 assert(!_incompletedBlocks.contains(destBlock.blockId));
                 result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Assign>(to, from), uOperatorPriority::low });
-                
+
                 break;
             } case ts::structures::blockType::OUTPORT: {
                 assert(dynamic_cast<SOutportBlock*>(destBlock.block.get()));
@@ -335,9 +374,14 @@ namespace ts {
                 
                 const U::Var to = U::Var{ U::Var::type::DOUBLE, destOutportBlock->name, std::nullopt, std::nullopt };
                 const U::Var from = U::Var{ U::Var::type::DOUBLE, srcBlock.block->name, std::nullopt, std::nullopt };
+                result.uVars.insert({ to.name.value(), to });
+                result.uVars.insert({ from.name.value(), from });
+                result.uExportVars.insert({ to.name.value(), to });
 
                 assert(!_incompletedBlocks.contains(destBlock.blockId));
                 result.uOperators.emplace_back(MakeOperatorResult::OperatorData{ std::make_shared<U::Assign>(to, from), uOperatorPriority::normal });
+
+                break;
             }
         }
 

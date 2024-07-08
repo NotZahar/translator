@@ -48,6 +48,9 @@ namespace ts {
             };
 
             std::vector<OperatorData> uOperators;
+            std::unordered_map<std::string, U::Var> uVars;
+            std::unordered_map<std::string, U::Var> uInitializedVars;
+            std::unordered_map<std::string, U::Var> uExportVars;
         };
 
         struct Ready2ArgOperator {
@@ -103,6 +106,9 @@ namespace ts {
             std::vector<std::shared_ptr<U::Operator>>& uCodeHigh,
             std::vector<std::shared_ptr<U::Operator>>& uCodeNormal,
             std::vector<std::shared_ptr<U::Operator>>& uCodeLow,
+            std::unordered_map<std::string, U::Var>& uVars,
+            std::unordered_map<std::string, U::Var>& uInitializedVars,
+            std::unordered_map<std::string, U::Var>& uExportVars,
             bool forwardDirection = true) const;
 
         [[nodiscard]] U::UFormat makeU(
